@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
-namespace Beatmap.UI
+namespace Beatmap.Editor
 {
     public class ValueController : MonoBehaviour
     {
-        public int FrameIndex { get; protected set; }       //the frame index in the beatmap
+        protected DataPointController _parent;
+        public int FrameIndex => _parent.FrameIndex;
         public int ChannelIndex { get; protected set; }     //the channel # in the channel flyweights
-        public Channel.Value Value { get; set; }     //the currently-represented channel value
+        public Channel.Value Value { get; private set; }     //the currently-represented channel value
         
         public TMPro.TMP_Text Text;
 
-        public void Initialize(int frameIndex, int channelIndex, Channel.Value initialValue)
+        public void Initialize(DataPointController parent, Channel.Value initialValue, int channelIndex)
         {
-            FrameIndex = frameIndex;
+            _parent = parent;
+            UpdateValue(initialValue);
             ChannelIndex = channelIndex;
-            Value = initialValue;
         }
-        public void UpdateValue(Channel.Value newValue, string text)
+        public virtual void UpdateValue(Channel.Value newValue)
         {
             Value = newValue;
-            Text.text = text;
+            Text.text = newValue.Name;
         }
     }
 }

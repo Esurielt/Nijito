@@ -62,22 +62,18 @@ namespace Beatmap.Drummer
         //ctor
         public DrummerChannel(string name) : base(name) { }
 
-        public override State DefaultStateFlyweight => StateFlyweights[0];  //'Normal'
-        public override Value DefaultValueFlyweight => ValueFlyweights[0];  //'Empty'
-
         protected override List<State> GetNewChannelStateInstances()
         {
             return new List<State>()
             {
-                BeatmapTypeInstances.ChannelStateInstances.Normal,
+                //empty
             };
         }
         protected override List<Value> GetNewChannelValueInstances()
         {
             return new List<Value>()
             {
-                BeatmapTypeInstances.ChannelValueInstances.Empty,
-                BeatmapTypeInstances.ChannelValueInstances.Hit,
+                ChannelValueInstances.Hit,
             };
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Singleton game manager component. Manages core and backend functions and initialization data, delegating to other systems whenever possible. Attach one (and only one) of this MonoB to its own GameObject in each scene.
@@ -12,8 +13,6 @@ public class Game : MonoBehaviour
     /// Singleton instance of Game.
     /// </summary>
     public static Game Self;
-
-    public Beatmap.Drummer.DrummerMapEditor TestingDrummerMapEditor;    //remove when no longer testing editor
 
     //called before Start() on game initialization. Order of Awake() calls can not be guaranteed.
     private void Awake()
@@ -73,9 +72,12 @@ public class Game : MonoBehaviour
         }
 
         //pass control to next system
+        Scene_DrummerEditor();
+    }
 
-        //below is for testing the beatmap editor, remove when done
-        TestingDrummerMapEditor.Initialize(new Beatmap.Drummer.DrummerMapWriter(new Beatmap.Drummer.DrummerMap()), new Beatmap.BeatmapFileIOHelper_JSON("test"));
+    public void Scene_DrummerEditor()
+    {
+        SceneManager.LoadScene("DrummerMapEditorScene");
     }
 
     //void Update()

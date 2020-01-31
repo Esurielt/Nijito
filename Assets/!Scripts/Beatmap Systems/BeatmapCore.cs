@@ -97,6 +97,11 @@ namespace Beatmap
             ExpectedFrame = expectedFrame;
             Modifiers = modifiers;
         }
+        public DataPoint(DataPoint other)
+        {
+            ExpectedFrame = new BeatmapFrame(other.ExpectedFrame);
+            Modifiers = new List<ReaderModifier>(other.Modifiers);
+        }
     }
     /// <summary>
     /// One frame's worth of channel values in a beatmap (all channel values for 1/24th of a beat). Used for both expected values and reading current values.
@@ -133,22 +138,22 @@ namespace Beatmap
         public string Name { get; }
 
         /// <summary>
-        /// List of reuseable instances for each possible state of the channel.
+        /// List of reuseable instances for each possible state of the channel. Do not include the default state in this list.
         /// </summary>
         public List<State> StateFlyweights { get; }
         /// <summary>
-        /// List of reuseable instances for each possible value of the channel
+        /// List of reuseable instances for each possible value of the channel. Do not include the default value in this list.
         /// </summary>
         public List<Value> ValueFlyweights { get; }
 
         /// <summary>
-        /// Redirect to the state flyweight considered the 'default' one (i.e. usually StateFlyweights[0] or whatever represents a 'normal' state).
+        /// Redirect to the state flyweight considered the 'default' one (starts as the universal 'Normal' state instance in ChannelStateInstances).
         /// </summary>
-        public abstract State DefaultStateFlyweight { get; }
+        public virtual State DefaultStateFlyweight => ChannelStateInstances.Normal;
         /// <summary>
-        /// Redirect to the value flyweight considered the 'default' one (i.e. usually ValueFlyweights[0] or whatever represents 'nothing expected').
+        /// Redirect to the value flyweight considered the 'default' one (starts as the universal 'Empty' value instance in ChannelValueInstances).
         /// </summary>
-        public abstract Value DefaultValueFlyweight { get; }
+        public virtual Value DefaultValueFlyweight => ChannelValueInstances.Empty;
 
         //ctor
         public Channel(string name)

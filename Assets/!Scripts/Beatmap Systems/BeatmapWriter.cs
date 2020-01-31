@@ -7,12 +7,15 @@ namespace Beatmap
     public abstract class BeatmapWriter : BeatmapWrapper
     {
         //ctor
-        public BeatmapWriter(IBeatmap beatmap) : base(beatmap) { }
+        public BeatmapWriter(IBeatmap beatmap) : base(beatmap)
+        {
+            BlankFrameFlyweight = GetBlankFrame();
+        }
 
+        public DataPoint BlankFrameFlyweight { get; protected set; }    //for making a quick copy of nothing
         protected DataPoint GetBlankFrame()
         {
             return new DataPoint(new BeatmapFrame(TypeInstance), new List<ReaderModifier>());
-            //NOTE (to self): consider cloning a blank frame reference rather than making new ones each time
         }
         protected List<DataPoint> GetBlankBeats(int count)
         {
@@ -26,34 +29,42 @@ namespace Beatmap
                 for (int j = 0; j < BeatmapUtility.FRAMES_PER_BEAT; j++)
                 {
                     //get a new blank frame
-                    blankBeats.Add(GetBlankFrame());
+                    blankBeats.Add(new DataPoint(BlankFrameFlyweight));
                 }
             }
             return blankBeats;
         }
-        public void InsertBeats(int startingIndex, int beatCount)
+        
+        //insert blank frames? Do we need it?
+
+        public void InsertBlankBeats(int startingBeatIndex, int beatCount)
         {
-            int insertionFrame = BeatmapUtility.ConvertBeatsToFrames(startingIndex);
+            int startingFrameIndex = BeatmapUtility.ConvertBeatsToFrames(startingBeatIndex);
             var newBeats = GetBlankBeats(beatCount);
 
-            Beatmap.GetDataPoints().InsertRange(insertionFrame, newBeats);
+            Beatmap.GetDataPoints().InsertRange(startingFrameIndex, newBeats);
         }
-        public void AddBeatsToEnd(int beatCount)
+        public void AddBlankBeatsAtEnd(int beatCount)
         {
             var newBeats = GetBlankBeats(beatCount);
 
             Beatmap.GetDataPoints().AddRange(newBeats);
         }
-        public void AddBeatsToBeginning(int beatCount)
+        public void RemoveBeats(int startingBeatIndex, int beatCount)
         {
-            InsertBeats(0, beatCount);
+            int startingFrameIndex = BeatmapUtility.ConvertBeatsToFrames(startingBeatIndex);
+            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
+
+            Beatmap.GetDataPoints().RemoveRange(startingFrameIndex, frameCount);
         }
-        public void ResetFrameToDefault(int frameIndex)
+        public void RemoveBeatsFromEnd(int beatCount)
         {
-            if (BeatmapUtility.FrameExists(Beatmap, frameIndex))
-                Beatmap.GetDataPoints()[frameIndex] = GetBlankFrame();
+            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
+            var data = Beatmap.GetDataPoints();
+
+            data.RemoveRange(data.Count - frameCount, frameCount);
         }
-        public void ResetFrameRangeToDefault(int startingFrameIndex, int frameCount)
+        public void ResetFramesToDefault(int startingFrameIndex, int frameCount)
         {
             if (BeatmapUtility.FramesExist(Beatmap, startingFrameIndex, frameCount))
             {
