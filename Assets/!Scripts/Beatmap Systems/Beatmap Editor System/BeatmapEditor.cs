@@ -1,31 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Beatmap.Editor.EditorCommands;
+using Beatmap.Editor.Commands;
+using Beatmap.IO;
 
 namespace Beatmap.Editor
 {
     public abstract class BeatmapEditor : MonoBehaviour
     {
-        public BeatmapWriter BeatmapWriter { get; private set; }
-        public IBeatmapFileIOHelper FileIOHelper { get; private set; }
-
         //Unity fields
-        public RectTransform DataPointsTransform;
-        public DataPointController DataPointControllerPrefab;
+        public RectTransform DataPointContainer;
+        public EditorDataPointController DataPointControllerPrefab;
+        public TMPro.TMP_InputField DirectoryNameField;
+
+        //repaint event
+        [HideInInspector] public UnityEvent onRepaintEditor;
+        private bool _dirtyFlag = false;
+
+        public EditorVisualsWriter Writer { get; private set; }
+        public IBeatmapIOHelper FileIOHelper { get; private set; }
 
         //internal stuff
         private readonly EventHelper _basicEventHelper = new EventHelper("Basic Events");
-        private readonly UndoableEventHelper<EditorCommand> _undoableEventHelper = new UndoableEventHelper<EditorCommand>("Edit Events");
-        protected List<DataPointController> _dataPointControllers = new List<DataPointController>();
+        private readonly UndoableEventHelper<BeatmapWriterCommand> _undoableEventHelper = new UndoableEventHelper<BeatmapWriterCommand>("Undoable Events");
 
         //abstract object getters
-        public abstract BeatmapWriter GetNewBeatmapWriter();
-        public abstract IBeatmapFileIOHelper GetNewFileIOHelper();
+        protected abstract EditorVisualsWriter GetNewVisualsWriter();
+        protected abstract IBeatmapIOHelper GetNewFileIOHelper();
+        public abstract BeatmapType TypeInstance { get; }
 
         private void Awake()
         {
-            BeatmapEditorInstances.CurrentEditor = this;
             Initialize();
         }
         private void OnEnable()
@@ -40,29 +45,21 @@ namespace Beatmap.Editor
         }
         public void Initialize()
         {
-            BeatmapEditorInstances.CurrentEditor = this;
-
-            BeatmapWriter = GetNewBeatmapWriter();
+            Writer = GetNewVisualsWriter();
             FileIOHelper = GetNewFileIOHelper();
 
-            PopulateEditor();
+            LateInitialize();
+
             RegisterEvents();
 
             //if Initialize is ever called after OnEnable, you'll need to manually call OnEnable right here (to subscribe events for the first time)
         }
-        public void PopulateEditor()
-        {
-            Game.Log(Logging.Category.BEATMAP, "Populating beatmap editor window.", Logging.Level.LOG);
-            int count = BeatmapWriter.FrameCount;
-            for (int i = 0; i < count; i++)
-            {
-                var newDataPointController = Instantiate(DataPointControllerPrefab, DataPointsTransform);
-                newDataPointController.Initialize(i, BeatmapWriter.Beatmap.GetDataPoints()[i]);
-                _dataPointControllers.Add(newDataPointController);
-            }
-        }
+        protected virtual void LateInitialize() { }
+        public abstract void OnDataPointInstantiated(EditorDataPointController dataPointController);
+        public abstract void OnDataPointDestroyed(EditorDataPointController dataPointController);
+
         /// <summary>
-        /// Use this method to register all editor events, both basic (select a tool) and undoable (insert/remove beats).
+        /// Use this method to register all editor events, both basic (e.g. 'select a tool') and undoable (e.g. 'insert/remove beats').
         /// </summary>
         protected virtual void RegisterEvents()
         {
@@ -70,12 +67,17 @@ namespace Beatmap.Editor
         }
         protected void RegisterEvent_Basic(UnityEvent unityEvent, UnityAction action)
         {
-            _basicEventHelper.RegisterEvent(unityEvent, () => action());
+            _basicEventHelper.RegisterEvent(unityEvent, action);
         }
-        protected void RegisterEvent_Undoable(UnityEvent unityEvent, EditorCommand command)
+        protected void RegisterEvent_OnRepaint(UnityAction action)
+        {
+            _basicEventHelper.RegisterEvent(onRepaintEditor, action);
+        }
+        protected void RegisterEvent_Undoable(UnityEvent unityEvent, BeatmapWriterCommand command)
         {
             _undoableEventHelper.RegisterEvent(unityEvent, () => _undoableEventHelper.ExecuteCommand(command));
         }
+        //"unregister event" methods for reuseable editor window?
 
         public void Undo()
         {
@@ -93,91 +95,29 @@ namespace Beatmap.Editor
                 Game.Log(Logging.Category.BEATMAP, "Nothing to redo!", Logging.Level.LOG);
             }
         }
-        public void ClearEditor()
+        public void SetDirty() => _dirtyFlag = true;
+        protected void RepaintEditor()
         {
-            Game.Log(Logging.Category.BEATMAP, "Clearing beatmap editor window.", Logging.Level.LOG);
-            for (int i = 0; i < DataPointsTransform.childCount; i++)
-            {
-                Destroy(DataPointsTransform.GetChild(i).gameObject);   //safe because Unity delays destruction until after stack unwinds (we can iterate)
-            }
-            _dataPointControllers.Clear();
+            _dirtyFlag = false;
+            onRepaintEditor.Invoke();
+        }
+        public void ForEachDataPointController(System.Action<EditorDataPointController> forEach)
+        {
+            Writer.ForEachDataPointController(forEach);
         }
 
-        protected DataPointController GetBlankFrame()
+        private void Update()
         {
-            var newDataPointController = Instantiate(DataPointControllerPrefab, DataPointsTransform);
-            newDataPointController.Initialize(0, new DataPoint(BeatmapWriter.BlankFrameFlyweight));
-            return newDataPointController;
-        }
-        protected List<DataPointController> GetBlankBeat()
-        {
-            var newDataPointControllers = new List<DataPointController>();
-            for (int i = 0; i < BeatmapUtility.FRAMES_PER_BEAT; i++)
+            if (_dirtyFlag)
             {
-                newDataPointControllers.Add(GetBlankFrame());
-            }
-            return newDataPointControllers;
-        }
-        public void InsertBlankFramesAtIndex(int frameIndex, int frameCount)
-        {
-            Game.LogFormat(Logging.Category.BEATMAP, "Inserting {1} frame controllers into scene view, starting at index {0}.", Logging.Level.LOG, frameIndex, frameCount);
-
-            for (int i = frameIndex; i < frameIndex + frameCount; i++) //NOTE: changed start and end to match desired sibling index
-            {
-                var controller = GetBlankFrame();
-                controller.transform.SetSiblingIndex(i);
+                RepaintEditor();
             }
         }
-        public void InsertBlankBeatsAtIndex(int beatIndex, int beatCount)
-        {
-            int frameIndex = BeatmapUtility.ConvertBeatsToFrames(beatIndex);
-            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
 
-            InsertBlankFramesAtIndex(frameIndex, frameCount);
-        }
-        public void AddBlankBeatsAtEnd(int beatCount)
-        {
-            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
-
-            InsertBlankFramesAtIndex(BeatmapWriter.FrameCount, frameCount);
-        }
-
-        public void RemoveFramesAtIndex(int frameIndex, int frameCount)
-        {
-            Game.LogFormat(Logging.Category.BEATMAP, "Removing {1} frame controllers from scene view, starting at index {0}.", Logging.Level.LOG, frameIndex, frameCount);
-
-            var listOfChildrenToKill = new List<GameObject>();
-
-            //get the gameobjects from their place in the sibling list
-            for (int i = frameIndex; i < frameIndex + frameCount; i++)
-            {
-                listOfChildrenToKill.Add(DataPointsTransform.GetChild(i).gameObject);
-            }
-
-            //ruin christmas
-            for (int i = 0; i < frameCount; i++)
-            {
-                Destroy(listOfChildrenToKill[i]);
-            }
-        }
-        public void RemoveBeatsAtIndex(int beatIndex, int beatCount)
-        {
-            int frameIndex = BeatmapUtility.ConvertBeatsToFrames(beatIndex);
-            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
-
-            RemoveFramesAtIndex(frameIndex, frameCount);
-        }
-        public void RemoveBeatsFromEnd(int beatCount)
-        {
-            int frameCount = BeatmapUtility.ConvertBeatsToFrames(beatCount);
-
-            RemoveFramesAtIndex(BeatmapWriter.FrameCount, frameCount);
-        }
-
-        #region Editor event helper classes
+        #region Editor helper classes
         private class EventHelper
         {
-            //dictionary of events and the unity actions they trigger
+            //'dictionary' of events and the unity actions they trigger
             protected List<KeyValuePair<UnityEvent, UnityAction>> _registry = new List<KeyValuePair<UnityEvent, UnityAction>>();
 
             private bool _subscribed = false;
@@ -229,6 +169,9 @@ namespace Beatmap.Editor
 
             public void ExecuteCommand(TCommand command)
             {
+                if (command == null)
+                    return;
+
                 //if undo stack pointer is before the last index of the list, there have been undo actions made
                 if (_undoStackPointer < _undoStack.Count)
                 {
@@ -267,6 +210,32 @@ namespace Beatmap.Editor
 
                 return true;
             }
+        }
+        public class EditorIOHelper
+        {
+            protected BeatmapEditor _editor;
+            protected BeatmapFileIOHelper _io;
+            public EditorIOHelper(BeatmapEditor editor, BeatmapFileIOHelper io)
+            {
+                _editor = editor;
+                _io = io;
+                InitializeInputField();
+            }
+            protected void InitializeInputField()
+            {
+                _editor.DirectoryNameField.text = "Untitled Beatmap";
+            }
+            public bool TryGetBeatmapFromFile(out Beatmap beatmap)
+            {
+                _io.DirectoryName = _editor.DirectoryNameField.text;
+                return _io.TryReadBeatmapFromFile(_editor.TypeInstance, out beatmap);
+            }
+            public bool TryWriteBeatmapToFile(Beatmap beatmap)
+            {
+                _io.DirectoryName = _editor.DirectoryNameField.text;
+                return _io.TryWriteBeatmapToFile(beatmap);
+            }
+            //audio, metadata
         }
         #endregion
     }

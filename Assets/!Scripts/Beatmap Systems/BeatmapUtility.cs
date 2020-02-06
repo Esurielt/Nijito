@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using Beatmap.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,40 +66,20 @@ namespace Beatmap
         }
         public static int CountFrames(IBeatmap beatmap)
         {
-            return beatmap.GetDataPoints().Count;   //herp derp
+            return beatmap.DataPoints.Count;   //herp derp, nice syntactic sugar
         }
         public static int CountBeats(IBeatmap beatmap)
         {
-            return ConvertFramesToBeats(beatmap.GetDataPoints().Count);
+            return ConvertFramesToBeats(CountFrames(beatmap));
         }
-        public static List<DataPoint> GetFrameRange(IBeatmap beatmap, int startingFrameIndex, int frameCount)
+        public static bool SubdivisionIncludesIndex(Subdivision subdivision, int frameIndex)
         {
-            if (FramesExist(beatmap, startingFrameIndex, frameCount))
-                return beatmap.GetDataPoints().GetRange(startingFrameIndex, frameCount);
-
-            Game.Log(Logging.Category.BEATMAP, "Unable to get frames. Frames were out of range.", Logging.Level.LOG_ERROR);
-            return new List<DataPoint>();
+            return frameIndex % (FRAMES_PER_BEAT / (int)subdivision) == 0;
         }
-        public static List<DataPoint> GetBeatRange(IBeatmap beatmap, int startingBeatIndex, int beatCount)
+        public static string GetBeatIndexString(int frameIndex)
         {
-            int startingFrame = ConvertBeatsToFrames(startingBeatIndex);
-            int frameCount = ConvertBeatsToFrames(beatCount);
-
-            if (BeatsExist(beatmap, startingBeatIndex, beatCount))
-                return GetFrameRange(beatmap, startingFrame, frameCount);
-
-            Game.Log(Logging.Category.BEATMAP, "Unable to get beats. Beats were out of range.", Logging.Level.LOG_ERROR);
-            return new List<DataPoint>();
-        }
-        public static List<DataPoint> GetFramesAtSubdivisionLevel(IBeatmap beatmap, Subdivision subdivision)
-        {
-            var data = beatmap.GetDataPoints();
-            var subdivisions = new List<DataPoint>(data);
-            for (int i = 0; i < data.Count; i += FRAMES_PER_BEAT / (int)subdivision)   //NOTE: the i++ has been replaced with accurate math (using casted enum value)
-            {
-                subdivisions.Add(data[i]);
-            }
-            return subdivisions;
+            string format = "{0}:{1}";
+            return string.Format(format, ConvertFramesToBeats(frameIndex), frameIndex % FRAMES_PER_BEAT);
         }
         public static bool FrameExists(IBeatmap beatmap, int frameIndex)
         {
@@ -107,15 +87,11 @@ namespace Beatmap
         }
         public static bool FramesExist(IBeatmap beatmap, int startingFrameIndex, int frameCount)
         {
-            return FrameExists(beatmap, startingFrameIndex) && startingFrameIndex + frameCount < CountFrames(beatmap);
-        }
-        public static bool BeatExists(IBeatmap beatmap, int beatIndex)
-        {
-            return beatIndex > 0 && beatIndex < CountBeats(beatmap);
+            return FrameExists(beatmap, startingFrameIndex) && startingFrameIndex + frameCount <= CountFrames(beatmap);
         }
         public static bool BeatsExist(IBeatmap beatmap, int startingBeatIndex, int beatCount)
         {
-            return BeatExists(beatmap, startingBeatIndex) && startingBeatIndex + beatCount < CountBeats(beatmap);
+            return FramesExist(beatmap, ConvertBeatsToFrames(startingBeatIndex), ConvertBeatsToFrames(beatCount));
         }
     }
 }

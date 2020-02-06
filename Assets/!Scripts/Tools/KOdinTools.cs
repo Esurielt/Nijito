@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Sirenix.OdinInspector.Editor;
 using System;
 using KEditorExtensions;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector.Editor;
+#endif
 
 namespace KOdinTools
 {

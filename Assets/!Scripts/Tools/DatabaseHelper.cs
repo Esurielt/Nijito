@@ -18,6 +18,7 @@ public abstract class DatabaseHelper
     }
     public abstract bool Load();
 
+#if UNITY_EDITOR
     public static TObject GetAssetForCode<TObject>(string internalName, params string[] directoriesAfterResources) where TObject : ScriptableObject
     {
         string assetPath = "Assets/Resources/";
@@ -43,6 +44,7 @@ public abstract class DatabaseHelper
         var paths = guidsOfType.Select(guid => AssetDatabase.GUIDToAssetPath(guid));
         return paths.Select(path => AssetDatabase.LoadAssetAtPath<TObject>(path)).ToList();
     }
+#endif
 }
 public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableObject
 {
@@ -179,7 +181,7 @@ public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableOb
         //return false because there were no values to select from
         return 0;
     }
-
+#if UNITY_EDITOR
     public override List<Object> GetAllAssetsForCode()
     {
         var guids = AssetDatabase.FindAssets(string.Format("t:{0}", typeof(DBType).ToString()), new string[] { "Assets/Resources/" + ResourcePath });
@@ -188,4 +190,5 @@ public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableOb
         var paths = guids.Select(guid => AssetDatabase.GUIDToAssetPath(guid));
         return paths.Select(path => AssetDatabase.LoadAssetAtPath<Object>(path)).ToList();
     }
+#endif
 }

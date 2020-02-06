@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Beatmap.Drummer
 {
@@ -10,49 +7,47 @@ namespace Beatmap.Drummer
     /// </summary>
     public class BeatmapType_Drummer : BeatmapType
     {
+        public override Beatmap GetNewEmptyBeatmap()
+        {
+            return new DrummerMap();
+        }
+
         protected override List<Channel> GetNewChannelInstances()
         {
             return new List<Channel>
             {
-                //kick drum channel
-                new DrummerChannel("Kick"),
+                /* | Left: Hats   |   Right: Rides |
+                 *  
+                 *   <OL>                    <OR>  | Outer: Cymbals, misc.
+                 * 
+                 *       <IL>           <IR>       | Inner: Snares, toms
+                 *               <M>
+                 *              Kicks
+                 */
+                
+                //outer-left drum (usually cymbals, hats, or misc.)
+                new DrummerChannel("Outer-left Drum"),
+                
+                //inner-left drum (usually snares, toms, or hats)
+                new DrummerChannel("Inner-left Drum"),
 
-                //snare drum channel
-                new DrummerChannel("Snare"),
+                //center drum (usually kicks)
+                new DrummerChannel("Center Drum"),
+                
+                //inner-right drum (usually snares, toms, or rides)
+                new DrummerChannel("Inner-right Drum"),
+
+                //outer-right drum (usually cymbals, rides, or misc.)
+                new DrummerChannel("Outer-right Drum"),
             };
         }
     }
     /// <summary>
     /// Concrete class for beatmaps of the Drummer rhythm game type.
     /// </summary>
-    public class DrummerMap : IBeatmap<BeatmapType_Drummer>
+    public class DrummerMap : Beatmap
     {
-        #region Interface Compliance
-        List<DataPoint> IBeatmap.GetDataPoints()
-        {
-            return DataPoints;
-        }
-
-        int IBeatmap.GetMilisecondsUntilFirstBeat()
-        {
-            return MilisecondDelay;
-        }
-
-        AudioClip IBeatmap.GetSongAudio()
-        {
-            return SongAudio;
-        }
-
-        float IBeatmap.GetStartingBpm()
-        {
-            return BeatsPerMinute;
-        }
-        #endregion
-
-        public AudioClip SongAudio;
-        public float BeatsPerMinute;
-        public int MilisecondDelay;
-        public List<DataPoint> DataPoints = new List<DataPoint>();
+        public override BeatmapType TypeInstance => BeatmapTypeInstances.Drummer;
     }
     /// <summary>
     /// Concrete class for channels in the Drummer beatmap type.
@@ -74,6 +69,8 @@ namespace Beatmap.Drummer
             return new List<Value>()
             {
                 ChannelValueInstances.Hit,
+                ChannelValueInstances.HoldBegin,
+                ChannelValueInstances.HoldEnd,
             };
         }
     }
