@@ -133,8 +133,8 @@ namespace Beatmap.PlayerInput
 
         private int Compare()
         {
-            List<IValueWrapper> vList = _beatmap.DataPoints[_playerInput.ChannelIndex].GetExpectedFrame().GetValues();
-            Channel.Value startValue = vList[_playerInput.StartIndex].GetValue();
+            List<Channel.Value> vList = _beatmap.Frames[_playerInput.ChannelIndex].GetValues();
+            Channel.Value startValue = vList[_playerInput.StartIndex];
 
             if (startValue.Equals(ChannelValueInstances.Hit))
             {
@@ -144,7 +144,7 @@ namespace Beatmap.PlayerInput
             {
                 for (int i = _playerInput.StartIndex + 1; i < vList.Count && i < _playerInput.EndIndex; ++i)
                 {
-                    if (vList[i].GetValue().Equals(ChannelValueInstances.HoldEnd))
+                    if (vList[i].Equals(ChannelValueInstances.HoldEnd))
                     {
                         return holdScore * (i - _playerInput.StartIndex);
                     }
@@ -158,7 +158,7 @@ namespace Beatmap.PlayerInput
                 for (int i = 1; i < greatSize + excellentSize + perfectSize && i + _playerInput.StartIndex < vList.Count; i++)
                 {
                     // judge hit(perfect, excellent, great)
-                    if (vList[i + _playerInput.StartIndex].GetValue().Equals(ChannelValueInstances.Hit))
+                    if (vList[i + _playerInput.StartIndex].Equals(ChannelValueInstances.Hit))
                     {
                         if (i < perfectSize)
                         {
@@ -173,13 +173,13 @@ namespace Beatmap.PlayerInput
                             return greatScore;
                         }
                     }
-                    else if (vList[i + _playerInput.StartIndex].GetValue().Equals(ChannelValueInstances.HoldBegin))
+                    else if (vList[i + _playerInput.StartIndex].Equals(ChannelValueInstances.HoldBegin))
                     {
                         int startIndex = i + _playerInput.StartIndex;
                         // sum 
                         for (int k = startIndex + 1; k < vList.Count && k < _playerInput.EndIndex; ++k)
                         {
-                            if (vList[k].GetValue().Equals(ChannelValueInstances.HoldEnd))
+                            if (vList[k].Equals(ChannelValueInstances.HoldEnd))
                             {
                                 return holdScore * (k - startIndex);
                             }
@@ -191,7 +191,7 @@ namespace Beatmap.PlayerInput
                 for (int i = 1; i < greatSize + excellentSize + perfectSize && _playerInput.StartIndex - i >= 0; i++)
                 {
                     // judge hit(perfect, excellent, great)
-                    if (vList[_playerInput.StartIndex - i].GetValue().Equals(ChannelValueInstances.Hit))
+                    if (vList[_playerInput.StartIndex - i].Equals(ChannelValueInstances.Hit))
                     {
                         if (i < perfectSize)
                         {
@@ -206,13 +206,13 @@ namespace Beatmap.PlayerInput
                             return greatScore;
                         }
                     }
-                    else if (vList[_playerInput.StartIndex - i].GetValue().Equals(ChannelValueInstances.HoldBegin))
+                    else if (vList[_playerInput.StartIndex - i].Equals(ChannelValueInstances.HoldBegin))
                     {
                         int startIndex = _playerInput.StartIndex - i;
                         // sum 
                         for (int k = _playerInput.StartIndex - i + 1; k < vList.Count && k < _playerInput.EndIndex; ++k)
                         {
-                            if (vList[k].GetValue().Equals(ChannelValueInstances.HoldEnd))
+                            if (vList[k].Equals(ChannelValueInstances.HoldEnd))
                             {
                                 return holdScore * (k - startIndex);
                             }
