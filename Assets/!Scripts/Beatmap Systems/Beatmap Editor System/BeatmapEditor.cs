@@ -23,6 +23,7 @@ namespace Beatmap.Editor
     [RequireComponent(typeof(ScrollComponent))]
     [RequireComponent(typeof(ClipboardComponent))]
     [RequireComponent(typeof(FileBrowserComponent))]
+    [RequireComponent(typeof(HotkeyComponent))]
     public class BeatmapEditor : MonoBehaviour
     {
         //Unity fields
@@ -52,6 +53,7 @@ namespace Beatmap.Editor
         public ScrollComponent ScrollComponent { get; private set; }
         public ClipboardComponent ClipboardComponent { get; private set; }
         public FileBrowserComponent FileBrowserComponent { get; private set; }
+        public HotkeyComponent HotkeyComponent { get; private set; }
 
         public BeatmapWriter BeatmapWriter { get; private set; }
         //public Beatmap Beatmap { get; private set; }
@@ -89,10 +91,16 @@ namespace Beatmap.Editor
             ScrollComponent = RegisterEditorComponent<ScrollComponent>();
             ClipboardComponent = RegisterEditorComponent<ClipboardComponent>();
             FileBrowserComponent = RegisterEditorComponent<FileBrowserComponent>();
+            HotkeyComponent = RegisterEditorComponent<HotkeyComponent>();
 
             _editorComponents.ForEach(com => com.Initialize(this));
-            
+
+            RegisterHotkeys();
             SubscribeToEvents();
+        }
+        private void RegisterHotkeys()
+        {
+            _editorComponents.ForEach(com => com.RegisterHotkeys());
         }
         private void SubscribeToEvents()
         {

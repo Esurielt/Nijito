@@ -44,6 +44,10 @@ namespace Beatmap.Editor
                 AudioImportButton.gameObject.SetActive(false);
             }
         }
+        public override void RegisterHotkeys()
+        {
+            Editor.HotkeyComponent.RegisterHotkey("Toggle Audio Playback", () => TogglePlay(), new KeyCombos.KeyCombo(KeyCode.Space));
+        }
         protected override void RepaintInternal()
         {
             Timetable = new AudioTimetable(Editor.BeatmapWriter.Beatmap, Editor.TimelineComponent.AudioMetadata);
@@ -112,6 +116,14 @@ namespace Beatmap.Editor
                 _currentPlaySession = null;
             }
             OnAudioStop?.Invoke();
+        }
+        public void TogglePlay()
+        {
+            // Used by hotkey.
+            if (IsPlaying)
+                Stop();
+            else
+                Play();
         }
         private void OpenFileBrowserForAudioImport()
         {

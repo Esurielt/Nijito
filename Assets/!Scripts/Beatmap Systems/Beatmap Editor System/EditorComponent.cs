@@ -17,12 +17,8 @@ namespace Beatmap.Editor
 
             Editor = editor;
             InitializeInternal();
-        }
-        void OnDestroy()
-        {
-            CleanUpInternal();
-        }
-
+        }        
+        public virtual void RegisterHotkeys() { }
         public void SubscribeToEvents()
         {
             if (_isInitialized && !_isSubscribed)
@@ -48,6 +44,10 @@ namespace Beatmap.Editor
             // Room for some universal repaint stuff.
 
             RepaintInternal();
+        }
+        void OnDestroy()
+        {
+            CleanUpInternal();
         }
 
         protected virtual void InitializeInternal() { }
