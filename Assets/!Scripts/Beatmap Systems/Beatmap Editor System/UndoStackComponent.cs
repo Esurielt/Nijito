@@ -14,7 +14,11 @@ namespace Beatmap.Editor
         private List<IUndoableCommand> _undoStack = new List<IUndoableCommand>();
         private int _undoStackPointer = 0;  //<-- points to the number after the last index (the stack count).
                                             //When pointer = undo stack count, then there are no undo actions to be made.
-
+        public override void RegisterHotkeys()
+        {
+            Editor.HotkeyComponent.RegisterHotkey("Undo", () => Undo(), new KeyCombos.KeyCombo(KeyCode.Z, KeyCombos.ToggleKey.Ctrl));
+            Editor.HotkeyComponent.RegisterHotkey("Redo", () => Redo(), new KeyCombos.KeyCombo(KeyCode.Y, KeyCombos.ToggleKey.Ctrl));
+        }
         protected override void SubscribeToEventsInternal()
         {
             UndoButton.onClick.AddListener(Undo);

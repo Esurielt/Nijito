@@ -1,4 +1,5 @@
 ﻿using Beatmap.Editor.Commands;
+using KeyCombos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,11 @@ namespace Beatmap.Editor
         protected List<List<Channel.Value>> _clipboard = new List<List<Channel.Value>>();
         public int ClipboardCount => _clipboard.Count;
 
+        public override void RegisterHotkeys()
+        {
+            Editor.HotkeyComponent.RegisterHotkey("Copy Selected Frames", () => Copy(), new KeyCombo(KeyCode.C, ToggleKey.Ctrl));
+            Editor.HotkeyComponent.RegisterHotkey("Paste Selected Frames", () => Paste(), new KeyCombo(KeyCode.V, ToggleKey.Ctrl));
+        }
         protected override void SubscribeToEventsInternal()
         {
             CopyButton.onClick.AddListener(Copy);

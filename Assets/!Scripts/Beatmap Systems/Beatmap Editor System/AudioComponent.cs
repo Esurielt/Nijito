@@ -105,7 +105,7 @@ namespace Beatmap.Editor
             }
             else
             {
-                Game.Log(Logging.Category.BEATMAP, "Can't play a null audio clip.", Logging.Level.LOG_WARNING);
+                Game.Log(Logging.Category.BEATMAP, "Editor has no loaded audio clip.", Logging.Level.LOG_WARNING);
             }
         }
         public void Stop()

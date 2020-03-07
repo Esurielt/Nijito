@@ -1,7 +1,7 @@
 ﻿using Beatmap.Editor.Commands;
+using KeyCombos;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +15,18 @@ namespace Beatmap.Editor
         public Button TemplatePasteButton;
         public Button ResetTemplateButton;
 
-        private Frame _emptyFrameFlyweight;
+        private List<Channel.Value> _emptyFrameValues;
 
         protected override void InitializeInternal()
         {
-            _emptyFrameFlyweight = Editor.BeatmapWriter.TypeInstance.GetNewFrameWithDefaults();
-            TemplateFrameController.Initialize(_emptyFrameFlyweight);
+            _emptyFrameValues = Editor.BeatmapWriter.TypeInstance.GetNewFrameWithDefaults().GetValues();
+            TemplateFrameController.Initialize(new Frame(_emptyFrameValues));
             TemplateFrameController.SetChannels(Editor.BeatmapWriter.TypeInstance);
+        }
+        public override void RegisterHotkeys()
+        {
+            Editor.HotkeyComponent.RegisterHotkey("Template Frame Copy", () => CopyToTemplate(), new KeyCombo(KeyCode.C, ToggleKey.Ctrl, ToggleKey.Shift));
+            Editor.HotkeyComponent.RegisterHotkey("Template Frame Paste", () => PasteFromTemplate(), new KeyCombo(KeyCode.V, ToggleKey.Ctrl, ToggleKey.Shift));
         }
         protected override void SubscribeToEventsInternal()
         {
@@ -59,7 +64,7 @@ namespace Beatmap.Editor
         }
         public void ResetTemplate()
         {
-            TemplateFrameController.Frame.SetValues(_emptyFrameFlyweight.GetValues());
+            TemplateFrameController.Frame.SetValues(_emptyFrameValues);
         }
     }
 }

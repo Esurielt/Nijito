@@ -1,4 +1,4 @@
-﻿using Beatmap.Editor.Commands;
+﻿using KeyCombos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -160,13 +160,15 @@ namespace Beatmap.Editor
         {
             ClearSelection();
         }
-
+        public override void RegisterHotkeys()
+        {
+            Editor.HotkeyComponent.RegisterHotkey("Select All Frames", () => SelectAll(), new KeyCombo(KeyCode.A, ToggleKey.Ctrl));
+        }
         protected override void SubscribeToEventsInternal()
         {
             SelectAllButton.onClick.AddListener(SelectAll);            
             ClearSelectionButton.onClick.AddListener(ClearSelection);
         }
-
         protected override void UnsubscribeFromEventsInternal()
         {
             SelectAllButton.onClick.RemoveListener(SelectAll);
