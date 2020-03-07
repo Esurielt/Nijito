@@ -5,16 +5,15 @@ using Beatmap.Interfaces;
 namespace Beatmap
 {
     /// <summary>
-    /// One frame's worth of channel values in a beatmap (all channel values for 1/24th of a beat). Used for both expected values and reading current values.
+    /// One beatmap frame's worth of channel values in a beatmap (all channel values for 1/24th of a beat). Used for expected values, but can be used for player input values as well.
     /// </summary>
     public class Frame : IFrame
     {
-        /// <summary>
-        /// All channel values for this frame.
-        /// </summary>
-        private Channel.Value[] _valueArray;
+        private Channel.Value[] _valueArray;    //backing field for GetValues() and SetValues()
         public int ValueCount => _valueArray.Length;
 
+        public event System.Action<int, Channel.Value> OnChannelValueSet;
+        
         public Frame()
         {
             _valueArray = new Channel.Value[0];
@@ -23,31 +22,30 @@ namespace Beatmap
         {
             _valueArray = values.ToArray();
         }
-        public Frame(List<IValueWrapper> values)
-        {
-            _valueArray = values.Select(v => v.GetValue()).ToArray();
-        }
-        public Frame(IFrame other)  //clone
+        public Frame(IFrame other)  //clone constructor
             : this(other.GetValues()) { }
 
-        public IValueWrapper GetValue(int channelIndex)
+        #region Interface Compliance
+        public Channel.Value GetValue(int channelIndex)
         {
-            return new ValueWrapper(_valueArray[channelIndex]);   //index out of range exception is a workable fail state here
+            return _valueArray[channelIndex];   //index out of range exception is a workable fail state here
         }
-
-        public void SetValue(IValueWrapper value, int channelIndex)
+        public void SetValue(int channelIndex, Channel.Value value)
         {
-            _valueArray[channelIndex] = value.GetValue();  //index out of range exception is a workable fail state here
+            _valueArray[channelIndex] = value;  //index out of range exception is a workable fail state here
+            OnChannelValueSet?.Invoke(channelIndex, value);
         }
-
-        public List<IValueWrapper> GetValues()
+        public List<Channel.Value> GetValues()
         {
-            return new List<IValueWrapper>(_valueArray.Select(v => new ValueWrapper(v)));
+            return _valueArray.ToList();
         }
-
-        public void SetValues(List<IValueWrapper> values)
+        public void SetValues(List<Channel.Value> values)
         {
-            _valueArray = values.Select(v => v.GetValue()).ToArray();
+            for (int i = 0; i < _valueArray.Length; i++)
+            {
+                SetValue(i, values[i]);
+            }
         }
+        #endregion
     }
 }

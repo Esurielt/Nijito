@@ -5,13 +5,12 @@ using UnityEngine;
 namespace Beatmap
 {
     /// <summary>
-    /// Abstract class for a beatmap channel (e.g. KICK_DRUM, or STRING_4).
-    /// A channel represents one line in a catch-the-notes rhythm game (like 'Green' or 'Blue' in Guitar Hero), or the one channel 'Finger Position' in Osu!.
+    /// All information about a channel in a beatmap (guitar hero channels: green, red, yellow, blue, orange) (DDR channels: left, up, down, right).
     /// </summary>
-    public abstract class Channel
+    public class Channel
     {
         /// <summary>
-        /// Player-facing name of the channel (e.g. "Kick Drum").
+        /// Player-facing name of the channel (e.g. "Center Drum").
         /// </summary>
         public string Name { get; }
 
@@ -25,33 +24,25 @@ namespace Beatmap
         public List<Value> ValueFlyweights { get; }
 
         /// <summary>
-        /// Redirect to the state flyweight considered the 'default' one (starts as the universal 'Normal' state instance in ChannelStateInstances).
+        /// Redirect to the state flyweight considered the 'default' one (starts as the 'Normal' state instance in ChannelStateInstances), but can be overridden.
         /// </summary>
-        public virtual State DefaultStateFlyweight => ChannelStateInstances.Normal;
+        public State DefaultStateFlyweight => ChannelStateInstances.Normal;
         /// <summary>
-        /// Redirect to the value flyweight considered the 'default' one (starts as the universal 'Empty' value instance in ChannelValueInstances).
+        /// Redirect to the value flyweight considered the 'default' one (starts as the 'Empty' value instance in ChannelValueInstances), but can be overridden.
         /// </summary>
-        public virtual Value DefaultValueFlyweight => ChannelValueInstances.Empty;
+        public Value DefaultValueFlyweight => ChannelValueInstances.Empty;
 
         //ctor
-        public Channel(string name)
+        public Channel(string name, List<State> states, List<Value> values)
         {
             Name = name;
 
-            StateFlyweights = GetNewChannelStateInstances();
+            StateFlyweights = states;
             StateFlyweights.Insert(0, DefaultStateFlyweight);
 
-            ValueFlyweights = GetNewChannelValueInstances();
+            ValueFlyweights = values;
             ValueFlyweights.Insert(0, DefaultValueFlyweight);
         }
-        /// <summary>
-        /// Supply a new List of channel states to populate the flyweights list. This is called only once in the constructor. (If you need these values, use the flyweights.)
-        /// </summary>
-        protected abstract List<State> GetNewChannelStateInstances();
-        /// <summary>
-        /// Supply a new List of channel values to populate the flyweights list. This is called only once in the constructor. (If you need these values, use the flyweights.)
-        /// </summary>
-        protected abstract List<Value> GetNewChannelValueInstances();
 
         /// <summary>
         /// A possible state of the channel. Think: Guitar Hero's 'Broken String' state in battle mode (all notes on the channel fail until the player hits the string enough times to fix it).
@@ -80,8 +71,14 @@ namespace Beatmap
         /// <param name="value">input value</param>
         /// <returns>modified value</returns>
         public delegate Value ValueModifierDelegate(Value value);
+        /// <summary>
+        /// A possible value of the channel. Think: Stepmania's 'Step', 'Hold', or 'Bomb' values
+        /// </summary>
         public class Value : System.IEquatable<Value>
         {
+            /// <summary>
+            /// Player-facing name of the channel value (e.g. "Begin Hold").
+            /// </summary>
             public string Name { get; }
 
             public Value(string name)
@@ -89,6 +86,11 @@ namespace Beatmap
                 Name = name;
             }
 
+            /// <summary>
+            /// Compare two channel values and determine if they are equal. For most values, this will be an object reference comparison (memory address), but later games may need to use unique values.
+            /// </summary>
+            /// <param name="other">the other channel value</param>
+            /// <returns>true if both values are equal</returns>
             public bool Equals(Value other)
             {
                 return object.ReferenceEquals(this, other);

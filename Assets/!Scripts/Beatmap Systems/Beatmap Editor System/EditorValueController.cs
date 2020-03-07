@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Beatmap.Editor
@@ -6,6 +7,19 @@ namespace Beatmap.Editor
     public class EditorValueController : ValueController
     {
         public Image IconImage;
+        public Button RotateValueButton;
+
+        public UnityEvent OnRequestRotate;
+
+        private void Awake()
+        {
+            RotateValueButton.onClick.AddListener(() => OnRequestRotate?.Invoke());
+        }
+        private void OnDestroy()
+        {
+            RotateValueButton.onClick.RemoveAllListeners();
+            OnRequestRotate.RemoveAllListeners();
+        }
         public override void SetValue(Channel.Value value)
         {
             base.SetValue(value);

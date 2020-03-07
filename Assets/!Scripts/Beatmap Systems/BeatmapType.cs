@@ -6,29 +6,33 @@ using UnityEngine;
 namespace Beatmap
 {
     /// <summary>
-    /// Abstract class for a beatmap type (e.g. GUITARIST, VOCALIST, or DRUMMER). Synonymous with 'Rhythm Game Type'
-    /// Contains flyweight references to all channels used by this particular beatmap type.
+    /// Represents a type of beatmap (or a type of rhythm game, which is the same thing). Contains references to all channel information.
     /// </summary>
-    public abstract class BeatmapType
+    public class BeatmapType
     {
-        public string Name { get; }
-        /// <summary>
-        /// List of reuseable instances for each channel of the beatmap.
-        /// </summary>
-        public List<Channel> ChannelFlyweights { get; }
+        private static readonly List<BeatmapType> _allInstances = new List<BeatmapType>();  //static collection of all beatmap types
+        public static List<BeatmapType> GetAll()
+        {
+            BeatmapTypeInstances.PopulateInstances();
+            return new List<BeatmapType>(_allInstances);
+        }
+
+        public static BeatmapType Get(string name) => _allInstances.Find(bt => bt.Name == name);    //get a beatmap type by its name
+
+        public string Name { get; }     //the name of the beatmap type (like, "Drummer", or "Vocalist")
+        public List<Channel> ChannelFlyweights { get; }     //list of instances which can be passed by reference instead of making new channels
 
         //ctor
-        public BeatmapType()
+        public BeatmapType(string name, List<Channel> channels)
         {
-            ChannelFlyweights = GetNewChannelInstances();
-            BeatmapTypeInstances.AllInstances.Add(this);
+            Name = name;
+            ChannelFlyweights = channels;
+            _allInstances.Add(this);    //add to the static collection
         }
         /// <summary>
-        /// Supply a new List of channels to populate the flyweights list. This is called only once in the constructor. (If you need these values, use the flyweights.)
+        /// Get a new Frame for this beatmap type with default values on each channel.
         /// </summary>
-        protected abstract List<Channel> GetNewChannelInstances();
-
-        public abstract Beatmap GetNewEmptyBeatmap();
+        /// <returns></returns>
         public Frame GetNewFrameWithDefaults()
         {
             var valuesList = new List<Channel.Value>();
@@ -39,37 +43,5 @@ namespace Beatmap
 
             return new Frame(valuesList);
         }
-        public bool GetNewBeatmapFromData(BeatmapData beatmapData, out Beatmap beatmap)
-        {
-            beatmap = GetNewEmptyBeatmap();
-
-            if (beatmapData.TypeName != Name)
-                return false;
-
-            beatmap.DataPoints.AddRange(beatmapData.DataPoints);
-            beatmap.StartingBpm = beatmapData.StartingBpm;
-            beatmap.StartingDelayInMiliseconds = beatmapData.StartingDelayInMiliseconds;
-            return true;
-        }
-
-        /// <summary>
-        /// Get a float between 0 and 1 representing the relative accuracy of one data frame compared to another (e.g. "Is getting 3 out of 4 notes 0% or 75% correct?").
-        /// </summary>
-        /// <returns>float between 0 and 1. 0 indicates total failure, 1 indicates total success.</returns>
-        public virtual float JudgeAccuracy(Frame x, Frame y)    //<-- move this to a game class
-        {
-            //default version of the method requires absolute perfection.
-
-            if (x.ValueCount != y.ValueCount)
-                return 0;
-
-            for (int i = 0; i < x.GetValues().Count; i++)
-            {
-                if (x.GetValue(i) != y.GetValue(i))
-                    return 0;
-            }
-            return 1;
-        }
-
     }
 }
