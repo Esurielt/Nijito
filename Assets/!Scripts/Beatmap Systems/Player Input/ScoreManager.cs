@@ -17,15 +17,20 @@ namespace Beatmap.PlayerInput
         {
             _combo = 0;
             _score = 0;
-            // TODO: choose correct Controller
-            scoreController = new DrumScoreController(beatmap);
+            if (beatmap.TypeInstance.Equals(BeatmapTypeInstances.Drummer))
+            {
+                scoreController = new DrumScoreController(beatmap);
+            }
+            
         }
         public void ChangeBeatmap(Beatmap beatmap)
         {
-            // TODO: choose correct Controller
-            scoreController = new DrumScoreController(beatmap);
+            if (beatmap.TypeInstance.Equals(BeatmapTypeInstances.Drummer))
+            {
+                scoreController = new DrumScoreController(beatmap);
+            }
         }
-        public int[] Compare(int currentIndex, Dictionary<int,int> playerinput)
+        public String[] Compare(int currentIndex, Dictionary<int,int> playerinput)
         {
             return scoreController.Compare(currentIndex, playerinput,ref _score,ref _combo);
         }

@@ -11,17 +11,20 @@ namespace Beatmap.PlayerInput
 {
     class PlayerInputManager:MonoBehaviour
     {
+
+
+
         ScoreManager scoreManager;
 
         public Canvas canvas;
         public Text ComboText;
         public Text ScoreText;
-
-        public int currentIndex;
+        public int currentIndex;// TODO: delay time
 
         private void Start()
         {
-            
+            currentIndex = 0;
+            // get Beatmap and give it to scoreManager
         }
 
         private void Update()
@@ -35,7 +38,7 @@ namespace Beatmap.PlayerInput
                 return;
             }
             // get compare result
-            int[] result = scoreManager.Compare(currentIndex, playerinput);
+            String[] result = scoreManager.Compare(currentIndex, playerinput);
 
             // TODO: update UI
 
@@ -48,19 +51,12 @@ namespace Beatmap.PlayerInput
                 return null;
             }
             Dictionary<int, int> playerinput = new Dictionary<int, int>();
-            Dictionary<TouchPhase, int> TouchPrasetoInt = new Dictionary<TouchPhase, int>
-                {
-                    { TouchPhase.Began, 0 } ,
-                    { TouchPhase.Canceled, 1 },
-                    { TouchPhase.Ended, 2 },
-                    { TouchPhase.Moved, 3 },
-                    { TouchPhase.Stationary, 4 }
-                };
+
             for (int i = 0; i < Input.touchCount; i++)
             {
                 // get type
                 int inputType = -1;
-                inputType = TouchPrasetoInt[Input.GetTouch(i).phase];
+                inputType = PlayerInputSetting.TouchPrasetoInt[Input.GetTouch(i).phase];
 
                 // get index by touch position
                 int channelIndex = -1;
