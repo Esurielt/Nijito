@@ -2,6 +2,8 @@ Use Dialogue Parser2 and Dialogue Box1
 Background formatting, size, etc, not covered that much. 
 
 
+USE SCENE4, that is the most up to date one. 
+
 
 Dialogue Parser2-reads in a text file from a specified path/folder/text.txt
 	this will read the following kind of line
