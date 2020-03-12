@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Background Image
+  - Beats
+  - Beats2
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background Image1
+    uniqueID: 2144717463
+    locked: 0
+  - name: Beats1
+    uniqueID: 3612222597
     locked: 0

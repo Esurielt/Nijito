@@ -1,0 +1,14 @@
+﻿Ibuki,"Hello, there.",0,L
+Miku,"Hello back.",0,L
+Ibuki,"I like pie", 1,L
+Miku,"Me too!  ",0,R
+Ibuki,"Never gonna let you go ", 0,R
+Ibuki,"Never gonna let you down ", 0,R
+Miku,"Did the player just get <color=green>rick rolled</color>?", 0,L
+Ibuki,"Yes!", 0,R
+Miku,"（╯°□°）╯︵( .o.)"
+Art1, "OwO",0,L
+Art1, "UwU",1,L
+Art1, "OnO",2,L
+Ibuki,".......", 0,R
+Ibuki,"aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 0,R
