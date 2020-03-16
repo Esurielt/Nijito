@@ -14,4 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EditorMenuScene.unity
     guid: 88eae90f447a69c4182a1f1bfd8a01b9
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/SongMetadataEditorScene.unity
+    guid: fee40d707c499914fa96b9a7f2e5c559
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 4235f2d3be29b4e428f84f900f3a0388,
+      type: 2}

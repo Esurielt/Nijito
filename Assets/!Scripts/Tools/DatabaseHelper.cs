@@ -39,7 +39,7 @@ public abstract class DatabaseHelper
     public static List<TObject> GetAllAssetsOfTypeForCode<TObject>() where TObject : ScriptableObject
     {
         var guidsOfType = AssetDatabase.FindAssets(string.Format("t:{0}", typeof(TObject).ToString()));
-        if (guidsOfType.Length <= 0) return new List<TObject>();
+        if (guidsOfType.Length == 0) return new List<TObject>();
 
         var paths = guidsOfType.Select(guid => AssetDatabase.GUIDToAssetPath(guid));
         return paths.Select(path => AssetDatabase.LoadAssetAtPath<TObject>(path)).ToList();
@@ -63,23 +63,23 @@ public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableOb
     //methods
     public override bool Load()
     {
-        //Load all assets of the specified type from the specified directory into a managed dictionary
+        //Load all assets of the specified type from the specified directory into a managed collection
         //return true if load was successful
         //call this during game initialization
 
-        //resource path
-        var targetPath = RESOURCES_DIRECTORY_PATH + ResourcePath;
+        ////resource path
+        //var targetPath = RESOURCES_DIRECTORY_PATH + ResourcePath;
 
-        //check to see if directory even exists
-        if (!Directory.Exists(targetPath))
-        {
-            Debug.LogError("Unable to resolve path for " + LoggingName + " database: " + targetPath);
-            return false;
-        }
-        else
-        {
-            Debug.Log("Loading " + LoggingName + " database: " + targetPath);
-        }
+        ////check to see if directory even exists
+        //if (!Directory.Exists(targetPath))
+        //{
+        //    Debug.LogError("Unable to resolve path for " + LoggingName + " database: " + targetPath);
+        //    return false;
+        //}
+        //else
+        //{
+        //    Debug.Log("Loading " + LoggingName + " database: " + targetPath);
+        //}
 
         //load all assets of specified type and make a list
         _database = new List<DBType>(Resources.LoadAll<DBType>(ResourcePath));
@@ -110,7 +110,7 @@ public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableOb
         }
         else
         {
-            foundAsset = _database.Find(v => v.name.ToUpper() == internalName.ToUpper());
+            foundAsset = _database.Find(v => string.Equals(v.name, internalName, System.StringComparison.OrdinalIgnoreCase));
         }
         return foundAsset != null;
     }
@@ -157,7 +157,7 @@ public class DatabaseHelper<DBType> : DatabaseHelper where DBType : ScriptableOb
     {
         randomValues = new List<DBType>();
 
-        if (subset.Count() > 0)
+        if (subset.Count > 0)
         {
             //adjust if not enough options in subset
             count = Mathf.Min(subset.Count, count);

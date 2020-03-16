@@ -12,7 +12,7 @@ public static class DatabaseManager
         if (_databaseHelpers.Count == 0)
         {
             //register databases
-            RegisterDB<Beatmap.ChannelValueInfo>("ChannelValueInfos", "Beatmap Channel Value Info");
+            RegisterDB<SongData.ChannelValueInfo>("ChannelValueInfos", "Beatmap Channel Value Info");
 
             return true;
         }

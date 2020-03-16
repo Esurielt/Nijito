@@ -233,6 +233,8 @@ GameObject:
   - component: {fileID: 5722364778364963424}
   - component: {fileID: 5722364778364963425}
   - component: {fileID: 6492739264650797191}
+  - component: {fileID: 7922620941499255988}
+  - component: {fileID: 9003429259761316717}
   m_Layer: 5
   m_Name: deletable track marker panel
   m_TagString: Untagged
@@ -311,13 +313,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc8d7bd1f5f0f94291c2d7db745161a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ValueText: {fileID: 5722364778957902915}
-  ValueInputButton: {fileID: 5722364779191645308}
-  ValueInputField: {fileID: 5722364778346360767}
+  ValueField: {fileID: 7922620941499255988}
   DeleteButton: {fileID: 5722364780149682623}
   OnRequestRemove:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7922620941499255988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5722364778364963436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111336da8dd8481468cc91f5206be34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueText: {fileID: 5722364778957902915}
+  _valueInputField: {fileID: 9003429259761316717}
+--- !u!114 &9003429259761316717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5722364778364963436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beadc9a0d88539d46955fb4218a9079d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeginEditButton: {fileID: 5722364779191645308}
+  InputField: {fileID: 5722364778346360767}
 --- !u!1 &5722364778738091367
 GameObject:
   m_ObjectHideFlags: 0

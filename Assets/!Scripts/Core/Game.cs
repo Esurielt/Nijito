@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Beatmap;
+using SongData;
 
 /// <summary>
 /// Singleton game manager component. Manages core and backend functions and initialization data, delegating to other systems whenever possible. Attach one (and only one) of this MonoB to its own GameObject in each scene.
@@ -92,7 +92,7 @@ public class Game : MonoBehaviour
         }
 
         //pass control to next system
-        OpenBeatmapEditorMenu();
+        OpenEditorMainMenu();
     }
     public static void LoadScene(string sceneName, System.Action onLoadComplete = null)
     {
@@ -106,24 +106,40 @@ public class Game : MonoBehaviour
 
         onLoadComplete?.Invoke();
     }
-    public static void OpenBeatmapEditorMenu()
+    public static void OpenEditorMainMenu()
     {
         LoadScene(SceneNames.EDITOR_MENU);
     }
-    public static void OpenBeatmapEditor(string songName, BeatmapDifficulty difficulty, Beatmap.Beatmap fromBeatmap = null)
+    public static void OpenBeatmapEditor(string songName, BeatmapDifficulty difficulty, SongData.Beatmap fromBeatmap = null)
     {
         LoadScene(SceneNames.PIANO_ROLL_EDITOR, () => OnBeatmapEditorLoaded(songName, difficulty, fromBeatmap));
     }
-    private static void OnBeatmapEditorLoaded(string songName, BeatmapDifficulty difficulty, Beatmap.Beatmap fromBeatmap = null)
+    private static void OnBeatmapEditorLoaded(string songName, BeatmapDifficulty difficulty, SongData.Beatmap fromBeatmap = null)
     {
-        var editor = FindObjectOfType<Beatmap.Editor.BeatmapEditor>();
+        var editor = FindObjectOfType<Editors.BeatmapEditor.BeatmapEditor>();
         if (editor != null)
         {
             editor.Initialize(songName, difficulty, fromBeatmap);
         }
         else
         {
-            Log(Logging.Category.BEATMAP, "Unable to locate beatmap editor component in scene.", Logging.Level.LOG_ERROR);
+            Log(Logging.Category.SONG_DATA, "Unable to locate beatmap editor component in scene.", Logging.Level.LOG_ERROR);
+        }
+    }
+    public static void OpenSongEditor(string songName)
+    {
+        LoadScene(SceneNames.SONG_METADATA_EDITOR, () => OnSongEditorLoaded(songName));
+    }
+    private static void OnSongEditorLoaded(string songName)
+    {
+        var editor = FindObjectOfType<Editors.SongMetadataEditor.SongMetadataEditor>();
+        if (editor != null)
+        {
+            editor.Initialize(songName);
+        }
+        else
+        {
+            Log(Logging.Category.SONG_DATA, "Unable to locate song editor component in scene.", Logging.Level.LOG_ERROR);
         }
     }
 

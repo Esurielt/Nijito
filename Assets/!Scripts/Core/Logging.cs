@@ -23,7 +23,7 @@ public class Logging : MonoBehaviour
         /// <summary>
         /// Beat map interpretation system
         /// </summary>
-        BEATMAP = 2,
+        SONG_DATA = 2,
         /// <summary>
         /// User interface system
         /// </summary>
@@ -46,7 +46,7 @@ public class Logging : MonoBehaviour
         {
             case Category.ALWAYS_LOG: return true;
             case Category.CORE: return LogCore;
-            case Category.BEATMAP: return LogBeatmap;
+            case Category.SONG_DATA: return LogBeatmap;
             case Category.UI: return LogUI;
             default:
                 return false;
