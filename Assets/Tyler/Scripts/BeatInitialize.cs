@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Beatmap.AudioTimetable;
+using static SongData.AudioTimetable;
 
 
 public class BeatInitialize : MonoBehaviour//for now just not worrying about long notes. 
