@@ -7,6 +7,7 @@ namespace MessageBoxes
 {
     public class MessageBoxManager : MonoBehaviour
     {
+        public Transform MessageBoxContainer;
         public MessageBoxController MessageBoxPrefab;
 
         private readonly List<MessageBoxController> _messageList = new List<MessageBoxController>();
@@ -18,7 +19,7 @@ namespace MessageBoxes
         }
         public void MessageBox(MessageTemplate template, Stack<MessageBoxController> parentBoxes)
         {
-            var controller = Instantiate(MessageBoxPrefab, Game.Self.MessageBoxContainer);
+            var controller = Instantiate(MessageBoxPrefab, MessageBoxContainer);
             controller.Initialize(this, parentBoxes, template.Title, template.Message, template.Buttons);
             _messageList.Add(controller);
         }

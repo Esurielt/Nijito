@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PersistentCanvas: {fileID: 7440260085569707132}
-  MessageBoxContainer: {fileID: 7440260084997843183}
 --- !u!114 &7440260086753640287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ddca7f7ad4c01641ad3ee2fbff35928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MessageBoxContainer: {fileID: 7440260084997843183}
   MessageBoxPrefab: {fileID: 5021178839831620741, guid: 089612d9b1a6156428da74a19a9a5d94,
     type: 3}
 --- !u!82 &4065911525260318431

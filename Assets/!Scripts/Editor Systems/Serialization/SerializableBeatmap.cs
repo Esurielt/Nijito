@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Nijito;
 
 namespace SongData.Serialization
 {
@@ -51,7 +52,9 @@ namespace SongData.Serialization
                 var channel = typeInstance.ChannelFlyweights[i];    //associated channel
 
                 //try to find a valid value with that name (case insensitive), otherwise return the default for the channel
-                var value = channel.ValueFlyweights.Find(v => v.Name.ToUpperInvariant() == ValueNames[i].ToUpperInvariant()) ?? channel.DefaultValueFlyweight;
+                var value = channel.ValueFlyweights.Find(
+                    v => string.Equals(v.Name, ValueNames[i], System.StringComparison.InvariantCultureIgnoreCase))
+                    ?? channel.DefaultValueFlyweight;
                 
                 values.Add(value);    //add it to the list
             }

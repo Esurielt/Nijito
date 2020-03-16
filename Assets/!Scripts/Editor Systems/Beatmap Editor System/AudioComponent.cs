@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using SongData.Serialization;
 using SongData;
+using Nijito;
 
 namespace Editors.BeatmapEditor
 {

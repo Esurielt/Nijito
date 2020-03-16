@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KeyCombos;
 using Editors;
+using Nijito;
 
 namespace Editors
 {

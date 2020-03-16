@@ -31,7 +31,7 @@ namespace UnityEventRegistry
             if (_subscribed || _registry.Count == 0)
                 return;
 
-            Game.LogFormat(Logging.Category.SONG_DATA, "{0}: Subscribing to editor events...", Logging.Level.LOG, Name);
+            Debug.Log($"{Name}: Subscribing to editor events...");
             foreach (var kvp in _registry)
             {
                 kvp.Key.AddListener(kvp.Value);
@@ -44,7 +44,7 @@ namespace UnityEventRegistry
             if (!_subscribed || _registry.Count == 0)
                 return;
 
-            Game.LogFormat(Logging.Category.SONG_DATA, "{0}: Unsubscribing from editor events...", Logging.Level.LOG, Name);
+            Debug.Log($"{Name}: Unsubscribing from editor events...");
             foreach (var kvp in _registry)
             {
                 kvp.Key.RemoveListener(kvp.Value);

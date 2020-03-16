@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using MessageBoxes;
 using SongData;
 using SongData.Serialization;
+using Nijito;
 
 namespace Editors
 {
