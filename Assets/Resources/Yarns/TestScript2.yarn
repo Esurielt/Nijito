@@ -1,0 +1,49 @@
+title: Start
+---
+
+: TestScript2
+
+<<setTextureIndex lIbuki 0>>
+<<setTextureIndex rIbuki 1>>
+
+<<turn lIbuki right>>
+<<move lIbuki left from offleft>>
+
+Left Ibuki: Hi! I'm on the left side of the screen!
+Left Ibuki: Hey, right me, I need to show you something!
+
+Right Ibuki: Just a second!
+
+<<turn rIbuki left>>
+<<move rIbuki right from offright>>
+
+Right Ibuki: sup?
+
+<<turn lIbuki left>>
+
+Left Ibuki: nvm lawl
+
+<<move lIbuki offleft>>
+
+Right Ibuki: Hey!
+
+<<move rIbuki middle>>
+
+Right Ibuki: Get back here!
+
+<<face lIbuki left>>
+<<move lIbuki right from offRight>>
+
+Left Ibuki: Boo!
+
+<<face rIbuki right>>
+<<move rIbuki left>>
+
+Right Ibuki: Ack!
+Right Ibuki: Wait, if you're over there, and I'm over here...
+Right Ibuki: Am I even Right Ibuki anymore?
+
+Left Ibuki: You're overthinking things lol
+
+
+===

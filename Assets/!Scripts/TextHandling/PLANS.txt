@@ -1,0 +1,32 @@
+Rather than referring to individual files, we'll have character scriptable
+objects. These would track a few things:
+
+	- Name
+	- Graphics
+	- Sounds?
+	- Maybe list of viable equipment?
+
+Whatever, this should be a fairly generic system for building out our
+representation of what a "character" is, so that we can keep track of this
+stuff. This wouldn't be per-user-settings... it's just our own configuration
+of how the character works.
+
+
+Characters will be represented on screen as "puppets." A puppet is simply
+an object with an image, and can be controlled via Yarn commands. For the
+most part, puppets will be pretty self-sufficient; they'll know which character
+they're playing as, when they're off screen, etc.
+
+All active puppets will be managed by the "puppet master." This is mostly
+just a glorified pooler; it will instantiate puppets and keep track which
+ones are active. If necessary, it could re-use puppets (i.e. grab the off-screen
+ones and then apply a new character), but for now we'll avoid doing this to keep
+things simple.
+
+The puppet master can retrieve puppets by character name. This way, when a
+command is issued, all that's needed is a character name. It should abstract
+away most of the mess and make it pretty easy to use. The puppet master won't
+actually do anything beyond fetching puppets; puppets themselves can be controlled
+via their functions, so once the caller has the puppet, the master isn't needed.
+
+

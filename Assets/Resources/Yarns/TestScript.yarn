@@ -1,0 +1,23 @@
+title: Start
+---
+<<set $player to "TestName">>
+
+:This text was pulled from the script of Doki Doki Literature Club.
+<<move Monika left>>
+:You can find that script here: https:\/\/github.com/DDLC/MonikaModDev/blob/master/original_scripts/110/script-ch3.rpy
+<<move Hop right from offright>>
+Monika: Aw, man...
+<<turn Hop right>>
+<<move Monika to middle from offleft>>
+Monika: I'm the last one here again!
+<<turn Hop left>>
+{$player}: Don't worry, I just walked in too.
+Yuri: Were you practicing piano again?
+<<move Monika to offright>>
+Monika: Yeah...
+Monika: Ahaha...
+And then there was a very long piece of descriptive text instead of actual dialog. Mostly for demonstration purposes. You know how it goes...
+Yuri: You must have a lot of determination.
+<<move Monika from offleft to middle>>
+Yuri: Starting this club, and now picking up piano...
+===
