@@ -10,7 +10,8 @@ namespace Dialogue.VN
 		public GameObject puppetPrefab;
 		public RectTransform puppetSpawnPoint;
 
-		Dictionary<string, Puppet> puppets;
+		private Dictionary<string, Puppet> puppets;
+		private Dictionary<string, PuppetCostume> costumes;
 
 		private void Awake()
 		{
@@ -21,7 +22,13 @@ namespace Dialogue.VN
 				"Puppet prefab must have the Dialogue.VN.Puppet component attached to it!"
 			);
 
-			// TODO Load character information from resources
+			costumes = new Dictionary<string, PuppetCostume>();
+
+			PuppetCostume[] costumeArray = Resources.FindObjectsOfTypeAll<PuppetCostume>();
+			foreach(PuppetCostume costume in costumeArray)
+			{
+				costumes.Add(costume.name, costume);
+			}
 		}
 
 		public Puppet GetPuppet(string characterName)
@@ -42,9 +49,7 @@ namespace Dialogue.VN
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
 			newPuppet.Warp(puppetSpawnPoint);
-
-			// TODO Configure character stuff.
-			newPuppetObj.name = characterName;	// TODO Puppet should be able to set this itself.
+			newPuppet.Configure(costumes[characterName]);
 
 			return newPuppet;
 		}

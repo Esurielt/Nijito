@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using Sirenix.Serialization;
+using System;
 
 namespace Dialogue.VN
 {
@@ -17,11 +19,10 @@ namespace Dialogue.VN
 		// TODO: Allow movement curve?
 		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
 
-		public RawImage imageRenderer;
+		public Image imageRenderer;
 		public float movementSpeed = 5f;
 
-		// TODO This should be deleted and we should use characters instead.
-		public Texture[] textures;
+		PuppetCostume costume;
 
 		private Facing defaultFacing = Facing.Left;
 
@@ -29,6 +30,11 @@ namespace Dialogue.VN
 		private float targetHorizontalPos;
 
 
+		public void Configure(PuppetCostume targetCostume)
+		{
+			costume = targetCostume;
+			imageRenderer.sprite = costume.defaultSprite;
+		}
 
 		/// <summary>
 		/// Sets a new destination where we want to slide to.
@@ -71,14 +77,16 @@ namespace Dialogue.VN
 
 		public void SetFacing(Facing newFacing)
 		{
-			Rect uvRect = imageRenderer.uvRect;
-			uvRect.width = (newFacing == defaultFacing ? 1 : -1);
-			imageRenderer.uvRect = uvRect;
+			Vector3 scale = imageRenderer.transform.localScale;
+			scale.x = (newFacing == defaultFacing ? 1 : -1);
+			imageRenderer.transform.localScale = scale;
 		}
 
+		[Obsolete]
 		public void SetTexture(int index)
 		{
-			imageRenderer.texture = textures[index];
+			//imageRenderer.sprite = sprites[index];
+			Debug.LogWarning("Using deprecated SetTexture");
 		}
 
 		private void SetPosition(float newHorizontalPos)
