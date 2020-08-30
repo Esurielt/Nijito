@@ -8,6 +8,10 @@ using System;
 
 namespace Dialogue.VN
 {
+	/// <summary>
+	/// This is component represents a puppet on the stage.
+	/// Puppets can be configured via Dialogue.VN.PuppetPreset objects.
+	/// </summary>
 	public class Puppet : MonoBehaviour
 	{
 		public enum Facing
@@ -19,21 +23,24 @@ namespace Dialogue.VN
 		// TODO: Allow movement curve?
 		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
 
-		public Image imageRenderer;
+		[Tooltip("This is the object that gets mirrored. All renderers (which we want to flip) should be a child of this one.")]
+		public Transform flipTarget;
+		[PreviouslySerializedAs("imageRenderer")]
+		public Image baseRenderer;
 		public float movementSpeed = 5f;
 
-		PuppetCostume costume;
 
+		private PuppetPreset preset;
 		private Facing defaultFacing = Facing.Left;
 
 		private RectTransform rTransform;
 		private float targetHorizontalPos;
 
 
-		public void Configure(PuppetCostume targetCostume)
+		public void Configure(PuppetPreset targetPreset)
 		{
-			costume = targetCostume;
-			imageRenderer.sprite = costume.defaultSprite;
+			preset = targetPreset;
+			baseRenderer.sprite = preset.baseImage;
 		}
 
 		/// <summary>
@@ -77,9 +84,9 @@ namespace Dialogue.VN
 
 		public void SetFacing(Facing newFacing)
 		{
-			Vector3 scale = imageRenderer.transform.localScale;
-			scale.x = (newFacing == defaultFacing ? 1 : -1);
-			imageRenderer.transform.localScale = scale;
+			Vector3 scale = flipTarget.localScale;
+			scale.x = Mathf.Abs(scale.x) * (newFacing == defaultFacing ? 1 : -1);
+			flipTarget.localScale = scale;
 		}
 
 		[Obsolete]
@@ -99,7 +106,7 @@ namespace Dialogue.VN
 		{
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform, "Puppets should be part of the UI, not in the scene itself!");
-			Assert.IsNotNull(imageRenderer, "Puppets must have a RawImage!");
+			Assert.IsNotNull(baseRenderer, "Puppets must have a RawImage!");
 			
 		}
 

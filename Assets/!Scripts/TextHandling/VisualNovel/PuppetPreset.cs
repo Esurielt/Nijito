@@ -13,7 +13,7 @@ namespace Dialogue.VN
 	/// for moods, etc.
 	/// </summary>
 	[CreateAssetMenu(fileName = "NewPuppetCostume", menuName = "Nijito/Puppet Costume", order = 1)]
-	public class PuppetCostume : ScriptableObject
+	public class PuppetPreset : ScriptableObject
 	{
 		[System.Serializable]
 		public struct ImagePreset
@@ -27,7 +27,8 @@ namespace Dialogue.VN
 			*/
 		}
 
-		public Sprite defaultSprite;
+		public Sprite baseImage;
+		//public Vector2 size;
 		public ImagePreset[] presets;
 
 		[ContextMenu("Add Missing Emotions")]

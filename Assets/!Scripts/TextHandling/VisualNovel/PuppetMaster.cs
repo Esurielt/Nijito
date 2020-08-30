@@ -11,7 +11,7 @@ namespace Dialogue.VN
 		public RectTransform puppetSpawnPoint;
 
 		private Dictionary<string, Puppet> puppets;
-		private Dictionary<string, PuppetCostume> costumes;
+		private Dictionary<string, PuppetPreset> costumes;
 
 		private void Awake()
 		{
@@ -22,10 +22,11 @@ namespace Dialogue.VN
 				"Puppet prefab must have the Dialogue.VN.Puppet component attached to it!"
 			);
 
-			costumes = new Dictionary<string, PuppetCostume>();
+			costumes = new Dictionary<string, PuppetPreset>();
 
-			PuppetCostume[] costumeArray = Resources.FindObjectsOfTypeAll<PuppetCostume>();
-			foreach(PuppetCostume costume in costumeArray)
+			//PuppetCostume[] costumeArray = Resources.FindObjectsOfTypeAll<PuppetCostume>();
+			PuppetPreset[] costumeArray = Resources.LoadAll<PuppetPreset>("VisualNovel/PuppetPresets");
+			foreach(PuppetPreset costume in costumeArray)
 			{
 				costumes.Add(costume.name, costume);
 			}
@@ -49,7 +50,16 @@ namespace Dialogue.VN
 
 			Puppet newPuppet = newPuppetObj.GetComponent<Puppet>();
 			newPuppet.Warp(puppetSpawnPoint);
-			newPuppet.Configure(costumes[characterName]);
+
+			PuppetPreset costume;
+			if(costumes.TryGetValue(characterName, out costume))
+			{
+				newPuppet.Configure(costume);
+			}
+			else
+			{
+				Debug.LogWarning("No preset for character named " + characterName);
+			}
 
 			return newPuppet;
 		}
