@@ -29,7 +29,8 @@ namespace Dialogue
 
 		public static CharacterEmotion[] GetAllEmotions()
 		{
-			return Resources.FindObjectsOfTypeAll<CharacterEmotion>();
+			//return Resources.FindObjectsOfTypeAll<CharacterEmotion>();
+			return Resources.LoadAll<CharacterEmotion>("");
 		}
 
 		public static CharacterEmotion[] GetStandardEmotions()

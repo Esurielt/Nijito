@@ -20,18 +20,18 @@ namespace Dialogue.VN
 	/// </summary>
 	public class VisualNovelCommands : MonoBehaviour
 	{
-		[Header("Setup")]
 
-		[SerializeField]
-		private DialogueRunner dialogueRunner;
-		[SerializeField]
-		private PuppetMaster puppetMaster;
+		#pragma warning disable CS0649
+
+		[Header("Setup")]
+		[SerializeField] private DialogueRunner dialogueRunner;
+		[SerializeField] private PuppetMaster puppetMaster;
 
 		[Header("Design config")]
-
 		[FormerlySerializedAs("positions")]
-		[SerializeField]
-		private RectTransform[] puppetPoints;
+		[SerializeField] private RectTransform[] puppetPoints;
+
+		#pragma warning restore CS0649
 
 		private void Awake()
 		{

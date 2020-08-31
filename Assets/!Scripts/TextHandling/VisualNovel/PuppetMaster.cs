@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,11 +8,15 @@ namespace Dialogue.VN
 {
 	public class PuppetMaster : MonoBehaviour
 	{
+		public string puppetPresetPath = "VN/PuppetPresets";
 		public GameObject puppetPrefab;
 		public RectTransform puppetSpawnPoint;
 
+		[SerializeField]
+		private bool debugLoading = false;
+
 		private Dictionary<string, Puppet> puppets;
-		private Dictionary<string, PuppetPreset> costumes;
+		private Dictionary<string, PuppetPreset> presets;
 
 		private void Awake()
 		{
@@ -22,13 +27,23 @@ namespace Dialogue.VN
 				"Puppet prefab must have the Dialogue.VN.Puppet component attached to it!"
 			);
 
-			costumes = new Dictionary<string, PuppetPreset>();
+			presets = new Dictionary<string, PuppetPreset>();
 
 			//PuppetCostume[] costumeArray = Resources.FindObjectsOfTypeAll<PuppetCostume>();
-			PuppetPreset[] costumeArray = Resources.LoadAll<PuppetPreset>("VisualNovel/PuppetPresets");
-			foreach(PuppetPreset costume in costumeArray)
+			PuppetPreset[] presetArray = Resources.LoadAll<PuppetPreset>(puppetPresetPath);
+			foreach(PuppetPreset preset in presetArray)
 			{
-				costumes.Add(costume.name, costume);
+				presets.Add(preset.name, preset);
+
+				if(debugLoading)
+				{
+					Debug.Log("Loaded preset: " + preset.name);
+				}
+			}
+
+			if(debugLoading)
+			{
+				Debug.Log("Loaded " + presets.Count + " presets!");
 			}
 		}
 
@@ -52,7 +67,7 @@ namespace Dialogue.VN
 			newPuppet.Warp(puppetSpawnPoint);
 
 			PuppetPreset costume;
-			if(costumes.TryGetValue(characterName, out costume))
+			if(presets.TryGetValue(characterName, out costume))
 			{
 				newPuppet.Configure(costume);
 			}

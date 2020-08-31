@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/** ChangeLog
+ * 8/30/2020 - Added layer code.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,11 +27,51 @@ namespace Dialogue.VN
 		// TODO: Allow movement curve?
 		// https://answers.unity.com/questions/1207389/can-animation-curves-be-used-to-control-variables.html
 
+		/*
+		 * Everything here is layers. For that reason, even the character's base is layer.
+		 */
+
+		/* Ok, so some planning
+		 * base layer  + main clothes + expression + hair + addons
+		 * 
+		 * Base layer is... well, the base. That's normal.
+		 * Some things, like layers, come directly from the character that the puppet is based on.
+		 * These things are going to stay essentially fixed once we set up the character.
+		 * 
+		 * Other things will just be added on based on commands.
+		 * 
+		 * Either way, we want a good system for creating various layers. This should be able
+		 * to be done at run time.
+		 *
+		 * So I guess what we can do is create a child game object for each... layer type?
+		 * This way, things can be sorted correctly.
+		 *
+		 * But to make the sorting be controlled, we'll make them in the editor.
+		 * Then we can go get them at runtime and then use those as the parents.
+		 * 
+		 * We can add things onto the layer, and wipe out everything on the layer
+		 * as we please.
+		 * 
+		 */
+
+		#pragma warning disable CS0649
+
+		[SerializeField] private float movementSpeed = 5f;
+
+		[Header("Layers")]
 		[Tooltip("This is the object that gets mirrored. All renderers (which we want to flip) should be a child of this one.")]
-		public Transform flipTarget;
-		[PreviouslySerializedAs("imageRenderer")]
-		public Image baseRenderer;
-		public float movementSpeed = 5f;
+		[SerializeField] private RectTransform layerContainer;
+		[SerializeField] private GameObject layerImagePrefab;
+
+		[Space(5)]
+		[SerializeField] private RectTransform baseLayer;
+		[SerializeField] private RectTransform clothesLayer;
+		[SerializeField] private RectTransform hairLayer;
+
+		[Space(5)]
+		[SerializeField] private RectTransform expressionLayer;
+		[SerializeField] private RectTransform addonLayer;
+		#pragma warning restore CS0649
 
 
 		private PuppetPreset preset;
@@ -37,10 +81,17 @@ namespace Dialogue.VN
 		private float targetHorizontalPos;
 
 
-		public void Configure(PuppetPreset targetPreset)
+		public void Configure(PuppetPreset preset)
 		{
-			preset = targetPreset;
-			baseRenderer.sprite = preset.baseImage;
+			this.preset = preset;
+			layerContainer.sizeDelta = preset.size;
+
+			//baseLayer.sprite = this.preset.baseImage;
+			//baseRenderer.rectTransform.sizeDelta = preset.size;
+
+			// Set up all of the generally wanted puppet things
+			// (i.e. base, clothes, and hair)
+			AddImageToLayer(baseLayer, preset.baseImage);
 		}
 
 		/// <summary>
@@ -84,10 +135,12 @@ namespace Dialogue.VN
 
 		public void SetFacing(Facing newFacing)
 		{
-			Vector3 scale = flipTarget.localScale;
+			Vector3 scale = layerContainer.localScale;
 			scale.x = Mathf.Abs(scale.x) * (newFacing == defaultFacing ? 1 : -1);
-			flipTarget.localScale = scale;
+			layerContainer.localScale = scale;
 		}
+
+
 
 		[Obsolete]
 		public void SetTexture(int index)
@@ -102,12 +155,31 @@ namespace Dialogue.VN
 			rTransform.anchorMax = new Vector2(newHorizontalPos, rTransform.anchorMax.y);
 		}
 
+		private Image AddImageToLayer(RectTransform layer, Sprite layerSprite)
+		{
+			GameObject newImageObj = Instantiate(layerImagePrefab, layer) as GameObject;
+			newImageObj.name = (layerSprite != null ? layerSprite.name : layer.name + "IMG");
+
+			Image newImageComp = newImageObj.GetComponent<Image>();
+			newImageComp.sprite = layerSprite;
+
+			return newImageComp;
+		}
+
+		private void ClearLayer(RectTransform layer)
+		{
+			foreach(Transform imgObj in layer)
+			{
+				Destroy(imgObj.gameObject);
+			}
+		}
+
 		private void Awake()
 		{
 			rTransform = GetComponent<RectTransform>();
 			Assert.IsNotNull(rTransform, "Puppets should be part of the UI, not in the scene itself!");
-			Assert.IsNotNull(baseRenderer, "Puppets must have a RawImage!");
-			
+
+			Assert.IsNotNull(layerImagePrefab.GetComponent<Image>(), "The layer prefab should have an image.");
 		}
 
 		private void Update()
@@ -118,7 +190,6 @@ namespace Dialogue.VN
 				SetPosition(newHorizontalPos);
 			}
 		}
-
 
 	}
 }

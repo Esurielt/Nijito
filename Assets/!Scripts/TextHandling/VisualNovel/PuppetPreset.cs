@@ -15,8 +15,10 @@ namespace Dialogue.VN
 	[CreateAssetMenu(fileName = "NewPuppetCostume", menuName = "Nijito/Puppet Costume", order = 1)]
 	public class PuppetPreset : ScriptableObject
 	{
+
+
 		[System.Serializable]
-		public struct ImagePreset
+		public struct EmotionPreset
 		{
 			public CharacterEmotion emotion;
 			public Sprite img;
@@ -28,8 +30,8 @@ namespace Dialogue.VN
 		}
 
 		public Sprite baseImage;
-		//public Vector2 size;
-		public ImagePreset[] presets;
+		public Vector2 size;
+		public EmotionPreset[] emotionPresets;
 
 		[ContextMenu("Add Missing Emotions")]
 		private void AddMissingEmotions()
@@ -39,22 +41,22 @@ namespace Dialogue.VN
 
 			foreach(CharacterEmotion emote in allEmotions)
 			{
-				if(!presets.Any((ip) => emote == ip.emotion))
+				if(!emotionPresets.Any((ip) => emote == ip.emotion))
 				{
 					missingEmotions.Add(emote);
 				}
 			}
 
-			List<ImagePreset> updatedPresets = new List<ImagePreset>(presets);
+			List<EmotionPreset> updatedPresets = new List<EmotionPreset>(emotionPresets);
 			foreach(CharacterEmotion emote in missingEmotions)
 			{
-				ImagePreset newPreset = new ImagePreset();
+				EmotionPreset newPreset = new EmotionPreset();
 				newPreset.emotion = emote;
 
 				updatedPresets.Add(newPreset);
 			}
 
-			presets = updatedPresets.ToArray();
+			emotionPresets = updatedPresets.ToArray();
 
 		}
 	}
