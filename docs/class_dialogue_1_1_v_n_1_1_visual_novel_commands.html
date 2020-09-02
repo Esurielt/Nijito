@@ -107,11 +107,62 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a52f52d451e08780a6130cdb37e7039b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;turn CHARACTER DIRECTION&gt;&gt;<br />
  &lt;&lt;face CHARACTER DIRECTION&gt;&gt;  <a href="#a52f52d451e08780a6130cdb37e7039b6">More...</a><br /></td></tr>
 <tr class="separator:a52f52d451e08780a6130cdb37e7039b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bdf80d3c96092c88dfbd57c0c855312"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a0bdf80d3c96092c88dfbd57c0c855312">Emote</a> (string[] args)</td></tr>
+<tr class="memdesc:a0bdf80d3c96092c88dfbd57c0c855312"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;emote CHARACTER EMOTION&gt;&gt;<br />
+ <a href="#a0bdf80d3c96092c88dfbd57c0c855312">More...</a><br /></td></tr>
+<tr class="separator:a0bdf80d3c96092c88dfbd57c0c855312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af49cdc8cf86417918a23f263fcd8c50f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">Music</a> (string[] args)</td></tr>
+<tr class="memdesc:af49cdc8cf86417918a23f263fcd8c50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music TRACK&gt;&gt;<br />
+ <a href="#af49cdc8cf86417918a23f263fcd8c50f">More...</a><br /></td></tr>
+<tr class="separator:af49cdc8cf86417918a23f263fcd8c50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1833c1c700c84a20b340021987d79d15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a1833c1c700c84a20b340021987d79d15">MusicNow</a> (string[] args)</td></tr>
+<tr class="memdesc:a1833c1c700c84a20b340021987d79d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music-now TRACK&gt;&gt;<br />
+ <a href="#a1833c1c700c84a20b340021987d79d15">More...</a><br /></td></tr>
+<tr class="separator:a1833c1c700c84a20b340021987d79d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several commands for the Yarn scripts to use. </p>
 <p>See the comments for each function. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0bdf80d3c96092c88dfbd57c0c855312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bdf80d3c96092c88dfbd57c0c855312">&#9670;&nbsp;</a></span>Emote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.Emote </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;emote CHARACTER EMOTION&gt;&gt;<br />
+</p>
+<p>Changes CHARACTER's face to show EMOTION, where EMOTION is the (case-insensitive) name of one of the character's emotions.</p>
+<p>Each character has their own range of emotions; some may have special emotions, and others might be missing some of the common ones. The list is configured in Unity.</p>
+<p>Here's the list of common emotions:<br />
+</p><ul>
+<li>Anger</li>
+<li>Concern</li>
+<li>Laugh</li>
+<li>Sad</li>
+<li>Serious</li>
+<li>Smile</li>
+<li>Surprised</li>
+</ul>
+<p>Finally, there's one special emotion: <b>None</b>. This clears all emotions, resetting the character back to their default, neutral face that they use when they first come onto the stage. The <b>None</b> emotion will always be available.</p>
+<p>Using an invalid emotion will print an error in the debug console and then act as though you had used <b>None</b> instead. </p>
+<pre class="fragment">&lt;&lt;emote Ibuki Laugh&gt;&gt; 
+</pre><p> Make Ibuki Laugh. </p><pre class="fragment">&lt;&lt;emote Ibuki None&gt;&gt; 
+</pre><p> Return Ibuki to her default emotion. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="aa799956937e3379ed401645f043b8977"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa799956937e3379ed401645f043b8977">&#9670;&nbsp;</a></span>Move()</h2>
 
@@ -139,6 +190,63 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af49cdc8cf86417918a23f263fcd8c50f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49cdc8cf86417918a23f263fcd8c50f">&#9670;&nbsp;</a></span>Music()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.Music </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;music TRACK&gt;&gt;<br />
+</p>
+<p>Cause background music named TRACK to start playing, where TRACK is the (case-insensitive) name for a song.</p>
+<p>Tracks and their names are defined in Unity, so we can't put a full list here. If TRACK is <b>None</b>, the current song is stopped. If TRACK cannot be found, an error is sent to the debug console and it is treated as <b>None</b>.</p>
+<p>Note that TRACK can have spaces. (Some songs might have spaces in their name, so this is allowed to keep things simple.)</p>
+<p>If no song is playing, the new song will play immediately. If a song <em>is</em> playing, then the old one will fade out and the new song will begin to play after a short delay. If you'd rather have the songs switch abruptly, see <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a1833c1c700c84a20b340021987d79d15">music-now</a>. </p>
+<pre class="fragment">&lt;&lt;music Beautiful Lie&gt;&gt; 
+</pre><p> Plays a song named "Beautiful Lie." (No, we aren't ripping tracks from Danganronpa.) </p><pre class="fragment">&lt;&lt;music None&gt;&gt; 
+</pre><p> Stops the current track. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
+<a id="a1833c1c700c84a20b340021987d79d15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1833c1c700c84a20b340021987d79d15">&#9670;&nbsp;</a></span>MusicNow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.MusicNow </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;music-now TRACK&gt;&gt;<br />
+</p>
+<p>Cause background music named TRACK to start playing immediately, where TRACK is the (case-insensitive) name for a song.</p>
+<p>This is like <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a> except there is no fade between songs. If used with <b>None</b>, then the music cuts to silence. Note that if nothing is currently playing, this is no different from <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a>. </p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;music-now Never Gonna Give You Up&gt;&gt; 
+</pre><p> Plays a song named "Never Gonna Give You Up" instantly. </p><pre class="fragment">&lt;&lt;music-now None&gt;&gt; 
+</pre><p> Stops the current track immediately. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="a52f52d451e08780a6130cdb37e7039b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52f52d451e08780a6130cdb37e7039b6">&#9670;&nbsp;</a></span>Turn()</h2>
 
@@ -159,7 +267,7 @@ Public Member Functions</h2></td></tr>
  &lt;&lt;face CHARACTER DIRECTION&gt;&gt; </p>
 <p>Causes CHARACTER to face in DIRECTION, where DIRECTION is either "left" or "right" (DIRECTION is case-insensitive). </p>
 <pre class="fragment">&lt;&lt;turn Ibuki Right&gt;&gt; 
-</pre><p> Make Ibuki face to the right. </p>
+</pre><p> Make Ibuki face towards the right. </p>
 
 </div>
 </div>
@@ -172,7 +280,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html">VisualNovelCommands</a></li>
-    <li class="footer">Generated on Mon Aug 17 2020 14:40:50 for Nijito by
+    <li class="footer">Generated on Tue Sep 1 2020 12:00:20 for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

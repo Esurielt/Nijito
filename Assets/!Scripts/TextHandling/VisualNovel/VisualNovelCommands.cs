@@ -161,6 +161,120 @@ namespace Dialogue.VN
 			charPuppet.SetFacing(newFacing);
 		}
 
+
+		/// <summary>
+		/// &lt;&lt;emote CHARACTER EMOTION&gt;&gt;\n 
+		/// 
+		/// Changes CHARACTER's face to show EMOTION, where EMOTION is the
+		/// (case-insensitive) name of one of the character's emotions.
+		/// 
+		/// Each character has their own range of emotions; some may have
+		/// special emotions, and others might be missing some of the common
+		/// ones. The list is configured in Unity.
+		/// 
+		/// Here's the list of common emotions:<br>
+		/// * Anger
+		/// * Concern
+		/// * Laugh
+		/// * Sad
+		/// * Serious
+		/// * Smile
+		/// * Surprised
+		///  
+		/// Finally, there's one special emotion: **None**. This clears all
+		/// emotions, resetting the character back to their default, neutral
+		/// face that they use when they first come onto the stage.
+		/// The **None** emotion will always be available.
+		///
+		/// Using an invalid emotion will print an error in the debug console
+		/// and then act as though you had used **None** instead.
+		/// </summary>
+		/// <example>
+		/// 
+		///     <<emote Ibuki Laugh>> 
+		/// Make Ibuki Laugh.
+		///
+		///     <<emote Ibuki None>> 
+		/// Return Ibuki to her default emotion.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Emote(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: Emote");
+		}
+
+		public void Outfit(string[] args)
+		{
+			
+		}
+
+		/// <summary>
+		/// &lt;&lt;music TRACK&gt;&gt;\n 
+		///
+		/// Cause background music named TRACK to start playing,
+		/// where TRACK is the (case-insensitive) name for a song.
+		/// 
+		/// Tracks and their names are defined in Unity, so we
+		/// can't put a full list here. If TRACK is **None**, the
+		/// current song is stopped. If TRACK cannot be found,
+		/// an error is sent to the debug console and it is treated
+		/// as **None**.
+		/// 
+		/// Note that TRACK can have spaces. (Some songs might have spaces
+		/// in their name, so this is allowed to keep things simple.)
+		///
+		/// If no song is playing, the new song will play immediately.
+		/// If a song *is* playing, then the old one will fade out and
+		/// the new song will begin to play after a short delay. If you'd
+		/// rather have the songs switch abruptly,
+		/// see [music-now](@ref Dialogue.VN.VisualNovelCommands.MusicNow).
+		/// </summary>
+		/// <example>
+		/// 
+		///     <<music Beautiful Lie>> 
+		/// Plays a song named "Beautiful Lie."
+		/// (No, we aren't ripping tracks from Danganronpa.)
+		///
+		///     <<music None>> 
+		/// Stops the current track.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Music(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet.");
+		}
+
+		/// <summary>
+		/// &lt;&lt;music-now TRACK&gt;&gt;\n 
+		///
+		/// Cause background music named TRACK to start playing immediately,
+		/// where TRACK is the (case-insensitive) name for a song.
+		/// 
+		/// This is like [music](@ref Dialogue.VN.VisualNovelCommands.Music)
+		/// except there is no fade between songs. If used with **None**,
+		/// then the music cuts to silence.
+		/// Note that if nothing is currently playing,
+		/// this is no different from [music](@ref Dialogue.VN.VisualNovelCommands.Music).
+		/// <example>
+		/// ## Examples
+		///
+		///     <<music-now Never Gonna Give You Up>> 
+		/// Plays a song named "Never Gonna Give You Up" instantly.
+		///
+		///     <<music-now None>> 
+		/// Stops the current track immediately.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void MusicNow(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet.");
+		}
+
+		public void Sound(string[] args)
+		{
+			// Will need a version that waits for sound to finish too
+		}
+
 		private void SetTexture(string[] args)
 		{
 			Assert.IsTrue(args.Length >= 2);

@@ -86,6 +86,9 @@ $(document).ready(function(){initNavTree('namespace_dialogue.html','');});
 <div class="title">Dialogue Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This namespace contains all of the code for Nijito's dialogue systems.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -99,9 +102,11 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This namespace contains all of the code for Nijito's dialogue systems.</p>
+<div class="textblock"><p>This namespace contains all of the code for Nijito's dialogue systems. </p>
 <p>Our dialogue system builds on Yarn spinner. You can refer to the documentation for <a href="https://yarnspinner.dev/docs/tutorial">Yarn Spinner</a> if you aren't familiar with it.</p>
-<p>Unlike vanilla Yarn Spinner, your messages here can have speakers. To do this, you would write something like this: </p><div class="fragment"><div class="line">Jack: My name is Bob!</div><div class="line">Jill: No, your name is Jack! It says so in the text!</div><div class="line"></div><div class="line">: Jack proceeded to <span class="keywordflow">break</span> his crown, and Jill came tumbling after.</div></div><!-- fragment --><p>The game will interpret this as Jack saying the first line, and Jill saying the second. The third line will be said by no one.</p>
+<p>Unlike vanilla Yarn Spinner, your messages here can have speakers. To do this, you would write something like this: <code> Jack: My name is Bob! Jill: No, your name is Jack! It says so in the text!</code></p>
+<p><code>: Jack proceeded to break his crown, and Jill came tumbling after. </code></p>
+<p>The game will interpret this as Jack saying the first line, and Jill saying the second. The third line will be said by no one.</p>
 <p>Note that the leading colon on the third line is OPTIONAL. Leaving it in, however, ensures that the game doesn't get confused if you have a colon somewhere in your text. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
@@ -109,7 +114,7 @@ Classes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li>
-    <li class="footer">Generated on Mon Aug 17 2020 14:40:50 for Nijito by
+    <li class="footer">Generated on Tue Sep 1 2020 12:00:20 for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

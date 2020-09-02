@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['dialogdocs_2ecs',['DialogDocs.cs',['../_dialog_docs_8cs.html',1,'']]],
   ['dialogue',['Dialogue',['../namespace_dialogue.html',1,'']]],
   ['dialoguecomplete',['DialogueComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ab77ef45c0baa50cf027170b3204ef1a3',1,'Dialogue::NijitoDialogueUI']]],
   ['dialoguecontainer',['dialogueContainer',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6626c3ce58808f8846a522a4b0397a78',1,'Dialogue::NijitoDialogueUI']]],

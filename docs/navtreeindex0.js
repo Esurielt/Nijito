@@ -1,7 +1,6 @@
 var NAVTREEINDEX0 =
 {
-"_dialog_docs_8cs.html":[2,0,0,0,0,1],
-"_nijito_dialogue_u_i_8cs.html":[2,0,0,0,0,2],
+"_nijito_dialogue_u_i_8cs.html":[2,0,0,0,0,1],
 "_puppet_8cs.html":[2,0,0,0,0,0,0],
 "_puppet_master_8cs.html":[2,0,0,0,0,0,1],
 "_visual_novel_commands_8cs.html":[2,0,0,0,0,0,2],
@@ -46,8 +45,11 @@ var NAVTREEINDEX0 =
 "class_dialogue_1_1_v_n_1_1_puppet_master.html#a350718f6f83fe7dd955ef729d58d82f1":[1,0,0,0,1,2],
 "class_dialogue_1_1_v_n_1_1_puppet_master.html#ad793847366cb63297a3c51dd5604bb09":[1,0,0,0,1,0],
 "class_dialogue_1_1_v_n_1_1_visual_novel_commands.html":[1,0,0,0,2],
-"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a52f52d451e08780a6130cdb37e7039b6":[1,0,0,0,2,1],
-"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#aa799956937e3379ed401645f043b8977":[1,0,0,0,2,0],
+"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a0bdf80d3c96092c88dfbd57c0c855312":[1,0,0,0,2,0],
+"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a1833c1c700c84a20b340021987d79d15":[1,0,0,0,2,3],
+"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a52f52d451e08780a6130cdb37e7039b6":[1,0,0,0,2,4],
+"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#aa799956937e3379ed401645f043b8977":[1,0,0,0,2,1],
+"class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f":[1,0,0,0,2,2],
 "classes.html":[1,1],
 "dir_257ed58b8d32ef91ecfd054ec6374bde.html":[2,0,0,0],
 "dir_257f721cd2218d76e0b9c9850a1c2d66.html":[2,0,0,0,0,0],
