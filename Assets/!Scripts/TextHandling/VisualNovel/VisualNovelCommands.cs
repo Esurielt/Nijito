@@ -9,6 +9,22 @@ using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 using Yarn.Unity;
 
+/*
+ * Background
+ * ShakeScreen
+ * FadeOut
+ * FadeIn
+ * Music
+ * Sounds
+ * 
+ * Move
+ * Outfit
+ * Default Outfit
+ * Animate
+ * Facing
+ * Emotion
+ */
+
 namespace Dialogue.VN
 {
 	// Note that the CDATA tags are to make the C# XML stuff not
@@ -60,9 +76,11 @@ namespace Dialogue.VN
 		///		offleft, left, middle, right, offright
 		///
 		/// Note that point names are case-insensitive, but character names are not.
-		/// </summary>
-		/// <example>
-		/// 
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
 		///     <<move Ibuki Middle>> 
 		/// Move Ibuki to the middle (from wherever she was before).
 		/// 
@@ -127,9 +145,11 @@ namespace Dialogue.VN
 		/// 
 		/// Causes CHARACTER to face in DIRECTION, where DIRECTION is
 		/// either "left" or "right" (DIRECTION is case-insensitive).
-		/// </summary>
-		/// <example>
-		/// 
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
 		///     <<turn Ibuki Right>> 
 		/// Make Ibuki face towards the right.
 		/// </example>
@@ -203,9 +223,105 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet: Emote");
 		}
 
+
+		/// <summary>
+		/// &lt;&lt;animate CHARACTER ANIMATION&gt;&gt;\n 
+		///
+		/// Make CHARACTER play ANIMATION, where ANIMATION is the
+		/// case-insensitive name of a character animation that has
+		/// been created in Unity. These animations can either be
+		/// one-off or looping; it depends on the animation.
+		///
+		/// The **None** animation can be used to stop all current
+		/// animations. If an invalid animation is given, Unity
+		/// throws an error and treats it like **None** was used
+		/// instead.
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<animate Ibuki Shake>> 
+		/// Make Ibuki play the "Shake" animation.
+		/// 
+		///     <<animate Ibuki None>> 
+		/// Stop whatever animation Ibuki is playing, if any.
+		///
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Animate(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: Animate");
+		}
+
+		/// <summary>
+		/// &lt;&lt;outfit CHARACTER COSTUME&gt;&gt;\n 
+		///
+		/// Make CHARACTER where COSTUME, where COSTUME is a
+		/// (case-insensitive) name for one of CHARACTER's costumes.
+		/// 
+		/// Costumes are specified within Unity, so their names aren't
+		/// fixed. However, every character will have a default
+		/// **VR** and **RL** costumes. Normally, characters will
+		/// enter the stage with their RL costume, but this may
+		/// be configured with
+		/// [outfit-all](@ref Dialogue.VN.VisualNovelCommands.OutfitAll).
+		///
+		/// If COSTUME is **None** or an invalid costume, the
+		/// character's default costume is used instead.
+		/// (Again, default is controlled via
+		/// [outfit-all](@ref Dialogue.VN.VisualNovelCommands.OutfitAll).)
+		///
+		/// Note that changing costumes is instant.
+		/// Making characters change while they're
+		/// on screen might be strange; get them off the screen
+		/// first. (If you need characters changing on screen with
+		/// some animation involved, this could be implemented!)
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<outfit Ibuki VR>> 
+		/// Make Ibuki wear her default VR outfit.
+		///
+		///		<<outfit Ibuki None>>
+		/// Make Ibuki wear her current default costume.
+		///
+		/// </example>
+		/// \warning Not implemented yet.
 		public void Outfit(string[] args)
 		{
-			
+			Debug.LogWarning("Not implemented yet: Outfit");
+		}
+
+		/// <summary>
+		/// &lt;&lt;outfit-all [VR|RL] [default-only]&gt;&gt;\n 
+		///
+		/// Make all characters wear either their VR or RL costumes.
+		/// This also changes all incoming characters to have on
+		/// their VR/RL costume.
+		/// 
+		/// If *default-only* is specified, loaded characters will
+		/// not have their costume changed. (Note: all characters
+		/// who have been used in the scene are loaded, even if
+		/// they're not visible!)
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<outfit-all VR>> 
+		/// Make all characters wear their virtual reality outfits.
+		///
+		///		<<outfit-all RL default-only>>
+		/// Make all future characters wear their real-life outfits.
+		///
+		/// </example>
+		/// \warning Not implemented yet.
+		public void OutfitAll(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: OutfitAll");
 		}
 
 		/// <summary>
@@ -228,9 +344,11 @@ namespace Dialogue.VN
 		/// the new song will begin to play after a short delay. If you'd
 		/// rather have the songs switch abruptly,
 		/// see [music-now](@ref Dialogue.VN.VisualNovelCommands.MusicNow).
-		/// </summary>
-		/// <example>
-		/// 
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
 		///     <<music Beautiful Lie>> 
 		/// Plays a song named "Beautiful Lie."
 		/// (No, we aren't ripping tracks from Danganronpa.)
@@ -244,6 +362,7 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet.");
 		}
 
+
 		/// <summary>
 		/// &lt;&lt;music-now TRACK&gt;&gt;\n 
 		///
@@ -255,7 +374,9 @@ namespace Dialogue.VN
 		/// then the music cuts to silence.
 		/// Note that if nothing is currently playing,
 		/// this is no different from [music](@ref Dialogue.VN.VisualNovelCommands.Music).
-		/// <example>
+		///
+		/// </summary> <example>
+		///
 		/// ## Examples
 		///
 		///     <<music-now Never Gonna Give You Up>> 
@@ -274,6 +395,8 @@ namespace Dialogue.VN
 		{
 			// Will need a version that waits for sound to finish too
 		}
+
+		// TODO Make background thing
 
 		private void SetTexture(string[] args)
 		{

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['right',['Right',['../class_dialogue_1_1_v_n_1_1_puppet.html#ade7fe626ab770839a6cde69ddc0ee5b0a92b09c7c48c520c3c55e497875da437c',1,'Dialogue::VN::Puppet']]],
-  ['runcommand',['RunCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae2bd16c9e477b459784421a3c8ef0c81',1,'Dialogue::NijitoDialogueUI']]],
-  ['runline',['RunLine',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aef846e69907e91e2dc9008625b4847dc',1,'Dialogue::NijitoDialogueUI']]],
-  ['runoptions',['RunOptions',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6e41973abf619fa5f19b54eb3feeb85a',1,'Dialogue::NijitoDialogueUI']]]
+  ['puppet',['Puppet',['../class_dialogue_1_1_v_n_1_1_puppet.html',1,'Dialogue::VN']]],
+  ['puppet_2ecs',['Puppet.cs',['../_puppet_8cs.html',1,'']]],
+  ['puppetmaster',['PuppetMaster',['../class_dialogue_1_1_v_n_1_1_puppet_master.html',1,'Dialogue::VN']]],
+  ['puppetmaster_2ecs',['PuppetMaster.cs',['../_puppet_master_8cs.html',1,'']]],
+  ['puppetprefab',['puppetPrefab',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#a3069c035f2c8af38c8164a0cd5f223ec',1,'Dialogue::VN::PuppetMaster']]],
+  ['puppetspawnpoint',['puppetSpawnPoint',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#a350718f6f83fe7dd955ef729d58d82f1',1,'Dialogue::VN::PuppetMaster']]]
 ];

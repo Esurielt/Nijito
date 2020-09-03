@@ -111,6 +111,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0bdf80d3c96092c88dfbd57c0c855312"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;emote CHARACTER EMOTION&gt;&gt;<br />
  <a href="#a0bdf80d3c96092c88dfbd57c0c855312">More...</a><br /></td></tr>
 <tr class="separator:a0bdf80d3c96092c88dfbd57c0c855312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abecdb16e11c8f0843f193642141f0415"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#abecdb16e11c8f0843f193642141f0415">Animate</a> (string[] args)</td></tr>
+<tr class="memdesc:abecdb16e11c8f0843f193642141f0415"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate CHARACTER ANIMATION&gt;&gt;<br />
+ <a href="#abecdb16e11c8f0843f193642141f0415">More...</a><br /></td></tr>
+<tr class="separator:abecdb16e11c8f0843f193642141f0415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad36c3a61ad015c113a3d1381e1640c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#aad36c3a61ad015c113a3d1381e1640c2">Outfit</a> (string[] args)</td></tr>
+<tr class="memdesc:aad36c3a61ad015c113a3d1381e1640c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;outfit CHARACTER OUTFIT-NAME&gt;&gt;<br />
+ <a href="#aad36c3a61ad015c113a3d1381e1640c2">More...</a><br /></td></tr>
+<tr class="separator:aad36c3a61ad015c113a3d1381e1640c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af49cdc8cf86417918a23f263fcd8c50f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">Music</a> (string[] args)</td></tr>
 <tr class="memdesc:af49cdc8cf86417918a23f263fcd8c50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music TRACK&gt;&gt;<br />
  <a href="#af49cdc8cf86417918a23f263fcd8c50f">More...</a><br /></td></tr>
@@ -119,11 +127,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1833c1c700c84a20b340021987d79d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music-now TRACK&gt;&gt;<br />
  <a href="#a1833c1c700c84a20b340021987d79d15">More...</a><br /></td></tr>
 <tr class="separator:a1833c1c700c84a20b340021987d79d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac06e2b42c50ea37df0c0b427afbaecc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#ac06e2b42c50ea37df0c0b427afbaecc5">Sound</a> (string[] args)</td></tr>
+<tr class="separator:ac06e2b42c50ea37df0c0b427afbaecc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several commands for the Yarn scripts to use. </p>
 <p>See the comments for each function. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="abecdb16e11c8f0843f193642141f0415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abecdb16e11c8f0843f193642141f0415">&#9670;&nbsp;</a></span>Animate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.Animate </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;animate CHARACTER ANIMATION&gt;&gt;<br />
+</p>
+<p>Make CHARACTER play ANIMATION, where ANIMATION is the case-insensitive name of a character animation that has been created in Unity. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="a0bdf80d3c96092c88dfbd57c0c855312"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bdf80d3c96092c88dfbd57c0c855312">&#9670;&nbsp;</a></span>Emote()</h2>
 
@@ -238,12 +271,52 @@ Public Member Functions</h2></td></tr>
 <p>&lt;&lt;music-now TRACK&gt;&gt;<br />
 </p>
 <p>Cause background music named TRACK to start playing immediately, where TRACK is the (case-insensitive) name for a song.</p>
-<p>This is like <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a> except there is no fade between songs. If used with <b>None</b>, then the music cuts to silence. Note that if nothing is currently playing, this is no different from <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a>. </p>
+<p>This is like <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a> except there is no fade between songs. If used with <b>None</b>, then the music cuts to silence. Note that if nothing is currently playing, this is no different from <a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#af49cdc8cf86417918a23f263fcd8c50f">music</a>.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;music-now Never Gonna Give You Up&gt;&gt; 
 </pre><p> Plays a song named "Never Gonna Give You Up" instantly. </p><pre class="fragment">&lt;&lt;music-now None&gt;&gt; 
 </pre><p> Stops the current track immediately. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
+<a id="aad36c3a61ad015c113a3d1381e1640c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad36c3a61ad015c113a3d1381e1640c2">&#9670;&nbsp;</a></span>Outfit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.Outfit </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;outfit CHARACTER OUTFIT-NAME&gt;&gt;<br />
+</p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
+<a id="ac06e2b42c50ea37df0c0b427afbaecc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06e2b42c50ea37df0c0b427afbaecc5">&#9670;&nbsp;</a></span>Sound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.VisualNovelCommands.Sound </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -280,7 +353,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_visual_novel_commands.html">VisualNovelCommands</a></li>
-    <li class="footer">Generated on Tue Sep 1 2020 12:00:20 for Nijito by
+    <li class="footer">Generated on Wed Sep 2 2020 20:17:57 for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
