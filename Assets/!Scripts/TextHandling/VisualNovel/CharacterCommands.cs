@@ -11,9 +11,8 @@ using Yarn.Unity;
 
 /*
  * Background
- * ShakeScreen
- * FadeOut
- * FadeIn
+ * AnimateStage
+ * Fade
  * Music
  * Sounds
  * 
@@ -27,14 +26,18 @@ using Yarn.Unity;
 
 namespace Dialogue.VN
 {
-	// Note that the CDATA tags are to make the C# XML stuff not
-	// choke on all of the angle brackets.
-
 	/// <summary>
-	/// Implements several commands for the Yarn scripts to use. See
-	/// the comments for each function.
+	/// Implements several character commands for the Yarn scripts to use.
+	///
+	/// These commands are specific to manipulating characters.
+	/// General commands are in the
+	/// [StageCommands](@ref Dialogue.VN.StageCommands) class.
+	///
+	/// Note that, whenever you have a name of an asset (e.g. an
+	/// animation) which contains a space, you
+	/// must wrap it in double quotes.
 	/// </summary>
-	public class VisualNovelCommands : MonoBehaviour
+	public class CharacterCommands : MonoBehaviour
 	{
 		[Header("Setup")]
 
@@ -52,6 +55,7 @@ namespace Dialogue.VN
 		private void Awake()
 		{
 			Assert.IsNotNull(puppetMaster);
+			Assert.IsNotNull(dialogueRunner);
 
 			dialogueRunner.AddCommandHandler("move", Move);
 			dialogueRunner.AddCommandHandler("turn", Turn);
@@ -62,7 +66,7 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT]&gt;&gt;
+		/// &lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now] [and wait]&gt;&gt;
 		///
 		/// Causes CHARACTER to slide over to TO_POINT. If FROM_POINT is
 		/// specified, the character will warp there before moving.
@@ -77,22 +81,35 @@ namespace Dialogue.VN
 		///
 		/// Note that point names are case-insensitive, but character names are not.
 		///
+		/// If **now** is given, then the character immediately snaps
+		/// to their destination.
+		///
+		/// If **and wait** is given, then nothing else will happen
+		/// until the character finishes moving. This does nothing
+		/// if **now** is also given.
+		///
 		/// </summary> <example>
 		///
 		/// ## Examples
 		///
-		///     <<move Ibuki Middle>> 
+		///     <<move Ibuki Middle and wait>> 
 		/// Move Ibuki to the middle (from wherever she was before).
+		/// The VN will wait until Ibuki finishes moving.
 		/// 
 		///     <<move Ibuki to Middle>>
-		/// Same as before, just looks more like English.
+		/// Same as before, except without the waiting. (And it looks
+		/// a little more like English.)
+		///
+		///     <<move Ibuki Middle now>>
+		/// Same as before, but Ibuki will "teleport" to the middle.
 		/// 
 		///     <<move Ibuki to Left from OffLeft>>
 		/// Move Ibuki from the off the left edge of the screen to the left position.
-		/// Use something like this if the character was offscreen.
+		/// Use something like this if the character was off screen.
 		/// </example>
 		public void Move(string[] args)
 		{
+
 			#region Argument handling
 			Assert.IsTrue(args.Length >= 2);
 			string charName = args[0];
@@ -111,6 +128,19 @@ namespace Dialogue.VN
 					case "from":
 						i++;
 						fromName = args[i];
+						break;
+
+					case "and":
+						i++;
+						Assert.AreEqual(args[i], "wait");
+
+						// TODO Implement 'move ... and wait'
+						Debug.LogWarning("'move ... and wait' isn't supported yet!");
+						break;
+
+					case "now":
+						// TODO Implement 'now'
+						Debug.LogWarning("'now' isn't supported yet!");
 						break;
 
 					default:
@@ -225,7 +255,7 @@ namespace Dialogue.VN
 
 
 		/// <summary>
-		/// &lt;&lt;animate CHARACTER ANIMATION&gt;&gt;\n 
+		/// &lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;\n 
 		///
 		/// Make CHARACTER play ANIMATION, where ANIMATION is the
 		/// case-insensitive name of a character animation that has
@@ -237,12 +267,22 @@ namespace Dialogue.VN
 		/// throws an error and treats it like **None** was used
 		/// instead.
 		///
+		/// If **and wait** is given, then no more text will display
+		/// until the animation completes. This does nothing
+		/// if used on a looping animation. (Otherwise, the game
+		/// would get stuck!)
+		///
 		/// </summary> <example>
 		///
 		/// ## Examples
 		///
 		///     <<animate Ibuki Shake>> 
 		/// Make Ibuki play the "Shake" animation.
+		///
+		///     <<animate Ibuki Shake and wait>> 
+		/// Make Ibuki play the "Shake" animation, and prevent
+		/// any more dialogue boxes from playing until Ibuki
+		/// finishes with the animation.
 		/// 
 		///     <<animate Ibuki None>> 
 		/// Stop whatever animation Ibuki is playing, if any.
@@ -265,12 +305,12 @@ namespace Dialogue.VN
 		/// **VR** and **RL** costumes. Normally, characters will
 		/// enter the stage with their RL costume, but this may
 		/// be configured with
-		/// [outfit-all](@ref Dialogue.VN.VisualNovelCommands.OutfitAll).
+		/// [outfit-all](@ref Dialogue.VN.CharacterCommands.OutfitAll).
 		///
 		/// If COSTUME is **None** or an invalid costume, the
 		/// character's default costume is used instead.
 		/// (Again, default is controlled via
-		/// [outfit-all](@ref Dialogue.VN.VisualNovelCommands.OutfitAll).)
+		/// [outfit-all](@ref Dialogue.VN.CharacterCommands.OutfitAll).)
 		///
 		/// Note that changing costumes is instant.
 		/// Making characters change while they're
@@ -324,79 +364,6 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet: OutfitAll");
 		}
 
-		/// <summary>
-		/// &lt;&lt;music TRACK&gt;&gt;\n 
-		///
-		/// Cause background music named TRACK to start playing,
-		/// where TRACK is the (case-insensitive) name for a song.
-		/// 
-		/// Tracks and their names are defined in Unity, so we
-		/// can't put a full list here. If TRACK is **None**, the
-		/// current song is stopped. If TRACK cannot be found,
-		/// an error is sent to the debug console and it is treated
-		/// as **None**.
-		/// 
-		/// Note that TRACK can have spaces. (Some songs might have spaces
-		/// in their name, so this is allowed to keep things simple.)
-		///
-		/// If no song is playing, the new song will play immediately.
-		/// If a song *is* playing, then the old one will fade out and
-		/// the new song will begin to play after a short delay. If you'd
-		/// rather have the songs switch abruptly,
-		/// see [music-now](@ref Dialogue.VN.VisualNovelCommands.MusicNow).
-		///
-		/// </summary> <example>
-		///
-		/// ## Examples
-		///
-		///     <<music Beautiful Lie>> 
-		/// Plays a song named "Beautiful Lie."
-		/// (No, we aren't ripping tracks from Danganronpa.)
-		///
-		///     <<music None>> 
-		/// Stops the current track.
-		/// </example>
-		/// \warning Not implemented yet.
-		public void Music(string[] args)
-		{
-			Debug.LogWarning("Not implemented yet.");
-		}
-
-
-		/// <summary>
-		/// &lt;&lt;music-now TRACK&gt;&gt;\n 
-		///
-		/// Cause background music named TRACK to start playing immediately,
-		/// where TRACK is the (case-insensitive) name for a song.
-		/// 
-		/// This is like [music](@ref Dialogue.VN.VisualNovelCommands.Music)
-		/// except there is no fade between songs. If used with **None**,
-		/// then the music cuts to silence.
-		/// Note that if nothing is currently playing,
-		/// this is no different from [music](@ref Dialogue.VN.VisualNovelCommands.Music).
-		///
-		/// </summary> <example>
-		///
-		/// ## Examples
-		///
-		///     <<music-now Never Gonna Give You Up>> 
-		/// Plays a song named "Never Gonna Give You Up" instantly.
-		///
-		///     <<music-now None>> 
-		/// Stops the current track immediately.
-		/// </example>
-		/// \warning Not implemented yet.
-		public void MusicNow(string[] args)
-		{
-			Debug.LogWarning("Not implemented yet.");
-		}
-
-		public void Sound(string[] args)
-		{
-			// Will need a version that waits for sound to finish too
-		}
-
-		// TODO Make background thing
 
 		private void SetTexture(string[] args)
 		{

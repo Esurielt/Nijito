@@ -2,9 +2,10 @@ Weclome to Nijito's documenation!
 
 If You're a Writer
 ------------------
-There are two pages that you'll want to see:
+These are the pages that you'll want to see:
  * [The dialogue system overview](@ref Dialogue) (just see the description at the bottom of the page), and
- * [The command docs](@ref Dialogue.VN.VisualNovelCommands)
+ * [The character command docs](@ref Dialogue.VN.CharacterCommands)
+ * [The stage command docs](@ref Dialogue.VN.StageCommands)
 
 
 If You're a Programmer
