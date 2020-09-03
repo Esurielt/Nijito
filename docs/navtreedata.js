@@ -23,7 +23,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_nijito_dialogue_u_i_8cs.html"
+"_character_commands_8cs.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

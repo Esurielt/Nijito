@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['oncommand',['onCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aea0f4e93822efa54f76301578d62ea98',1,'Dialogue::NijitoDialogueUI']]],
-  ['ondialogueend',['onDialogueEnd',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a806561ada60c1a2cd7c606f2081f5d1c',1,'Dialogue::NijitoDialogueUI']]],
-  ['ondialoguestart',['onDialogueStart',['../class_dialogue_1_1_nijito_dialogue_u_i.html#acb9bdda3599d683d2f0235b9b66046ea',1,'Dialogue::NijitoDialogueUI']]],
-  ['onlineend',['onLineEnd',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a5978219a4c4e8bbe41aa1500ab8dd624',1,'Dialogue::NijitoDialogueUI']]],
-  ['onlinefinishdisplaying',['onLineFinishDisplaying',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aba05eb93728c1bc4c9bd4919dfc2cb92',1,'Dialogue::NijitoDialogueUI']]],
-  ['onlinestart',['onLineStart',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a2dcdeff78cef1128ac5dbf0bb509a402',1,'Dialogue::NijitoDialogueUI']]],
-  ['onlineupdate',['onLineUpdate',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ac68ff6c4180e9dda771fb69bd3591ec8',1,'Dialogue::NijitoDialogueUI']]],
-  ['onnospeaker',['onNoSpeaker',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aa66efc8911c58de2baa9bdb0846653d6',1,'Dialogue::NijitoDialogueUI']]],
-  ['onoptionsend',['onOptionsEnd',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a2e52e0d093b8f51f37119048380dcb1e',1,'Dialogue::NijitoDialogueUI']]],
-  ['onoptionsstart',['onOptionsStart',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a3ff675e032473433de5b78960a62e753',1,'Dialogue::NijitoDialogueUI']]],
-  ['onspeakerupdate',['onSpeakerUpdate',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a02b512fcd889f6f1df6cea9781815daf',1,'Dialogue::NijitoDialogueUI']]],
-  ['optionbuttons',['optionButtons',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ab57565ea3d73865c10d19a2a2998e46a',1,'Dialogue::NijitoDialogueUI']]],
-  ['outfit',['Outfit',['../class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#aad36c3a61ad015c113a3d1381e1640c2',1,'Dialogue::VN::VisualNovelCommands']]]
+  ['mainpage_2emd',['mainPage.md',['../main_page_8md.html',1,'']]],
+  ['marklinecomplete',['MarkLineComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a3b1d19db9da457714df17ae2c40fefeb',1,'Dialogue::NijitoDialogueUI']]],
+  ['move',['Move',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04',1,'Dialogue::VN::CharacterCommands']]],
+  ['movementspeed',['movementSpeed',['../class_dialogue_1_1_v_n_1_1_puppet.html#a398a038d89d57524a747ec2c37b6eb52',1,'Dialogue::VN::Puppet']]],
+  ['music',['Music',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#acb16fdb96c42dbed450ef8e7950f8f38',1,'Dialogue::VN::StageCommands']]]
 ];

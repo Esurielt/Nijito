@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['textspeed',['textSpeed',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a8b40e1bc19c88aae1e066e137598e6e5',1,'Dialogue::NijitoDialogueUI']]],
-  ['textures',['textures',['../class_dialogue_1_1_v_n_1_1_puppet.html#a842ce4f2f753b2b57af25246b4361f46',1,'Dialogue::VN::Puppet']]],
-  ['turn',['Turn',['../class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#a52f52d451e08780a6130cdb37e7039b6',1,'Dialogue::VN::VisualNovelCommands']]]
+  ['right',['Right',['../class_dialogue_1_1_v_n_1_1_puppet.html#ade7fe626ab770839a6cde69ddc0ee5b0a92b09c7c48c520c3c55e497875da437c',1,'Dialogue::VN::Puppet']]],
+  ['runcommand',['RunCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae2bd16c9e477b459784421a3c8ef0c81',1,'Dialogue::NijitoDialogueUI']]],
+  ['runline',['RunLine',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aef846e69907e91e2dc9008625b4847dc',1,'Dialogue::NijitoDialogueUI']]],
+  ['runoptions',['RunOptions',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6e41973abf619fa5f19b54eb3feeb85a',1,'Dialogue::NijitoDialogueUI']]]
 ];

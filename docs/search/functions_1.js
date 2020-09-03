@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['dialoguecomplete',['DialogueComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ab77ef45c0baa50cf027170b3204ef1a3',1,'Dialogue::NijitoDialogueUI']]],
-  ['dialoguestarted',['DialogueStarted',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ac7406f7b5f7ea6a3d8177dc3ace1c1fc',1,'Dialogue::NijitoDialogueUI']]]
+  ['background',['Background',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171',1,'Dialogue::VN::StageCommands']]]
 ];

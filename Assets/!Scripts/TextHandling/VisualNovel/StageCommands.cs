@@ -62,7 +62,6 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet: animate-stage");
 		}
 
-
 		/// <summary>
 		/// &lt;&lt;background IMAGE [now] [and wait]&gt;&gt;\n 
 		///
@@ -78,8 +77,8 @@ namespace Dialogue.VN
 		/// nothing if **now** is also given, since then the
 		/// transition is instant.
 		///
-		/// If **None** is for IMAGE (or IMAGE is invalid), then a
-		/// blank background is shown instead.
+		/// If IMAGE is **None** (or invalid), then a
+		/// black background is shown instead.
 		///
 		/// </summary> <example>
 		///
@@ -103,7 +102,7 @@ namespace Dialogue.VN
 		/// &lt;&lt;fade out [overlay] [now]&gt;&gt;\n 
 		/// &lt;&lt;fade in [now]&gt;&gt;\n 
 		///
-		/// In the first form, fades out to **black**/**white**/IMAGE,
+		/// In the first form, fades out to **black**, **white**, or IMAGE,
 		/// where IMAGE is the name of an image that's been configured
 		/// in Unity. If IMAGE is invalid, **black** is used instead.
 		///
@@ -119,7 +118,7 @@ namespace Dialogue.VN
 		/// be unhidden if any more dialogue is printed while we're
 		/// faded out.
 		/// 
-		/// Either way, if **now** is given, the fade happens without
+		/// If **now** is given, the fade happens without
 		/// any delay. If **now** is not given, dialogue pauses until
 		/// the fade is completed.
 		///

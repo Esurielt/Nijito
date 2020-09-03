@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['runcommand',['RunCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae2bd16c9e477b459784421a3c8ef0c81',1,'Dialogue::NijitoDialogueUI']]],
-  ['runline',['RunLine',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aef846e69907e91e2dc9008625b4847dc',1,'Dialogue::NijitoDialogueUI']]],
-  ['runoptions',['RunOptions',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6e41973abf619fa5f19b54eb3feeb85a',1,'Dialogue::NijitoDialogueUI']]]
+  ['marklinecomplete',['MarkLineComplete',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a3b1d19db9da457714df17ae2c40fefeb',1,'Dialogue::NijitoDialogueUI']]],
+  ['move',['Move',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04',1,'Dialogue::VN::CharacterCommands']]],
+  ['music',['Music',['../class_dialogue_1_1_v_n_1_1_stage_commands.html#acb16fdb96c42dbed450ef8e7950f8f38',1,'Dialogue::VN::StageCommands']]]
 ];

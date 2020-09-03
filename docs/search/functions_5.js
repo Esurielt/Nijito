@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outfit',['Outfit',['../class_dialogue_1_1_v_n_1_1_visual_novel_commands.html#aad36c3a61ad015c113a3d1381e1640c2',1,'Dialogue::VN::VisualNovelCommands']]]
+  ['getpuppet',['GetPuppet',['../class_dialogue_1_1_v_n_1_1_puppet_master.html#ad793847366cb63297a3c51dd5604bb09',1,'Dialogue::VN::PuppetMaster']]]
 ];

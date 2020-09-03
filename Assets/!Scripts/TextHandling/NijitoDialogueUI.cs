@@ -49,12 +49,11 @@ using Yarn.Unity;
 /// 
 /// Unlike vanilla Yarn Spinner, your messages here can have speakers.
 /// To do this, you would write something like this:
-/// <code>
-/// Jack: My name is Bob!
-/// Jill: No, your name is Jack! It says so in the text!
 ///
-/// : Jack proceeded to break his crown, and Jill came tumbling after.
-/// </code>
+///     Jack: My name is Bob!
+///     Jill: No, your name is Jack! It says so in the text!
+///
+///     : Jack proceeded to break his crown, and Jill came tumbling after.
 /// 
 /// The game will interpret this as Jack saying the first line, and
 /// Jill saying the second. The third line will be said by no one.

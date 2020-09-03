@@ -59,10 +59,93 @@ namespace Dialogue.VN
 
 			dialogueRunner.AddCommandHandler("move", Move);
 			dialogueRunner.AddCommandHandler("turn", Turn);
-			dialogueRunner.AddCommandHandler("face", Turn);
+			//dialogueRunner.AddCommandHandler("face", Turn);
 
 			// TODO Delete this
 			dialogueRunner.AddCommandHandler("setTextureIndex", SetTexture);
+		}
+
+
+
+		/// <summary>
+		/// &lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;\n 
+		///
+		/// Make CHARACTER play ANIMATION, where ANIMATION is the
+		/// case-insensitive name of a character animation that has
+		/// been created in Unity. These animations can either be
+		/// one-off or looping; it depends on the animation.
+		///
+		/// The **None** animation can be used to stop all current
+		/// animations. If an invalid animation is given, Unity
+		/// throws an error and treats it like **None** was used
+		/// instead.
+		///
+		/// If **and wait** is given, then no more text will display
+		/// until the animation completes. This does nothing
+		/// if used on a looping animation. (Otherwise, the game
+		/// would get stuck!)
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<animate Ibuki Shake>> 
+		/// Make Ibuki play the "Shake" animation.
+		///
+		///     <<animate Ibuki Shake and wait>> 
+		/// Make Ibuki play the "Shake" animation, and prevent
+		/// any more dialogue boxes from playing until Ibuki
+		/// finishes with the animation.
+		/// 
+		///     <<animate Ibuki None>> 
+		/// Stop whatever animation Ibuki is playing, if any.
+		///
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Animate(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: Animate");
+		}
+
+		/// <summary>
+		/// &lt;&lt;emote CHARACTER EMOTION&gt;&gt;\n 
+		/// 
+		/// Changes CHARACTER's face to show EMOTION, where EMOTION is the
+		/// (case-insensitive) name of one of the character's emotions.
+		/// 
+		/// Each character has their own range of emotions; some may have
+		/// special emotions, and others might be missing some of the common
+		/// ones. The list is configured in Unity.
+		/// 
+		/// Here's the list of common emotions:<br>
+		/// * Anger
+		/// * Concern
+		/// * Laugh
+		/// * Sad
+		/// * Serious
+		/// * Smile
+		/// * Surprised
+		///  
+		/// Finally, there's one special emotion: **None**. This clears all
+		/// emotions, resetting the character back to their default, neutral
+		/// face that they use when they first come onto the stage.
+		/// The **None** emotion will always be available.
+		///
+		/// Using an invalid emotion will print an error in the debug console
+		/// and then act as though you had used **None** instead.
+		/// </summary>
+		/// <example>
+		/// 
+		///     <<emote Ibuki Laugh>> 
+		/// Make Ibuki Laugh.
+		///
+		///     <<emote Ibuki None>> 
+		/// Return Ibuki to her default emotion.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Emote(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: Emote");
 		}
 
 		/// <summary>
@@ -170,131 +253,6 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;turn CHARACTER DIRECTION&gt;&gt;\n 
-		/// &lt;&lt;face CHARACTER DIRECTION&gt;&gt;
-		/// 
-		/// Causes CHARACTER to face in DIRECTION, where DIRECTION is
-		/// either "left" or "right" (DIRECTION is case-insensitive).
-		///
-		/// </summary> <example>
-		///
-		/// ## Examples
-		///
-		///     <<turn Ibuki Right>> 
-		/// Make Ibuki face towards the right.
-		/// </example>
-		public void Turn(string[] args)
-		{
-			#region Argument handling
-			Assert.IsTrue(args.Length >= 2);
-			string charName = args[0];
-			string facingName = args[1];
-			#endregion
-
-			Puppet charPuppet = puppetMaster.GetPuppet(charName);
-			Puppet.Facing newFacing;
-			if(facingName.Equals("left", StringComparison.InvariantCultureIgnoreCase))
-			{
-				newFacing = Puppet.Facing.Left;
-			}
-			else if(facingName.Equals("right", StringComparison.InvariantCultureIgnoreCase))
-			{
-				newFacing = Puppet.Facing.Right;
-			}
-			else
-			{
-				throw new InvalidEnumArgumentException("Invalid facing: " + facingName);
-			}
-
-			Debug.Log("Changing facing to " + newFacing.ToString());
-
-			charPuppet.SetFacing(newFacing);
-		}
-
-
-		/// <summary>
-		/// &lt;&lt;emote CHARACTER EMOTION&gt;&gt;\n 
-		/// 
-		/// Changes CHARACTER's face to show EMOTION, where EMOTION is the
-		/// (case-insensitive) name of one of the character's emotions.
-		/// 
-		/// Each character has their own range of emotions; some may have
-		/// special emotions, and others might be missing some of the common
-		/// ones. The list is configured in Unity.
-		/// 
-		/// Here's the list of common emotions:<br>
-		/// * Anger
-		/// * Concern
-		/// * Laugh
-		/// * Sad
-		/// * Serious
-		/// * Smile
-		/// * Surprised
-		///  
-		/// Finally, there's one special emotion: **None**. This clears all
-		/// emotions, resetting the character back to their default, neutral
-		/// face that they use when they first come onto the stage.
-		/// The **None** emotion will always be available.
-		///
-		/// Using an invalid emotion will print an error in the debug console
-		/// and then act as though you had used **None** instead.
-		/// </summary>
-		/// <example>
-		/// 
-		///     <<emote Ibuki Laugh>> 
-		/// Make Ibuki Laugh.
-		///
-		///     <<emote Ibuki None>> 
-		/// Return Ibuki to her default emotion.
-		/// </example>
-		/// \warning Not implemented yet.
-		public void Emote(string[] args)
-		{
-			Debug.LogWarning("Not implemented yet: Emote");
-		}
-
-
-		/// <summary>
-		/// &lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;\n 
-		///
-		/// Make CHARACTER play ANIMATION, where ANIMATION is the
-		/// case-insensitive name of a character animation that has
-		/// been created in Unity. These animations can either be
-		/// one-off or looping; it depends on the animation.
-		///
-		/// The **None** animation can be used to stop all current
-		/// animations. If an invalid animation is given, Unity
-		/// throws an error and treats it like **None** was used
-		/// instead.
-		///
-		/// If **and wait** is given, then no more text will display
-		/// until the animation completes. This does nothing
-		/// if used on a looping animation. (Otherwise, the game
-		/// would get stuck!)
-		///
-		/// </summary> <example>
-		///
-		/// ## Examples
-		///
-		///     <<animate Ibuki Shake>> 
-		/// Make Ibuki play the "Shake" animation.
-		///
-		///     <<animate Ibuki Shake and wait>> 
-		/// Make Ibuki play the "Shake" animation, and prevent
-		/// any more dialogue boxes from playing until Ibuki
-		/// finishes with the animation.
-		/// 
-		///     <<animate Ibuki None>> 
-		/// Stop whatever animation Ibuki is playing, if any.
-		///
-		/// </example>
-		/// \warning Not implemented yet.
-		public void Animate(string[] args)
-		{
-			Debug.LogWarning("Not implemented yet: Animate");
-		}
-
-		/// <summary>
 		/// &lt;&lt;outfit CHARACTER COSTUME&gt;&gt;\n 
 		///
 		/// Make CHARACTER where COSTUME, where COSTUME is a
@@ -342,7 +300,7 @@ namespace Dialogue.VN
 		/// This also changes all incoming characters to have on
 		/// their VR/RL costume.
 		/// 
-		/// If *default-only* is specified, loaded characters will
+		/// If **default-only** is specified, loaded characters will
 		/// not have their costume changed. (Note: all characters
 		/// who have been used in the scene are loaded, even if
 		/// they're not visible!)
@@ -362,6 +320,47 @@ namespace Dialogue.VN
 		public void OutfitAll(string[] args)
 		{
 			Debug.LogWarning("Not implemented yet: OutfitAll");
+		}
+
+		/// <summary>
+		/// &lt;&lt;turn CHARACTER DIRECTION&gt;&gt;\n 
+		/// 
+		/// Causes CHARACTER to face in DIRECTION, where DIRECTION is
+		/// either "left" or "right" (DIRECTION is case-insensitive).
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<turn Ibuki Right>> 
+		/// Make Ibuki face towards the right.
+		/// </example>
+		public void Turn(string[] args)
+		{
+			#region Argument handling
+			Assert.IsTrue(args.Length >= 2);
+			string charName = args[0];
+			string facingName = args[1];
+			#endregion
+
+			Puppet charPuppet = puppetMaster.GetPuppet(charName);
+			Puppet.Facing newFacing;
+			if(facingName.Equals("left", StringComparison.InvariantCultureIgnoreCase))
+			{
+				newFacing = Puppet.Facing.Left;
+			}
+			else if(facingName.Equals("right", StringComparison.InvariantCultureIgnoreCase))
+			{
+				newFacing = Puppet.Facing.Right;
+			}
+			else
+			{
+				throw new InvalidEnumArgumentException("Invalid facing: " + facingName);
+			}
+
+			Debug.Log("Changing facing to " + newFacing.ToString());
+
+			charPuppet.SetFacing(newFacing);
 		}
 
 
