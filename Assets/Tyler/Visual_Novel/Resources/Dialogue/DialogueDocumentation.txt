@@ -1,2 +1,0 @@
-for dialogue, format is
-Character, Dialogue/content, Pose number(default is zero), position(L or R)

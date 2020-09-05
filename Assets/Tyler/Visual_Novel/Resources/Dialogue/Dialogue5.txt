@@ -1,4 +1,0 @@
-Ibuki,"Yes!", 0,L
-Ibuki,"Hello, tfhpodj h fdhpodshdfjhpdfohj  dhdsh h  fhd fhd hd foodfhj  hod hds hsfd",0,L
-Ibuki,"Hello, aaaa <i>bbbbb</i> bbbbbbb <size=100>ccccccccccccccc</size> ",0,L
-Ibuki,"Hello, aaaa <b>bbbbb</b> bbbbbb  ccccccccccccccc ",0,L
