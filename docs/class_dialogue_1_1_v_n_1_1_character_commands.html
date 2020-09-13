@@ -100,6 +100,10 @@ Inheritance diagram for Dialogue.VN.CharacterCommands:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a757de5ce3d57df6a4091a7329d16ec54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">Addon</a> (string[] args)</td></tr>
+<tr class="memdesc:a757de5ce3d57df6a4091a7329d16ec54"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;<br />
+ <a href="#a757de5ce3d57df6a4091a7329d16ec54">More...</a><br /></td></tr>
+<tr class="separator:a757de5ce3d57df6a4091a7329d16ec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35e47c36cc2b5499b0b325fbc04cd834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a35e47c36cc2b5499b0b325fbc04cd834">Animate</a> (string[] args)</td></tr>
 <tr class="memdesc:a35e47c36cc2b5499b0b325fbc04cd834"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;<br />
  <a href="#a35e47c36cc2b5499b0b325fbc04cd834">More...</a><br /></td></tr>
@@ -127,8 +131,45 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several character commands for the Yarn scripts to use. </p>
 <p>These commands are specific to manipulating characters. General commands are in the <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html">StageCommands</a> class.</p>
-<p>Note that, whenever you have a name of an asset (e.g. an animation) which contains a space, you must wrap it in double quotes. </p>
+<p>Note that, whenever you have a name of an asset (e.g. an animation) which contains a space, you must wrap it in double quotes.</p>
+<h2>Changelog</h2>
+<ul>
+<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">Addon</a>.</li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a757de5ce3d57df6a4091a7329d16ec54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757de5ce3d57df6a4091a7329d16ec54">&#9670;&nbsp;</a></span>Addon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.CharacterCommands.Addon </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;<br />
+</p>
+<p>Applies the ADDON to CHARACTER, where ADDON is the name of an addon specified on Unity.</p>
+<p>Addons usually have some animation tied to them. Once the animation is done playing, the addon will vanish.</p>
+<p>However, specifying <b>lingering</b> will cause the addon stay until <b>clear</b> is used.</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;addon Ai !!!bubble&gt;&gt; 
+Ai: The what?!
+</pre><p> Give Ai a the "!!!bubble" addon. It will vanish after the addon's animation finishes. (And can vanish while the dialogue is still being written out.) </p><pre class="fragment">&lt;&lt;addon Ai lingering !!!bubble&gt;&gt; 
+Ai: The what?!
+AMI: Ai, he’s joking, but he has a point.
+&lt;&lt;addon Ai clear !!!bubble&gt;&gt; 
+</pre><p> Give Ai a the "!!!bubble" addon. In this case, the addon will persist until the second command is reached. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="a35e47c36cc2b5499b0b325fbc04cd834"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35e47c36cc2b5499b0b325fbc04cd834">&#9670;&nbsp;</a></span>Animate()</h2>
 
@@ -321,7 +362,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html">CharacterCommands</a></li>
-    <li class="footer">Generated on Wed Sep 2 2020 23:29:01 for Nijito by
+    <li class="footer">Generated on Sat Sep 12 2020 20:07:25 for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

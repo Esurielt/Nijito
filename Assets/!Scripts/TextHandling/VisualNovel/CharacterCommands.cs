@@ -36,6 +36,11 @@ namespace Dialogue.VN
 	/// Note that, whenever you have a name of an asset (e.g. an
 	/// animation) which contains a space, you
 	/// must wrap it in double quotes.
+	///
+	/// ## Changelog
+	///  * 9/12/2020: Added
+	///    [Addon](@ref Dialogue.VN.CharacterCommands.Addon).
+	///  
 	/// </summary>
 	public class CharacterCommands : MonoBehaviour
 	{
@@ -65,6 +70,43 @@ namespace Dialogue.VN
 			dialogueRunner.AddCommandHandler("setTextureIndex", SetTexture);
 		}
 
+
+		/// <summary>
+		/// &lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;\n 
+		/// 
+		/// Applies the ADDON to CHARACTER, where ADDON is the name
+		/// of an addon specified on Unity.
+		/// 
+		/// Addons usually have some animation tied to them.
+		/// Once the animation is done playing, the addon will
+		/// vanish.
+		/// 
+		/// However, specifying **lingering** will cause the addon
+		/// stay until **clear** is used.
+		/// 
+		/// </summary>
+		/// <example>
+		///
+		/// ## Examples
+		/// 
+		///     <<addon Ai !!!bubble>> 
+		///     Ai: The what?!
+		/// Give Ai a the "!!!bubble" addon. It will vanish after
+		/// the addon's animation finishes. (And can vanish while
+		/// the dialogue is still being written out.)
+		///
+		///     <<addon Ai lingering !!!bubble>> 
+		///     Ai: The what?!
+		///     AMI: Ai, he’s joking, but he has a point.
+		///     <<addon Ai clear !!!bubble>> 
+		/// Give Ai a the "!!!bubble" addon. In this case, the
+		/// addon will persist until the second command is reached.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Addon(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: addon");
+		}
 
 
 		/// <summary>

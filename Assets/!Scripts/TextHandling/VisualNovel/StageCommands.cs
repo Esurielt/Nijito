@@ -17,6 +17,12 @@ namespace Dialogue.VN
 	/// Note that, whenever you have a name of an asset (e.g. a
 	/// music track or a sound effect) which contains a space, you
 	/// must wrap it in double quotes.
+	///
+	/// ## Changelog
+	///  * 9/12/2020: Added
+	///    [Wait](@ref Dialogue.VN.StageCommands.Wait) and 
+	///    [ItemBox](@ref Dialogue.VN.StageCommands.ItemBox).
+	///  
 	/// </summary>
 	public class StageCommands : MonoBehaviour
 	{
@@ -96,7 +102,6 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet: background");
 		}
 
-
 		/// <summary>
 		/// &lt;&lt;fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;\n 
 		/// &lt;&lt;fade out [overlay] [now]&gt;&gt;\n 
@@ -143,6 +148,35 @@ namespace Dialogue.VN
 		public void Fade(string[] args)
 		{
 			Debug.LogWarning("Not implemented yet: fade");
+		}
+
+		/// <summary>
+		/// &lt;&lt;itembox ITEM&gt;&gt;\n 
+		/// &lt;&lt;itembox hide [ITEM]&gt;&gt;\n 
+		///
+		/// In the first form, displays ITEM in an item box,
+		/// where ITEM is the name of an item specified in Unity.
+		///
+		/// The second form hides the named item box. If no name is
+		/// given, then all item boxes are hidden.
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<itembox EmployeesOnlySign>>
+		/// Display an item called "EmployeesOnlySign."
+		///
+		///     <<itembox hide EmployeesOnlySign>>
+		/// Hide the display for an item called "EmployeesOnlySign."
+		///
+		///     <<itembox hide>>
+		/// Hide whatever item(s) are currently being displayed, if any.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void ItemBox(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: itembox");
 		}
 
 		/// <summary>
@@ -223,7 +257,33 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet.");
 		}
 
+		/// <summary>
+		/// &lt;&lt;wait SECONDS&gt;&gt;\n 
+		///
+		/// Waits for SECONDS, and the continues to the next text box.
+		/// 
+		/// Note that this doesn't pause any on-going animations. It
+		/// simply stops future text boxes and commands from
+		/// triggering until the wait is over.
+		/// 
+		/// This is part of Yarn. See [Yarn's documentation](https://yarnspinner.dev/docs/unity/working-with-commands/#wait).
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<wait 2>>
+		/// Wait for 2 seconds.
+		///
+		///     <<wait 0.5>>
+		/// Wait for half a second.
+		/// </example>
+		public void Wait(string[] args)
+		{
+			// Never implement this
+		}
 
+	
 
 	}
 

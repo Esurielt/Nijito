@@ -114,6 +114,11 @@ Public Member Functions</h2></td></tr>
  &lt;&lt;fade in [now]&gt;&gt;<br />
  <a href="#a1fafb07d5cb3bc8163f4e6df79f76b7f">More...</a><br /></td></tr>
 <tr class="separator:a1fafb07d5cb3bc8163f4e6df79f76b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12d61cadf8539b751e781bd23984da41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a> (string[] args)</td></tr>
+<tr class="memdesc:a12d61cadf8539b751e781bd23984da41"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;itembox ITEM&gt;&gt;<br />
+ &lt;&lt;itembox hide [ITEM]&gt;&gt;<br />
+ <a href="#a12d61cadf8539b751e781bd23984da41">More...</a><br /></td></tr>
+<tr class="separator:a12d61cadf8539b751e781bd23984da41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b7e49b0b287164414cc3e535899a4d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a5b7e49b0b287164414cc3e535899a4d3">Sound</a> (string[] args)</td></tr>
 <tr class="memdesc:a5b7e49b0b287164414cc3e535899a4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;sound SOUND-EFFECT [at VOLUME%] [and wait]&gt;&gt;<br />
  <a href="#a5b7e49b0b287164414cc3e535899a4d3">More...</a><br /></td></tr>
@@ -122,11 +127,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:acb16fdb96c42dbed450ef8e7950f8f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music TRACK [now]&gt;&gt;<br />
  <a href="#acb16fdb96c42dbed450ef8e7950f8f38">More...</a><br /></td></tr>
 <tr class="separator:acb16fdb96c42dbed450ef8e7950f8f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc8d6aa1e9f862a0ea76e285c57bd304"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">Wait</a> (string[] args)</td></tr>
+<tr class="memdesc:acc8d6aa1e9f862a0ea76e285c57bd304"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;wait SECONDS&gt;&gt;<br />
+ <a href="#acc8d6aa1e9f862a0ea76e285c57bd304">More...</a><br /></td></tr>
+<tr class="separator:acc8d6aa1e9f862a0ea76e285c57bd304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several stage commands for the Yarn scripts to use. </p>
 <p>These commands are generic commands, and they don't interact specifically with characters. Character commands are in the <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html">CharacterCommands</a> class.</p>
-<p>Note that, whenever you have a name of an asset (e.g. a music track or a sound effect) which contains a space, you must wrap it in double quotes. </p>
+<p>Note that, whenever you have a name of an asset (e.g. a music track or a sound effect) which contains a space, you must wrap it in double quotes.</p>
+<h2>Changelog</h2>
+<ul>
+<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">Wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a>.</li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8ff7caa15e0a21834fc6b5c33767aa4c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ff7caa15e0a21834fc6b5c33767aa4c">&#9670;&nbsp;</a></span>AnimateStage()</h2>
@@ -222,6 +235,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a12d61cadf8539b751e781bd23984da41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d61cadf8539b751e781bd23984da41">&#9670;&nbsp;</a></span>ItemBox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.StageCommands.ItemBox </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;itembox ITEM&gt;&gt;<br />
+ &lt;&lt;itembox hide [ITEM]&gt;&gt;<br />
+</p>
+<p>In the first form, displays ITEM in an item box, where ITEM is the name of an item specified in Unity.</p>
+<p>The second form hides the named item box. If no name is given, then all item boxes are hidden.</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;itembox EmployeesOnlySign&gt;&gt;
+</pre><p> Display an item called "EmployeesOnlySign." </p><pre class="fragment">&lt;&lt;itembox hide EmployeesOnlySign&gt;&gt;
+</pre><p> Hide the display for an item called "EmployeesOnlySign." </p><pre class="fragment">&lt;&lt;itembox hide&gt;&gt;
+</pre><p> Hide whatever item(s) are currently being displayed, if any. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="acb16fdb96c42dbed450ef8e7950f8f38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb16fdb96c42dbed450ef8e7950f8f38">&#9670;&nbsp;</a></span>Music()</h2>
 
@@ -286,6 +329,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="acc8d6aa1e9f862a0ea76e285c57bd304"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc8d6aa1e9f862a0ea76e285c57bd304">&#9670;&nbsp;</a></span>Wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.StageCommands.Wait </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;wait SECONDS&gt;&gt;<br />
+</p>
+<p>Waits for SECONDS, and the continues to the next text box.</p>
+<p>Note that this doesn't pause any on-going animations. It simply stops future text boxes and commands from triggering until the wait is over.</p>
+<p>This is part of Yarn. See <a href="https://yarnspinner.dev/docs/unity/working-with-commands/#wait">Yarn's documentation</a>.</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;wait 2&gt;&gt;
+</pre><p> Wait for 2 seconds. </p><pre class="fragment">&lt;&lt;wait 0.5&gt;&gt;
+</pre><p> Wait for half a second. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/mnt/d/GameProjects/Unity/Nijito/Assets/!Scripts/TextHandling/VisualNovel/<a class="el" href="_stage_commands_8cs.html">StageCommands.cs</a></li>
 </ul>
@@ -295,7 +366,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html">StageCommands</a></li>
-    <li class="footer">Generated on Wed Sep 2 2020 23:29:01 for Nijito by
+    <li class="footer">Generated on Sat Sep 12 2020 20:07:25 for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
