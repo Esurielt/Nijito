@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_TestShader
+  m_Name: M_SG_Databar
   m_Shader: {fileID: -6465566751694194690, guid: 2398a6c960ad1a242af4a168beb43919,
     type: 3}
   m_ShaderKeywords: 
@@ -25,13 +25,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_27B2E7CC: 8.31
-    - Vector1_3713D1A9: 0.33
-    - Vector1_6A243453: 3.47
-    - Vector1_85763467: 0
-    - Vector1_B683118F: 0.31
-    - Vector1_C59A282: 0.2
+    - Vector1_27B2E7CC: 8
+    - Vector1_3713D1A9: 0.3
+    - Vector1_6A243453: 3
+    - Vector1_B683118F: 0.3
     m_Colors:
-    - Vector2_B05E45BE: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_F0F2CE82: {r: 0, g: 0, b: 0, a: 0}
-    - Vector4_62004688: {r: 0, g: 0, b: 0.91, a: 0.67}
+    - Vector4_62004688: {r: 0, g: 0, b: 1, a: 0.6}
+  m_BuildTextureStacks: []
