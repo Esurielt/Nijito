@@ -17,6 +17,32 @@ namespace Dialogue.VN
 	/// Note that, whenever you have a name of an asset (e.g. a
 	/// music track or a sound effect) which contains a space, you
 	/// must wrap it in double quotes.
+	///
+	/// For any command with options such as **now**, **quickly**,
+	/// and **slowly**, these options control the relative speed
+	/// of the movement. Note that the exact speed depends on the
+	/// command being used.
+	///   * **now**: Instant; all delays and animations are skipped.
+	///   * **quickly**: Snappy and quick. Good for fast or hurried motions.
+	///   * (nothing): Standard speed. Should work for general situations.
+	///   * **slowly**: Drags things out.
+	///
+	/// For commands with **wait** or **and wait** options, those
+	/// will cause the dialogue system to pause until the command
+	/// finishes being carried out. This does nothing if **now** is
+	/// also used. Also be careful of combining this with **slowly**
+	/// too often; that might make things draggy.
+	///
+	/// ## Changelog
+	///  * 9/13/2020: Changed fade to
+	///    [stage-fade](@ref Dialogue.VN.StageCommands.StageFade).
+	///    Added quickly/slowly options.
+	///    Moved now/quickly/slowly and wait explanations to the class header.
+	///
+	///  * 9/12/2020: Added
+	///    [wait](@ref Dialogue.VN.StageCommands.Wait) and 
+	///    [itembox](@ref Dialogue.VN.StageCommands.ItemBox).
+	///  
 	/// </summary>
 	public class StageCommands : MonoBehaviour
 	{
@@ -37,10 +63,8 @@ namespace Dialogue.VN
 		/// Plays ANIMATION, which is an animation which has been
 		/// set up on the stage in Unity.
 		///
-		/// If **and wait** is given, then dialogue pauses until
-		/// the animation finishes. Otherwise, it will continue 
-		/// while the animation plays. (This is ignored if
-		/// the animation loops indefinitely.)
+		/// If **and wait** is given when playing a looping animation,
+		/// then dialogue pauses until the animation plays once.
 		///
 		/// Only one animation can play at a time, and specifying
 		/// **None** (or an invalid animation) will cause the current
@@ -63,20 +87,11 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;background IMAGE [now] [and wait]&gt;&gt;\n 
+		/// &lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;\n 
 		///
 		/// Displays IMAGE in the background, where IMAGE is some
 		/// background image that has been configured in Unity.
 		/// 
-		/// Normally, the new background will fade in.
-		/// However, if **now** is given,
-		/// no fade occurs and the change is instant.
-		/// 
-		/// If **and wait** is given, then the dialogue sequence
-		/// will wait for the transition to finish. This does
-		/// nothing if **now** is also given, since then the
-		/// transition is instant.
-		///
 		/// If IMAGE is **None** (or invalid), then a
 		/// black background is shown instead.
 		///
@@ -96,53 +111,33 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet: background");
 		}
 
-
 		/// <summary>
-		/// &lt;&lt;fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;\n 
-		/// &lt;&lt;fade out [overlay] [now]&gt;&gt;\n 
-		/// &lt;&lt;fade in [now]&gt;&gt;\n 
+		/// &lt;&lt;itembox ITEM&gt;&gt;\n 
+		/// &lt;&lt;itembox hide [ITEM]&gt;&gt;\n 
 		///
-		/// In the first form, fades out to **black**, **white**, or IMAGE,
-		/// where IMAGE is the name of an image that's been configured
-		/// in Unity. If IMAGE is invalid, **black** is used instead.
+		/// In the first form, displays ITEM in an item box,
+		/// where ITEM is the name of an item specified in Unity.
 		///
-		/// The second form is a shortcut the first form that
-		/// always fades to black.
-		///
-		/// In the third form, the fade effect is removed,
-		/// showing everything.
-		///
-		/// If **overlay** is given, then everything, even the text
-		/// box, is also hidden by the fade effect.
-		/// Note that, even if this is given, the text box will
-		/// be unhidden if any more dialogue is printed while we're
-		/// faded out.
-		/// 
-		/// If **now** is given, the fade happens without
-		/// any delay. If **now** is not given, dialogue pauses until
-		/// the fade is completed.
-		///
-		/// (Note that this is a great way to hide various other
-		/// stage directions, like moving characters around, etc.)
+		/// The second form hides the named item box. If no name is
+		/// given, then all item boxes are hidden.
 		///
 		/// </summary> <example>
 		///
 		/// ## Examples
 		///
-		///     <<fade out>>
-		/// Turns the screen black without hiding the dialogue box.
+		///     <<itembox EmployeesOnlySign>>
+		/// Display an item called "EmployeesOnlySign."
 		///
-		///     <<fade to white overlay now>>
-		/// Immediately turns the screen white, covering the dialogue box.
+		///     <<itembox hide EmployeesOnlySign>>
+		/// Hide the display for an item called "EmployeesOnlySign."
 		///
-		///     <<fade in now>>
-		/// Immediately fades back in.
-		/// 
+		///     <<itembox hide>>
+		/// Hide whatever item(s) are currently being displayed, if any.
 		/// </example>
 		/// \warning Not implemented yet.
-		public void Fade(string[] args)
+		public void ItemBox(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: fade");
+			Debug.LogWarning("Not implemented yet: itembox");
 		}
 
 		/// <summary>
@@ -155,9 +150,6 @@ namespace Dialogue.VN
 		/// 
 		/// If given, VOLUME adjusts how loud the sound plays. Can
 		/// be any percentage between 0% and 100%.
-		///
-		/// If **wait** is given, no text will display until
-		/// the sound finishes playing.
 		///
 		/// </summary> <example>
 		///
@@ -182,7 +174,51 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;music TRACK [now]&gt;&gt;\n 
+		/// &lt;&lt;stage-fade to [black|white|IMAGE] [overlay] [now|quickly|slowly] [and wait]&gt;&gt;\n 
+		/// &lt;&lt;stage-fade out [overlay] [now|quickly|slowly] [and wait]&gt;&gt;\n 
+		/// &lt;&lt;stage-fade in [now|quickly|slowly] [and wait]&gt;&gt;\n 
+		///
+		/// In the first form, fades out to **black**, **white**, or IMAGE,
+		/// where IMAGE is the name of an image that's been configured
+		/// in Unity. If IMAGE is invalid, **black** is used instead.
+		///
+		/// The second form is a shortcut the first form that
+		/// always fades to black.
+		///
+		/// In the third form, the fade effect is removed,
+		/// showing everything.
+		///
+		/// If **overlay** is given, then everything, even the text
+		/// box, is also hidden by the fade effect.
+		/// Note that, even if this is given, the text box will
+		/// be unhidden if any more dialogue is printed while we're
+		/// faded out.
+		/// 
+		/// (Note that this is a great way to hide various other
+		/// stage directions, like moving characters around, etc.)
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<fade out>>
+		/// Turns the screen black without hiding the dialogue box.
+		///
+		///     <<fade to white overlay now>>
+		/// Immediately turns the screen white, covering the dialogue box.
+		///
+		///     <<fade in now>>
+		/// Immediately fades back in.
+		/// 
+		/// </example>
+		/// \warning Not implemented yet.
+		public void StageFade(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: stage-fade");
+		}
+
+		/// <summary>
+		/// &lt;&lt;music TRACK [now|quickly|slowly]&gt;&gt;\n 
 		///
 		/// Cause background music named TRACK to start playing,
 		/// where TRACK is the (case-insensitive) name for a song.
@@ -197,8 +233,8 @@ namespace Dialogue.VN
 		/// If a song *is* playing, then the old one will fade out and
 		/// the new song will begin to play after a short delay. 
 		/// 
-		/// However, if **now** is specified, then the fade is skipped
-		/// and the new song will simply start to play.
+		/// Options which control speed will alter the rate at which
+		/// the songs fade.
 		///
 		/// </summary> <example>
 		///
@@ -223,7 +259,33 @@ namespace Dialogue.VN
 			Debug.LogWarning("Not implemented yet.");
 		}
 
+		/// <summary>
+		/// &lt;&lt;wait SECONDS&gt;&gt;\n 
+		///
+		/// Waits for SECONDS, and the continues to the next text box.
+		/// 
+		/// Note that this doesn't pause any on-going animations. It
+		/// simply stops future text boxes and commands from
+		/// triggering until the wait is over.
+		/// 
+		/// This is part of Yarn. See [Yarn's documentation](https://yarnspinner.dev/docs/unity/working-with-commands/#wait).
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<wait 2>>
+		/// Wait for 2 seconds.
+		///
+		///     <<wait 0.5>>
+		/// Wait for half a second.
+		/// </example>
+		public void Wait(string[] args)
+		{
+			// Never implement this
+		}
 
+	
 
 	}
 

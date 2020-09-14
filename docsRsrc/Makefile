@@ -15,7 +15,7 @@ doxyPath=.
 
 .PHONY: docs
 docs:
-	rm -r $(root)/docs
+	rm -rf $(root)/docs
 	doxygen $(doxyPath)/Doxyfile
 	mv $(root)/docs/html/* $(root)/docs/
 	rmdir $(root)/docs/html

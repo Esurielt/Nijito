@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.13-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -100,6 +101,11 @@ Inheritance diagram for Dialogue.VN.CharacterCommands:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a757de5ce3d57df6a4091a7329d16ec54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">Addon</a> (string[] args)</td></tr>
+<tr class="memdesc:a757de5ce3d57df6a4091a7329d16ec54"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;<br />
+ &lt;&lt;addon CHARACTER clear&gt;&gt;<br />
+ <a href="#a757de5ce3d57df6a4091a7329d16ec54">More...</a><br /></td></tr>
+<tr class="separator:a757de5ce3d57df6a4091a7329d16ec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35e47c36cc2b5499b0b325fbc04cd834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a35e47c36cc2b5499b0b325fbc04cd834">Animate</a> (string[] args)</td></tr>
 <tr class="memdesc:a35e47c36cc2b5499b0b325fbc04cd834"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;<br />
  <a href="#a35e47c36cc2b5499b0b325fbc04cd834">More...</a><br /></td></tr>
@@ -108,8 +114,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad37d3266e3eee104932103f4310acdc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;emote CHARACTER EMOTION&gt;&gt;<br />
  <a href="#ad37d3266e3eee104932103f4310acdc6">More...</a><br /></td></tr>
 <tr class="separator:ad37d3266e3eee104932103f4310acdc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7aff6aafe23dfbd34b23763d78f200"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a6e7aff6aafe23dfbd34b23763d78f200">Fade</a> (string[] args)</td></tr>
+<tr class="memdesc:a6e7aff6aafe23dfbd34b23763d78f200"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;fade in CHARACTER POSITION [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;fade out CHARACTER [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ <a href="#a6e7aff6aafe23dfbd34b23763d78f200">More...</a><br /></td></tr>
+<tr class="separator:a6e7aff6aafe23dfbd34b23763d78f200"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7827eebf38141d9607c7091c95f37e04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04">Move</a> (string[] args)</td></tr>
-<tr class="memdesc:a7827eebf38141d9607c7091c95f37e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now] [and wait]&gt;&gt;  <a href="#a7827eebf38141d9607c7091c95f37e04">More...</a><br /></td></tr>
+<tr class="memdesc:a7827eebf38141d9607c7091c95f37e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt;  <a href="#a7827eebf38141d9607c7091c95f37e04">More...</a><br /></td></tr>
 <tr class="separator:a7827eebf38141d9607c7091c95f37e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75b60c416bd874d61491de6ff209fb1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a75b60c416bd874d61491de6ff209fb1b">Outfit</a> (string[] args)</td></tr>
 <tr class="memdesc:a75b60c416bd874d61491de6ff209fb1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;outfit CHARACTER COSTUME&gt;&gt;<br />
@@ -127,8 +138,64 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements several character commands for the Yarn scripts to use. </p>
 <p>These commands are specific to manipulating characters. General commands are in the <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html">StageCommands</a> class.</p>
-<p>Note that, whenever you have a name of an asset (e.g. an animation) which contains a space, you must wrap it in double quotes. </p>
+<p>Note that, whenever you have a name of an asset (e.g. an animation) which contains a space, you must wrap it in double quotes.</p>
+<p>For any command with options such as <b>now</b>, <b>quickly</b>, and <b>slowly</b>, these options control the relative speed of the movement. Note that the exact speed depends on the command being used.</p><ul>
+<li><b>now</b>: Instant; all delays and animations are skipped.</li>
+<li><b>quickly</b>: Snappy and quick. Good for fast or hurried motions.</li>
+<li>(nothing): Standard speed. Should work for general situations.</li>
+<li><b>slowly</b>: Drags things out.</li>
+</ul>
+<p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
+<h2>Changelog</h2>
+<ul>
+<li>9/13/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a6e7aff6aafe23dfbd34b23763d78f200">fade</a>. Added quickly/slowly options. Moved now/quickly/slowly and wait explanations to the class header.</li>
+<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a757de5ce3d57df6a4091a7329d16ec54">addon</a>.</li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a757de5ce3d57df6a4091a7329d16ec54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757de5ce3d57df6a4091a7329d16ec54">&#9670;&nbsp;</a></span>Addon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.CharacterCommands.Addon </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;<br />
+ &lt;&lt;addon CHARACTER clear&gt;&gt;<br />
+</p>
+<p>Applies the ADDON to CHARACTER, where ADDON is the name of an addon specified on Unity.</p>
+<p>Addons usually have some animation tied to them. Once the animation is done playing, the addon will vanish.</p>
+<p>However, specifying <b>lingering</b> will cause the addon stay until <b>clear</b> is used.</p>
+<p>Specifying <b>clear</b> without ADDON will clear all lingering addons.</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;addon Ai !!!bubble&gt;&gt; 
+AI: The what?!
+</pre><p> Give Ai a the "!!!bubble" addon. It will vanish after the addon's animation finishes. (And can vanish while the dialogue is still being written out.) </p><pre class="fragment">&lt;&lt;addon Ai lingering !!!bubble&gt;&gt; 
+AI: The what?!
+AMI: Ai, he’s joking, but he has a point.
+&lt;&lt;addon Ai clear !!!bubble&gt;&gt; 
+</pre><p> Give Ai a the "!!!bubble" addon. In this case, the addon will persist until the second command is reached. </p><pre class="fragment">&lt;&lt;addon Ai lingering !!!bubble&gt;&gt; 
+AI: The what?!
+AMI: Ai, he’s joking, but he has a point.
+&lt;&lt;addon Ai clear&gt;&gt;
+</pre><p> Same as before. </p><pre class="fragment">&lt;&lt;addon Ai lingering !!!bubble&gt;&gt; 
+&lt;&lt;addon Ai lingering sweat&gt;&gt; 
+AI: The what?!
+AMI: Ai, he’s joking, but he has a point.
+&lt;&lt;addon Ai clear&gt;&gt;
+</pre><p> Give Ai a the "!!!bubble" addon and sweat addons. In this case, the clear command will remove all addons. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
 <a id="a35e47c36cc2b5499b0b325fbc04cd834"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35e47c36cc2b5499b0b325fbc04cd834">&#9670;&nbsp;</a></span>Animate()</h2>
 
@@ -149,7 +216,7 @@ Public Member Functions</h2></td></tr>
 </p>
 <p>Make CHARACTER play ANIMATION, where ANIMATION is the case-insensitive name of a character animation that has been created in Unity. These animations can either be one-off or looping; it depends on the animation.</p>
 <p>The <b>None</b> animation can be used to stop all current animations. If an invalid animation is given, Unity throws an error and treats it like <b>None</b> was used instead.</p>
-<p>If <b>and wait</b> is given, then no more text will display until the animation completes. This does nothing if used on a looping animation. (Otherwise, the game would get stuck!)</p>
+<p>If <b>and wait</b> is given for a looping animation, the animation is allowed to play once before the dialogue runner continues.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;animate Ibuki Shake&gt;&gt; 
 </pre><p> Make Ibuki play the "Shake" animation. </p><pre class="fragment">&lt;&lt;animate Ibuki Shake and wait&gt;&gt; 
@@ -191,9 +258,43 @@ Public Member Functions</h2></td></tr>
 </ul>
 <p>Finally, there's one special emotion: <b>None</b>. This clears all emotions, resetting the character back to their default, neutral face that they use when they first come onto the stage. The <b>None</b> emotion will always be available.</p>
 <p>Using an invalid emotion will print an error in the debug console and then act as though you had used <b>None</b> instead. </p>
+<h2>Examples</h2>
 <pre class="fragment">&lt;&lt;emote Ibuki Laugh&gt;&gt; 
 </pre><p> Make Ibuki Laugh. </p><pre class="fragment">&lt;&lt;emote Ibuki None&gt;&gt; 
 </pre><p> Return Ibuki to her default emotion. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
+<a id="a6e7aff6aafe23dfbd34b23763d78f200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e7aff6aafe23dfbd34b23763d78f200">&#9670;&nbsp;</a></span>Fade()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.CharacterCommands.Fade </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;fade in CHARACTER POSITION [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;fade out CHARACTER [now|quickly|slowly] [and wait]&gt;&gt;<br />
+</p>
+<p>In the first form, causes CHARACTER to fade into view at POSITION.</p>
+<p>In the second form, causes CHARACTER to fade out of view.</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;fade in Nimura Right slowly&gt;&gt;
+NIMURA: I'm fading in right now!
+</pre><p> Fades Nimura in at the right position. Dialogue starts printing as the fade goes on. "slowly" is optional, and makes her linger longer. </p><pre class="fragment">&lt;&lt;fade in Nimura Right and wait&gt;&gt;
+NIMURA: I just faded in.
+</pre><p> Fades Nimura in at the right position. Dialogue doesn't print until the fade finishes. </p><pre class="fragment">&lt;&lt;fade out Nimura quickly&gt;&gt;
+NIMURA: Gotta run!
+</pre><p> Fades Nimura out quickly. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
 
 </div>
@@ -214,12 +315,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now] [and wait]&gt;&gt; </p>
+<p>&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt; </p>
 <p>Causes CHARACTER to slide over to TO_POINT. If FROM_POINT is specified, the character will warp there before moving. If trying to move a character into view, please make sure to specify FROM_POINT. Otherwise, your character may start somewhere you weren't expecting!</p>
 <p>Points are created in Unity and are listed in the "puppetPoints" variable. For this reason, the number and names of points is flexible, and could possibly change. Current points PROBABLY are: offleft, left, middle, right, offright</p>
 <p>Note that point names are case-insensitive, but character names are not.</p>
-<p>If <b>now</b> is given, then the character immediately snaps to their destination.</p>
-<p>If <b>and wait</b> is given, then nothing else will happen until the character finishes moving. This does nothing if <b>now</b> is also given.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;move Ibuki Middle and wait&gt;&gt; 
 </pre><p> Move Ibuki to the middle (from wherever she was before). The <a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a> will wait until Ibuki finishes moving. </p><pre class="fragment">&lt;&lt;move Ibuki to Middle&gt;&gt;
@@ -250,7 +349,7 @@ Public Member Functions</h2></td></tr>
 <p>Make CHARACTER where COSTUME, where COSTUME is a (case-insensitive) name for one of CHARACTER's costumes.</p>
 <p>Costumes are specified within Unity, so their names aren't fixed. However, every character will have a default <b>VR</b> and <b>RL</b> costumes. Normally, characters will enter the stage with their RL costume, but this may be configured with <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a25584842ac571b2f5d2e15b441bc1687">outfit-all</a>.</p>
 <p>If COSTUME is <b>None</b> or an invalid costume, the character's default costume is used instead. (Again, default is controlled via <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a25584842ac571b2f5d2e15b441bc1687">outfit-all</a>.)</p>
-<p>Note that changing costumes is instant. Making characters change while they're on screen might be strange; get them off the screen first. (If you need characters changing on screen with some animation involved, this could be implemented!)</p>
+<p>Note that changing costumes is instant. Making characters change while they're on screen might be strange; get them off the screen first. (If you need characters changing on screen with some animation involved, let a coder know!)</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;outfit Ibuki VR&gt;&gt; 
 </pre><p> Make Ibuki wear her default VR outfit. </p><pre class="fragment">&lt;&lt;outfit Ibuki None&gt;&gt;
@@ -317,11 +416,12 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html">CharacterCommands</a></li>
-    <li class="footer">Generated on Wed Sep 2 2020 23:29:01 for Nijito by
+    <li class="footer">Generated for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
