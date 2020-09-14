@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.13-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -108,12 +109,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a374b82925aa19006940d3eee9f053171"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now] [and wait]&gt;&gt;<br />
  <a href="#a374b82925aa19006940d3eee9f053171">More...</a><br /></td></tr>
 <tr class="separator:a374b82925aa19006940d3eee9f053171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fafb07d5cb3bc8163f4e6df79f76b7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a1fafb07d5cb3bc8163f4e6df79f76b7f">Fade</a> (string[] args)</td></tr>
-<tr class="memdesc:a1fafb07d5cb3bc8163f4e6df79f76b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
- &lt;&lt;fade out [overlay] [now]&gt;&gt;<br />
- &lt;&lt;fade in [now]&gt;&gt;<br />
- <a href="#a1fafb07d5cb3bc8163f4e6df79f76b7f">More...</a><br /></td></tr>
-<tr class="separator:a1fafb07d5cb3bc8163f4e6df79f76b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9f2e9be4db53377be21016f042641bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ab9f2e9be4db53377be21016f042641bc">ImageFade</a> (string[] args)</td></tr>
+<tr class="memdesc:ab9f2e9be4db53377be21016f042641bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;image-fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
+ &lt;&lt;image-fade out [overlay] [now]&gt;&gt;<br />
+ &lt;&lt;image-fade in [now]&gt;&gt;<br />
+ <a href="#ab9f2e9be4db53377be21016f042641bc">More...</a><br /></td></tr>
+<tr class="separator:ab9f2e9be4db53377be21016f042641bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d61cadf8539b751e781bd23984da41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a> (string[] args)</td></tr>
 <tr class="memdesc:a12d61cadf8539b751e781bd23984da41"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;itembox ITEM&gt;&gt;<br />
  &lt;&lt;itembox hide [ITEM]&gt;&gt;<br />
@@ -138,6 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>Note that, whenever you have a name of an asset (e.g. a music track or a sound effect) which contains a space, you must wrap it in double quotes.</p>
 <h2>Changelog</h2>
 <ul>
+<li>9/13/2020: Changed fade to <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ab9f2e9be4db53377be21016f042641bc">image-fade</a>.</li>
 <li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">Wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a>.</li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -200,14 +202,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1fafb07d5cb3bc8163f4e6df79f76b7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fafb07d5cb3bc8163f4e6df79f76b7f">&#9670;&nbsp;</a></span>Fade()</h2>
+<a id="ab9f2e9be4db53377be21016f042641bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f2e9be4db53377be21016f042641bc">&#9670;&nbsp;</a></span>ImageFade()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Dialogue.VN.StageCommands.Fade </td>
+          <td class="memname">void Dialogue.VN.StageCommands.ImageFade </td>
           <td>(</td>
           <td class="paramtype">string []&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
@@ -216,9 +218,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
- &lt;&lt;fade out [overlay] [now]&gt;&gt;<br />
- &lt;&lt;fade in [now]&gt;&gt;<br />
+<p>&lt;&lt;image-fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
+ &lt;&lt;image-fade out [overlay] [now]&gt;&gt;<br />
+ &lt;&lt;image-fade in [now]&gt;&gt;<br />
 </p>
 <p>In the first form, fades out to <b>black</b>, <b>white</b>, or IMAGE, where IMAGE is the name of an image that's been configured in Unity. If IMAGE is invalid, <b>black</b> is used instead.</p>
 <p>The second form is a shortcut the first form that always fades to black.</p>
@@ -362,11 +364,12 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_dialogue.html">Dialogue</a></li><li class="navelem"><a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a></li><li class="navelem"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html">StageCommands</a></li>
-    <li class="footer">Generated on Sat Sep 12 2020 20:07:25 for Nijito by
+    <li class="footer">Generated for Nijito by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

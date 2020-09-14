@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['outfit',['Outfit',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a75b60c416bd874d61491de6ff209fb1b',1,'Dialogue::VN::CharacterCommands']]],
-  ['outfitall',['OutfitAll',['../class_dialogue_1_1_v_n_1_1_character_commands.html#a25584842ac571b2f5d2e15b441bc1687',1,'Dialogue::VN::CharacterCommands']]]
+  ['runcommand',['RunCommand',['../class_dialogue_1_1_nijito_dialogue_u_i.html#ae2bd16c9e477b459784421a3c8ef0c81',1,'Dialogue::NijitoDialogueUI']]],
+  ['runline',['RunLine',['../class_dialogue_1_1_nijito_dialogue_u_i.html#aef846e69907e91e2dc9008625b4847dc',1,'Dialogue::NijitoDialogueUI']]],
+  ['runoptions',['RunOptions',['../class_dialogue_1_1_nijito_dialogue_u_i.html#a6e41973abf619fa5f19b54eb3feeb85a',1,'Dialogue::NijitoDialogueUI']]]
 ];

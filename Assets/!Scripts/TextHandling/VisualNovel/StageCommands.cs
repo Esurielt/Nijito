@@ -19,6 +19,9 @@ namespace Dialogue.VN
 	/// must wrap it in double quotes.
 	///
 	/// ## Changelog
+	///  * 9/13/2020: Changed fade to
+	///    [image-fade](@ref Dialogue.VN.StageCommands.ImageFade).
+	///
 	///  * 9/12/2020: Added
 	///    [Wait](@ref Dialogue.VN.StageCommands.Wait) and 
 	///    [ItemBox](@ref Dialogue.VN.StageCommands.ItemBox).
@@ -103,9 +106,9 @@ namespace Dialogue.VN
 		}
 
 		/// <summary>
-		/// &lt;&lt;fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;\n 
-		/// &lt;&lt;fade out [overlay] [now]&gt;&gt;\n 
-		/// &lt;&lt;fade in [now]&gt;&gt;\n 
+		/// &lt;&lt;image-fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;\n 
+		/// &lt;&lt;image-fade out [overlay] [now]&gt;&gt;\n 
+		/// &lt;&lt;image-fade in [now]&gt;&gt;\n 
 		///
 		/// In the first form, fades out to **black**, **white**, or IMAGE,
 		/// where IMAGE is the name of an image that's been configured
@@ -145,9 +148,9 @@ namespace Dialogue.VN
 		/// 
 		/// </example>
 		/// \warning Not implemented yet.
-		public void Fade(string[] args)
+		public void ImageFade(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: fade");
+			Debug.LogWarning("Not implemented yet: image-fade");
 		}
 
 		/// <summary>
