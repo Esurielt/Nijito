@@ -106,15 +106,9 @@ Public Member Functions</h2></td></tr>
  <a href="#a8ff7caa15e0a21834fc6b5c33767aa4c">More...</a><br /></td></tr>
 <tr class="separator:a8ff7caa15e0a21834fc6b5c33767aa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a374b82925aa19006940d3eee9f053171"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a374b82925aa19006940d3eee9f053171">Background</a> (string[] args)</td></tr>
-<tr class="memdesc:a374b82925aa19006940d3eee9f053171"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now] [and wait]&gt;&gt;<br />
+<tr class="memdesc:a374b82925aa19006940d3eee9f053171"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;<br />
  <a href="#a374b82925aa19006940d3eee9f053171">More...</a><br /></td></tr>
 <tr class="separator:a374b82925aa19006940d3eee9f053171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9f2e9be4db53377be21016f042641bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ab9f2e9be4db53377be21016f042641bc">ImageFade</a> (string[] args)</td></tr>
-<tr class="memdesc:ab9f2e9be4db53377be21016f042641bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;image-fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
- &lt;&lt;image-fade out [overlay] [now]&gt;&gt;<br />
- &lt;&lt;image-fade in [now]&gt;&gt;<br />
- <a href="#ab9f2e9be4db53377be21016f042641bc">More...</a><br /></td></tr>
-<tr class="separator:ab9f2e9be4db53377be21016f042641bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12d61cadf8539b751e781bd23984da41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a> (string[] args)</td></tr>
 <tr class="memdesc:a12d61cadf8539b751e781bd23984da41"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;itembox ITEM&gt;&gt;<br />
  &lt;&lt;itembox hide [ITEM]&gt;&gt;<br />
@@ -124,8 +118,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5b7e49b0b287164414cc3e535899a4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;sound SOUND-EFFECT [at VOLUME%] [and wait]&gt;&gt;<br />
  <a href="#a5b7e49b0b287164414cc3e535899a4d3">More...</a><br /></td></tr>
 <tr class="separator:a5b7e49b0b287164414cc3e535899a4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bb1ee082a536efac9097b3fd1ee18b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a79bb1ee082a536efac9097b3fd1ee18b">StageFade</a> (string[] args)</td></tr>
+<tr class="memdesc:a79bb1ee082a536efac9097b3fd1ee18b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;stage-fade to [black|white|IMAGE] [overlay] [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;stage-fade out [overlay] [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;stage-fade in [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ <a href="#a79bb1ee082a536efac9097b3fd1ee18b">More...</a><br /></td></tr>
+<tr class="separator:a79bb1ee082a536efac9097b3fd1ee18b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb16fdb96c42dbed450ef8e7950f8f38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acb16fdb96c42dbed450ef8e7950f8f38">Music</a> (string[] args)</td></tr>
-<tr class="memdesc:acb16fdb96c42dbed450ef8e7950f8f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music TRACK [now]&gt;&gt;<br />
+<tr class="memdesc:acb16fdb96c42dbed450ef8e7950f8f38"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;music TRACK [now|quickly|slowly]&gt;&gt;<br />
  <a href="#acb16fdb96c42dbed450ef8e7950f8f38">More...</a><br /></td></tr>
 <tr class="separator:acb16fdb96c42dbed450ef8e7950f8f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc8d6aa1e9f862a0ea76e285c57bd304"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">Wait</a> (string[] args)</td></tr>
@@ -137,10 +137,17 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Implements several stage commands for the Yarn scripts to use. </p>
 <p>These commands are generic commands, and they don't interact specifically with characters. Character commands are in the <a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html">CharacterCommands</a> class.</p>
 <p>Note that, whenever you have a name of an asset (e.g. a music track or a sound effect) which contains a space, you must wrap it in double quotes.</p>
+<p>For any command with options such as <b>now</b>, <b>quickly</b>, and <b>slowly</b>, these options control the relative speed of the movement. Note that the exact speed depends on the command being used.</p><ul>
+<li><b>now</b>: Instant; all delays and animations are skipped.</li>
+<li><b>quickly</b>: Snappy and quick. Good for fast or hurried motions.</li>
+<li>(nothing): Standard speed. Should work for general situations.</li>
+<li><b>slowly</b>: Drags things out.</li>
+</ul>
+<p>For commands with <b>wait</b> or <b>and wait</b> options, those will cause the dialogue system to pause until the command finishes being carried out. This does nothing if <b>now</b> is also used. Also be careful of combining this with <b>slowly</b> too often; that might make things draggy.</p>
 <h2>Changelog</h2>
 <ul>
-<li>9/13/2020: Changed fade to <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#ab9f2e9be4db53377be21016f042641bc">image-fade</a>.</li>
-<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">Wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">ItemBox</a>.</li>
+<li>9/13/2020: Changed fade to <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a79bb1ee082a536efac9097b3fd1ee18b">stage-fade</a>. Added quickly/slowly options. Moved now/quickly/slowly and wait explanations to the class header.</li>
+<li>9/12/2020: Added <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#acc8d6aa1e9f862a0ea76e285c57bd304">wait</a> and <a class="el" href="class_dialogue_1_1_v_n_1_1_stage_commands.html#a12d61cadf8539b751e781bd23984da41">itembox</a>.</li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8ff7caa15e0a21834fc6b5c33767aa4c"></a>
@@ -162,7 +169,7 @@ Public Member Functions</h2></td></tr>
 <p>&lt;&lt;animate-stage ANIMATION [and wait]&gt;&gt;<br />
 </p>
 <p>Plays ANIMATION, which is an animation which has been set up on the stage in Unity.</p>
-<p>If <b>and wait</b> is given, then dialogue pauses until the animation finishes. Otherwise, it will continue while the animation plays. (This is ignored if the animation loops indefinitely.)</p>
+<p>If <b>and wait</b> is given when playing a looping animation, then dialogue pauses until the animation plays once.</p>
 <p>Only one animation can play at a time, and specifying <b>None</b> (or an invalid animation) will cause the current animation to stop.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;animate-stage Earthquake and wait&gt;&gt;
@@ -188,51 +195,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;background IMAGE [now] [and wait]&gt;&gt;<br />
+<p>&lt;&lt;background IMAGE [now|quickly|slowly] [and wait]&gt;&gt;<br />
 </p>
 <p>Displays IMAGE in the background, where IMAGE is some background image that has been configured in Unity.</p>
-<p>Normally, the new background will fade in. However, if <b>now</b> is given, no fade occurs and the change is instant.</p>
-<p>If <b>and wait</b> is given, then the dialogue sequence will wait for the transition to finish. This does nothing if <b>now</b> is also given, since then the transition is instant.</p>
 <p>If IMAGE is <b>None</b> (or invalid), then a black background is shown instead.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;background "Some Awesome Stage" now&gt;&gt;
 </pre><p> Show "Some Awesome Stage" immediately. </p><pre class="fragment">&lt;&lt;background Home and wait&gt;&gt;
 </pre><p> Show "Home," and wait until we finish fading into it. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
-
-</div>
-</div>
-<a id="ab9f2e9be4db53377be21016f042641bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9f2e9be4db53377be21016f042641bc">&#9670;&nbsp;</a></span>ImageFade()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Dialogue.VN.StageCommands.ImageFade </td>
-          <td>(</td>
-          <td class="paramtype">string []&#160;</td>
-          <td class="paramname"><em>args</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>&lt;&lt;image-fade to [black|white|IMAGE] [overlay] [now]&gt;&gt;<br />
- &lt;&lt;image-fade out [overlay] [now]&gt;&gt;<br />
- &lt;&lt;image-fade in [now]&gt;&gt;<br />
-</p>
-<p>In the first form, fades out to <b>black</b>, <b>white</b>, or IMAGE, where IMAGE is the name of an image that's been configured in Unity. If IMAGE is invalid, <b>black</b> is used instead.</p>
-<p>The second form is a shortcut the first form that always fades to black.</p>
-<p>In the third form, the fade effect is removed, showing everything.</p>
-<p>If <b>overlay</b> is given, then everything, even the text box, is also hidden by the fade effect. Note that, even if this is given, the text box will be unhidden if any more dialogue is printed while we're faded out.</p>
-<p>If <b>now</b> is given, the fade happens without any delay. If <b>now</b> is not given, dialogue pauses until the fade is completed.</p>
-<p>(Note that this is a great way to hide various other stage directions, like moving characters around, etc.)</p>
-<h2>Examples</h2>
-<pre class="fragment">&lt;&lt;fade out&gt;&gt;
-</pre><p> Turns the screen black without hiding the dialogue box. </p><pre class="fragment">&lt;&lt;fade to white overlay now&gt;&gt;
-</pre><p> Immediately turns the screen white, covering the dialogue box. </p><pre class="fragment">&lt;&lt;fade in now&gt;&gt;
-</pre><p> Immediately fades back in.</p>
 <dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
 
 </div>
@@ -283,12 +253,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;music TRACK [now]&gt;&gt;<br />
+<p>&lt;&lt;music TRACK [now|quickly|slowly]&gt;&gt;<br />
 </p>
 <p>Cause background music named TRACK to start playing, where TRACK is the (case-insensitive) name for a song.</p>
 <p>Tracks and their names are defined in Unity, so we can't put a full list here. If TRACK is <b>None</b>, the current song is stopped. If TRACK cannot be found, an error is sent to the debug console and it is treated as <b>None</b>.</p>
 <p>If no song is playing, the new song will play immediately. If a song <em>is</em> playing, then the old one will fade out and the new song will begin to play after a short delay.</p>
-<p>However, if <b>now</b> is specified, then the fade is skipped and the new song will simply start to play.</p>
+<p>Options which control speed will alter the rate at which the songs fade.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;music "Beautiful Lie"&gt;&gt; 
 </pre><p> Plays a song named "Beautiful Lie." (No, we aren't ripping tracks from Danganronpa.) </p><pre class="fragment">&lt;&lt;music "Never Gonna Give You Up" now&gt;&gt; 
@@ -320,13 +290,46 @@ Public Member Functions</h2></td></tr>
 <p>Plays SOUND-EFFECT once.</p>
 <p>The list of sound effects (and their names) must be configured in Unity.</p>
 <p>If given, VOLUME adjusts how loud the sound plays. Can be any percentage between 0% and 100%.</p>
-<p>If <b>wait</b> is given, no text will display until the sound finishes playing.</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;sound Beep&gt;&gt;
 </pre><p> If the sound named "Beep" is configured, it's played. </p><pre class="fragment">&lt;&lt;sound "Breaking glass"&gt;&gt;
 </pre><p> If the sound named "Breaking glass." </p><pre class="fragment">&lt;&lt;sound Beep at 50%&gt;&gt;
 </pre><p> Same as before, but "Beep" is played at half volume. </p><pre class="fragment">&lt;&lt;sound Beep wait&gt;&gt;
 </pre><p> Same as before, but game waits until the sound finishes. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
+
+</div>
+</div>
+<a id="a79bb1ee082a536efac9097b3fd1ee18b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bb1ee082a536efac9097b3fd1ee18b">&#9670;&nbsp;</a></span>StageFade()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Dialogue.VN.StageCommands.StageFade </td>
+          <td>(</td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>&lt;&lt;stage-fade to [black|white|IMAGE] [overlay] [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;stage-fade out [overlay] [now|quickly|slowly] [and wait]&gt;&gt;<br />
+ &lt;&lt;stage-fade in [now|quickly|slowly] [and wait]&gt;&gt;<br />
+</p>
+<p>In the first form, fades out to <b>black</b>, <b>white</b>, or IMAGE, where IMAGE is the name of an image that's been configured in Unity. If IMAGE is invalid, <b>black</b> is used instead.</p>
+<p>The second form is a shortcut the first form that always fades to black.</p>
+<p>In the third form, the fade effect is removed, showing everything.</p>
+<p>If <b>overlay</b> is given, then everything, even the text box, is also hidden by the fade effect. Note that, even if this is given, the text box will be unhidden if any more dialogue is printed while we're faded out.</p>
+<p>(Note that this is a great way to hide various other stage directions, like moving characters around, etc.)</p>
+<h2>Examples</h2>
+<pre class="fragment">&lt;&lt;fade out&gt;&gt;
+</pre><p> Turns the screen black without hiding the dialogue box. </p><pre class="fragment">&lt;&lt;fade to white overlay now&gt;&gt;
+</pre><p> Immediately turns the screen white, covering the dialogue box. </p><pre class="fragment">&lt;&lt;fade in now&gt;&gt;
+</pre><p> Immediately fades back in.</p>
 <dl class="section warning"><dt>Warning</dt><dd>Not implemented yet. </dd></dl>
 
 </div>

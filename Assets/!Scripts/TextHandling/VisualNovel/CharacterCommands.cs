@@ -36,10 +36,30 @@ namespace Dialogue.VN
 	/// Note that, whenever you have a name of an asset (e.g. an
 	/// animation) which contains a space, you
 	/// must wrap it in double quotes.
+	/// 
+	/// For any command with options such as **now**, **quickly**,
+	/// and **slowly**, these options control the relative speed
+	/// of the movement. Note that the exact speed depends on the
+	/// command being used.
+	///   * **now**: Instant; all delays and animations are skipped.
+	///   * **quickly**: Snappy and quick. Good for fast or hurried motions.
+	///   * (nothing): Standard speed. Should work for general situations.
+	///   * **slowly**: Drags things out.
+	///
+	/// For commands with **wait** or **and wait** options, those
+	/// will cause the dialogue system to pause until the command
+	/// finishes being carried out. This does nothing if **now** is
+	/// also used. Also be careful of combining this with **slowly**
+	/// too often; that might make things draggy.
 	///
 	/// ## Changelog
+	///  * 9/13/2020: Added
+	///    [fade](@ref Dialogue.VN.CharacterCommands.Fade).
+	///    Added quickly/slowly options.
+	///    Moved now/quickly/slowly and wait explanations to the class header.
+	/// 
 	///  * 9/12/2020: Added
-	///    [Addon](@ref Dialogue.VN.CharacterCommands.Addon).
+	///    [addon](@ref Dialogue.VN.CharacterCommands.Addon).
 	///  
 	/// </summary>
 	public class CharacterCommands : MonoBehaviour
@@ -73,6 +93,7 @@ namespace Dialogue.VN
 
 		/// <summary>
 		/// &lt;&lt;addon CHARACTER [lingering|clear] ADDON&gt;&gt;\n 
+		/// &lt;&lt;addon CHARACTER clear&gt;&gt;\n 
 		/// 
 		/// Applies the ADDON to CHARACTER, where ADDON is the name
 		/// of an addon specified on Unity.
@@ -83,6 +104,9 @@ namespace Dialogue.VN
 		/// 
 		/// However, specifying **lingering** will cause the addon
 		/// stay until **clear** is used.
+		///
+		/// Specifying **clear** without ADDON will clear all
+		/// lingering addons.
 		/// 
 		/// </summary>
 		/// <example>
@@ -90,24 +114,37 @@ namespace Dialogue.VN
 		/// ## Examples
 		/// 
 		///     <<addon Ai !!!bubble>> 
-		///     Ai: The what?!
+		///     AI: The what?!
 		/// Give Ai a the "!!!bubble" addon. It will vanish after
 		/// the addon's animation finishes. (And can vanish while
 		/// the dialogue is still being written out.)
 		///
 		///     <<addon Ai lingering !!!bubble>> 
-		///     Ai: The what?!
+		///     AI: The what?!
 		///     AMI: Ai, he’s joking, but he has a point.
 		///     <<addon Ai clear !!!bubble>> 
 		/// Give Ai a the "!!!bubble" addon. In this case, the
 		/// addon will persist until the second command is reached.
+		///
+		///     <<addon Ai lingering !!!bubble>> 
+		///     AI: The what?!
+		///     AMI: Ai, he’s joking, but he has a point.
+		///     <<addon Ai clear>>
+		/// Same as before.
+		///
+		///     <<addon Ai lingering !!!bubble>> 
+		///     <<addon Ai lingering sweat>> 
+		///     AI: The what?!
+		///     AMI: Ai, he’s joking, but he has a point.
+		///     <<addon Ai clear>>
+		/// Give Ai a the "!!!bubble" addon and sweat addons.
+		/// In this case, the clear command will remove all addons.
 		/// </example>
 		/// \warning Not implemented yet.
 		public void Addon(string[] args)
 		{
 			Debug.LogWarning("Not implemented yet: addon");
 		}
-
 
 		/// <summary>
 		/// &lt;&lt;animate CHARACTER ANIMATION [and wait]&gt;&gt;\n 
@@ -122,10 +159,9 @@ namespace Dialogue.VN
 		/// throws an error and treats it like **None** was used
 		/// instead.
 		///
-		/// If **and wait** is given, then no more text will display
-		/// until the animation completes. This does nothing
-		/// if used on a looping animation. (Otherwise, the game
-		/// would get stuck!)
+		/// If **and wait** is given for a looping animation,
+		/// the animation is allowed to play once before the
+		/// dialogue runner continues.
 		///
 		/// </summary> <example>
 		///
@@ -177,6 +213,8 @@ namespace Dialogue.VN
 		/// and then act as though you had used **None** instead.
 		/// </summary>
 		/// <example>
+		///
+		/// ## Examples
 		/// 
 		///     <<emote Ibuki Laugh>> 
 		/// Make Ibuki Laugh.
@@ -187,11 +225,45 @@ namespace Dialogue.VN
 		/// \warning Not implemented yet.
 		public void Emote(string[] args)
 		{
-			Debug.LogWarning("Not implemented yet: Emote");
+			Debug.LogWarning("Not implemented yet: emote");
 		}
 
 		/// <summary>
-		/// &lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now] [and wait]&gt;&gt;
+		/// &lt;&lt;fade in CHARACTER POSITION [now|quickly|slowly] [and wait]&gt;&gt;\n 
+		/// &lt;&lt;fade out CHARACTER [now|quickly|slowly] [and wait]&gt;&gt;\n 
+		///
+		/// In the first form, causes CHARACTER to fade into view
+		/// at POSITION.
+		/// 
+		/// In the second form, causes CHARACTER to fade out of view.
+		///
+		/// </summary> <example>
+		///
+		/// ## Examples
+		///
+		///     <<fade in Nimura Right slowly>>
+		///     NIMURA: I'm fading in right now!
+		/// Fades Nimura in at the right position.
+		/// %Dialogue starts printing as the fade goes on.
+		/// "slowly" is optional, and makes her linger longer.
+		///
+		///     <<fade in Nimura Right and wait>>
+		///     NIMURA: I just faded in.
+		/// Fades Nimura in at the right position.
+		/// %Dialogue doesn't print until the fade finishes.
+		///
+		///     <<fade out Nimura quickly>>
+		///     NIMURA: Gotta run!
+		/// Fades Nimura out quickly.
+		/// </example>
+		/// \warning Not implemented yet.
+		public void Fade(string[] args)
+		{
+			Debug.LogWarning("Not implemented yet: fade");
+		}
+
+		/// <summary>
+		/// &lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt;
 		///
 		/// Causes CHARACTER to slide over to TO_POINT. If FROM_POINT is
 		/// specified, the character will warp there before moving.
@@ -205,13 +277,6 @@ namespace Dialogue.VN
 		///		offleft, left, middle, right, offright
 		///
 		/// Note that point names are case-insensitive, but character names are not.
-		///
-		/// If **now** is given, then the character immediately snaps
-		/// to their destination.
-		///
-		/// If **and wait** is given, then nothing else will happen
-		/// until the character finishes moving. This does nothing
-		/// if **now** is also given.
 		///
 		/// </summary> <example>
 		///
@@ -265,6 +330,8 @@ namespace Dialogue.VN
 
 					case "now":
 						// TODO Implement 'now'
+						// TODO Implement 'slowly'
+						// TODO Implement 'quickly'
 						Debug.LogWarning("'now' isn't supported yet!");
 						break;
 
@@ -316,7 +383,7 @@ namespace Dialogue.VN
 		/// Making characters change while they're
 		/// on screen might be strange; get them off the screen
 		/// first. (If you need characters changing on screen with
-		/// some animation involved, this could be implemented!)
+		/// some animation involved, let a coder know!)
 		///
 		/// </summary> <example>
 		///
