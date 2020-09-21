@@ -264,6 +264,8 @@ namespace Dialogue.VN
 
 		/// <summary>
 		/// &lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt;
+		/// <br>
+		/// (Continued; see subsection)
 		///
 		/// Causes CHARACTER to slide over to TO_POINT. If FROM_POINT is
 		/// specified, the character will warp there before moving.
@@ -276,8 +278,36 @@ namespace Dialogue.VN
 		/// flexible, and could possibly change. Current points PROBABLY are:
 		///		offleft, left, middle, right, offright
 		///
-		/// Note that point names are case-insensitive, but character names are not.
 		///
+		/// ### Stacking
+		/// 
+		/// If two or more characters end up on the same point, then
+		/// they'll "stack," with their positions being staggered
+		/// so they aren't all on the same position.
+		/// 
+		/// Note that this is still in development. More details on
+		/// how this looks/works once that's done.
+		/// 
+		/// 
+		/// ### Pushing and Pulling
+		/// 
+		///     <<move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]
+		///            [and pull|push TARGET1 [, TARGET2, TARGET3, ...] [to TARGET_POSITION]]>>
+		///
+		/// If **pull** or **push** is given, then every TARGET gets
+		/// pulled/pushed by CHARACTER. It's possible to push/pull 
+		/// several targets at a time, separating their names with
+		/// spaces.
+		///
+		/// By default, each TARGET ends up on the same spot as
+		/// CHARACTER. However, if TARGET_POSITION is also specified,
+		/// then all TARGETs end up there.
+		/// 
+		/// The assumption is that CHARACTER will move past every
+		/// TARGET. Any TARGETs which CHARACTER does not go past
+		/// won't be pushed. (This is subject to change?)
+		/// 
+		/// 
 		/// </summary> <example>
 		///
 		/// ## Examples
@@ -296,7 +326,19 @@ namespace Dialogue.VN
 		///     <<move Ibuki to Left from OffLeft>>
 		/// Move Ibuki from the off the left edge of the screen to the left position.
 		/// Use something like this if the character was off screen.
+		///
+		///     <<move Ibuki to Middle and push Nimura to Left and push Ami to OffLeft>>
+		/// Move Ibuki to the middle.<br>
+		/// When Ibuki reaches Nimura, Nimura will be forced over to the left.<br>
+		/// When Ibuki reaches Ami, Ami will be forced off the left edge.
+		///
+		///     <<move Ibuki to Middle and push Nimura, Ami to Left>>
+		/// Move Ibuki to the middle.<br>
+		/// When Ibuki reaches Nimura and/or Ami, they will both be to the Left position.
+		/// 
+		/// 
 		/// </example>
+		/// \warning Implementation in progress
 		public void Move(string[] args)
 		{
 

@@ -120,7 +120,8 @@ Public Member Functions</h2></td></tr>
  <a href="#a6e7aff6aafe23dfbd34b23763d78f200">More...</a><br /></td></tr>
 <tr class="separator:a6e7aff6aafe23dfbd34b23763d78f200"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7827eebf38141d9607c7091c95f37e04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a7827eebf38141d9607c7091c95f37e04">Move</a> (string[] args)</td></tr>
-<tr class="memdesc:a7827eebf38141d9607c7091c95f37e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt;  <a href="#a7827eebf38141d9607c7091c95f37e04">More...</a><br /></td></tr>
+<tr class="memdesc:a7827eebf38141d9607c7091c95f37e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt; <br />
+ (Continued; see subsection)  <a href="#a7827eebf38141d9607c7091c95f37e04">More...</a><br /></td></tr>
 <tr class="separator:a7827eebf38141d9607c7091c95f37e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75b60c416bd874d61491de6ff209fb1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_dialogue_1_1_v_n_1_1_character_commands.html#a75b60c416bd874d61491de6ff209fb1b">Outfit</a> (string[] args)</td></tr>
 <tr class="memdesc:a75b60c416bd874d61491de6ff209fb1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt;&lt;outfit CHARACTER COSTUME&gt;&gt;<br />
@@ -315,16 +316,31 @@ NIMURA: Gotta run!
       </table>
 </div><div class="memdoc">
 
-<p>&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt; </p>
+<p>&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]&gt;&gt; <br />
+ (Continued; see subsection) </p>
 <p>Causes CHARACTER to slide over to TO_POINT. If FROM_POINT is specified, the character will warp there before moving. If trying to move a character into view, please make sure to specify FROM_POINT. Otherwise, your character may start somewhere you weren't expecting!</p>
 <p>Points are created in Unity and are listed in the "puppetPoints" variable. For this reason, the number and names of points is flexible, and could possibly change. Current points PROBABLY are: offleft, left, middle, right, offright</p>
-<p>Note that point names are case-insensitive, but character names are not.</p>
+<h3>Stacking</h3>
+<p>If two or more characters end up on the same point, then they'll "stack," with their positions being staggered so they aren't all on the same position.</p>
+<p>Note that this is still in development. More details on how this looks/works once that's done.</p>
+<h3>Pushing and Pulling</h3>
+<pre class="fragment">&lt;&lt;move CHARACTER [to] TO_POINT [from FROM_POINT] [now|slowly|quickly] [and wait]
+       [and pull|push TARGET1 [, TARGET2, TARGET3, ...] [to TARGET_POSITION]]&gt;&gt;
+</pre><p>If <b>pull</b> or <b>push</b> is given, then every TARGET gets pulled/pushed by CHARACTER. It's possible to push/pull several targets at a time, separating their names with spaces.</p>
+<p>By default, each TARGET ends up on the same spot as CHARACTER. However, if TARGET_POSITION is also specified, then all TARGETs end up there.</p>
+<p>The assumption is that CHARACTER will move past every TARGET. Any TARGETs which CHARACTER does not go past won't be pushed. (This is subject to change?)</p>
 <h2>Examples</h2>
 <pre class="fragment">&lt;&lt;move Ibuki Middle and wait&gt;&gt; 
 </pre><p> Move Ibuki to the middle (from wherever she was before). The <a class="el" href="namespace_dialogue_1_1_v_n.html">VN</a> will wait until Ibuki finishes moving. </p><pre class="fragment">&lt;&lt;move Ibuki to Middle&gt;&gt;
 </pre><p> Same as before, except without the waiting. (And it looks a little more like English.) </p><pre class="fragment">&lt;&lt;move Ibuki Middle now&gt;&gt;
 </pre><p> Same as before, but Ibuki will "teleport" to the middle. </p><pre class="fragment">&lt;&lt;move Ibuki to Left from OffLeft&gt;&gt;
-</pre><p> Move Ibuki from the off the left edge of the screen to the left position. Use something like this if the character was off screen. </p>
+</pre><p> Move Ibuki from the off the left edge of the screen to the left position. Use something like this if the character was off screen. </p><pre class="fragment">&lt;&lt;move Ibuki to Middle and push Nimura to Left and push Ami to OffLeft&gt;&gt;
+</pre><p> Move Ibuki to the middle.<br />
+ When Ibuki reaches Nimura, Nimura will be forced over to the left.<br />
+ When Ibuki reaches Ami, Ami will be forced off the left edge. </p><pre class="fragment">&lt;&lt;move Ibuki to Middle and push Nimura, Ami to Left&gt;&gt;
+</pre><p> Move Ibuki to the middle.<br />
+ When Ibuki reaches Nimura and/or Ami, they will both be to the Left position.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Implementation in progress </dd></dl>
 
 </div>
 </div>
